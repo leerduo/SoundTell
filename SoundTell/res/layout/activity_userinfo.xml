@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/layout_head_red" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <RelativeLayout
+            android:id="@+id/userinfo_logo_r"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/bg_btn_shape_white" >
+
+            <com.xh.soundtell.view.CircleImageView
+                android:id="@+id/userinfo_logo"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/meng1" />
+
+            <TextView
+                android:id="@+id/userinfo_logo_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="更改头像"
+                android:textColor="@color/app_font_black"
+                android:textSize="20sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/userinfo_name_r"
+            style="@style/my_relativeLayout"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                style="@style/my_title"
+                android:text="昵称" />
+
+            <TextView
+                android:id="@+id/userinfo_name"
+                style="@style/my_black"
+                android:layout_alignParentRight="true"
+                android:text="天空一片蓝" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/userinfo_sex_r"
+            style="@style/my_relativeLayout"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                style="@style/my_title"
+                android:text="性别" />
+
+            <TextView
+                android:id="@+id/userinfo_sex"
+                style="@style/my_black"
+                android:layout_alignParentRight="true"
+                android:text="男" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/userinfo_area_r"
+            style="@style/my_relativeLayout"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                style="@style/my_title"
+                android:text="地区" />
+
+            <TextView
+                android:id="@+id/userinfo_area"
+                style="@style/my_black"
+                android:layout_alignParentRight="true"
+                android:text="四川省成都市双流县" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/userinfo_collect_r"
+            style="@style/my_relativeLayout"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:id="@+id/userinfo_collect_title"
+                style="@style/my_title"
+                android:text="简介" />
+
+            <TextView
+                android:id="@+id/userinfo_collect"
+                style="@style/my_black"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/userinfo_collect_title"
+                android:text="兰兰的天空、我的家、我的家我的家兰兰的天空、我的家、我的家我的家兰兰的天空、我的家、我的家我的家兰兰的天空、我的家、我的家我的家" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

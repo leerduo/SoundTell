@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- 下层图形 -->
+    <item>
+        <selector>
+            <item android:drawable="@drawable/meng">
+            </item>
+        </selector>
+    </item>
+
+    <!-- 上层图形 -->
+    <item>
+        <selector>
+            <item android:drawable="@drawable/selector_circle_forclick">
+            </item>
+        </selector>
+    </item>
+
+</layer-list>
