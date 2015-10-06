@@ -12,7 +12,7 @@
         <LinearLayout
             android:id="@+id/ll"
             android:layout_width="match_parent"
-            android:layout_height="61dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="vertical" >
 

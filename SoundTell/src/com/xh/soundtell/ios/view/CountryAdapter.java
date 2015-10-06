@@ -16,7 +16,7 @@ public class CountryAdapter extends AbstractWheelTextAdapter {
 	 * Adapter for countries 城市的Adapter
 	 */
 	// Countries names
-	private String countries[] = AddressData.PROVINCES;
+	private String countries[] = AddressData.PROVINCES_BACK;
 
 	/**
 	 * Constructor

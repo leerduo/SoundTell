@@ -11,6 +11,9 @@ import android.widget.TextView;
 
 import com.xh.soundtell.R;
 import com.xh.soundtell.setting.SettingHelper;
+import com.xh.soundtell.ui.fragment.ActivityFragment;
+import com.xh.soundtell.ui.fragment.FriendsFragment;
+import com.xh.soundtell.ui.fragment.HotFragment;
 import com.xh.soundtell.ui.fragment.MyFragment;
 
 public class MainActivity extends FragmentActivity implements OnClickListener {
@@ -59,10 +62,19 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			ft.commit();
 			break;
 		case R.id.tv2:
+			HotFragment hotFragment = new HotFragment();
+			ft.replace(R.id.frame_layout, hotFragment);
+			ft.commit();
 			break;
 		case R.id.tv3:
+			ActivityFragment activityFragment = new ActivityFragment();
+			ft.replace(R.id.frame_layout, activityFragment);
+			ft.commit();
 			break;
 		case R.id.tv4:
+			FriendsFragment friendsFragment = new FriendsFragment();
+			ft.replace(R.id.frame_layout, friendsFragment);
+			ft.commit();
 			break;
 		default:
 			break;

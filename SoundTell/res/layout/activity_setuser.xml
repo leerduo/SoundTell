@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/layout_head_red" />
+
+    <EditText
+        android:id="@+id/setuser_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_rectangle_white"
+        android:minHeight="40dp"
+        android:minLines="1"
+        android:text="1111"
+        android:textColor="@color/app_font_gray"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/setuser_man"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_rectangle_white"
+        android:gravity="center_vertical"
+        android:text="男"
+        android:textColor="@color/app_font_gray"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/setuser_woman"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_rectangle_white"
+        android:gravity="center_vertical"
+        android:text="女"
+        android:textColor="@color/app_font_gray"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/setuser_collect"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/shape_rectangle_white"
+        android:gravity="top"
+        android:text="李加力李加力李加力李加力考虑考虑考虑考虑考虑考虑考虑考虑李加力李加力李加力李加力考虑考虑李加力可口可乐了李加力李加力可口可乐了可口可乐了考虑"
+        android:textColor="@color/app_font_gray"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/setuser_wordcount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请不要超过70字"
+        android:textColor="@color/app_font_gray"
+        android:visibility="gone" />
+
+</LinearLayout>

@@ -30,6 +30,14 @@
             android:name="com.xh.soundtell.ui.UploadPhotoActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.xh.soundtell.ui.SetUserActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.xh.soundtell.ui.SetActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />

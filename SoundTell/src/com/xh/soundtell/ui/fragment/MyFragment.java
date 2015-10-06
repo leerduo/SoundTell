@@ -17,15 +17,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.xh.soundtell.R;
+import com.xh.soundtell.ui.UploadPhotoActivity;
 import com.xh.soundtell.ui.UserInfoActivity;
+import com.xh.soundtell.util.ImageHelper;
 
 public class MyFragment extends Fragment implements OnClickListener {
 	private Activity activity;
 	private View parent;
 
-	private ImageView my_userlogo, my_set;
+	private ImageView my_iv, my_userlogo, my_set;
 	private RelativeLayout my_works_r, my_fans_r, my_watch_r, my_info_r,
 			my_collect_r;
+	private TextView my_username, my_intro;
 	private TextView my_works, my_fans, my_watch, my_info, my_collect;
 	private ImageView my_works_iv, my_fans_iv, my_watch_iv, my_info_iv,
 			my_collect_iv;
@@ -77,10 +80,15 @@ public class MyFragment extends Fragment implements OnClickListener {
 	// my_collect_iv
 
 	private void findView() {
+		my_iv = (ImageView) parent.findViewById(R.id.my_iv);
 		my_userlogo = (ImageView) parent.findViewById(R.id.my_userlogo);
 		my_set = (ImageView) parent.findViewById(R.id.my_set);
+
 		my_userlogo.setOnClickListener(this);
 		my_set.setOnClickListener(this);
+
+		my_username = (TextView) parent.findViewById(R.id.my_username);
+		my_intro = (TextView) parent.findViewById(R.id.my_intro);
 
 		my_works_r = (RelativeLayout) parent.findViewById(R.id.my_works_r);
 		my_fans_r = (RelativeLayout) parent.findViewById(R.id.my_fans_r);
@@ -104,6 +112,7 @@ public class MyFragment extends Fragment implements OnClickListener {
 		my_watch_iv = (ImageView) parent.findViewById(R.id.my_watch_iv);
 		my_info_iv = (ImageView) parent.findViewById(R.id.my_info_iv);
 		my_collect_iv = (ImageView) parent.findViewById(R.id.my_collect_iv);
+
 		imageViews.add(my_works_iv);
 		imageViews.add(my_fans_iv);
 		imageViews.add(my_watch_iv);
@@ -117,10 +126,10 @@ public class MyFragment extends Fragment implements OnClickListener {
 		case R.id.my_userlogo:
 			Intent intent = new Intent(activity, UserInfoActivity.class);
 			startActivityForResult(intent, 100);
-			System.out.println("1111");
 			break;
 		case R.id.my_set:
-
+			Intent intent1 = new Intent(activity, UserInfoActivity.class);
+			startActivityForResult(intent1, 101);
 			break;
 		case R.id.my_works_r:
 			hideView(my_works_iv);
@@ -139,6 +148,24 @@ public class MyFragment extends Fragment implements OnClickListener {
 			break;
 		default:
 			break;
+		}
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode != activity.RESULT_OK) {
+			return;
+		}
+		if (requestCode == 100) {
+			String image = data.getStringExtra("image");
+			String name = data.getStringExtra("name");
+			String collect = data.getStringExtra("collect");
+			if (!image.equals("123456")) {
+				my_iv.setImageBitmap(ImageHelper.getBitmap(image));
+				my_userlogo.setImageBitmap(ImageHelper.getBitmap(image));
+			}
+			my_username.setText(name);
+			my_intro.setText(collect);
 		}
 	}
 

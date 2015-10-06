@@ -53,10 +53,13 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 	private TextView userinfo_name, userinfo_sex, userinfo_area,
 			userinfo_collect;
 
+	private String strimage = "123456";
+
 	private WheelView city, ccity, country;
 	private String regionId;
-	private String cityTxt = AddressData.PROVINCES[0] + " | "
-			+ AddressData.CITIES[0][0] + " | " + AddressData.COUNTIES[0][0][0];
+	private String cityTxt = AddressData.PROVINCES_BACK[0] + " | "
+			+ AddressData.CITIES_BACK[0][0] + " | "
+			+ AddressData.COUNTIES_BACK[0][0][0];
 	/**
 	 * 省、市、县（区）、是否点击了确定(0:没点1:点了)
 	 */
@@ -120,11 +123,18 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 	// userinfo_collect_r
 	@Override
 	public void onClick(View v) {
+		Intent intent;
 		switch (v.getId()) {
 		case R.id.head_leftimage:
 			UserInfoActivity.this.finish();
 			break;
 		case R.id.head_righttext:
+			intent = new Intent();
+			intent.putExtra("image", strimage);
+			intent.putExtra("name", userinfo_name.getText().toString().trim());
+			intent.putExtra("collect", userinfo_collect.getText().toString()
+					.trim());
+			setResult(RESULT_OK, intent);
 			UserInfoActivity.this.finish();
 			break;
 		case R.id.userinfo_logo_r:
@@ -159,16 +169,22 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 
 			break;
 		case R.id.userinfo_name_r:
-
+			intent = new Intent(UserInfoActivity.this, SetUserActivity.class);
+			intent.putExtra("data", "name");
+			startActivityForResult(intent, 103);
 			break;
 		case R.id.userinfo_sex_r:
-
+			intent = new Intent(UserInfoActivity.this, SetUserActivity.class);
+			intent.putExtra("data", "sex");
+			startActivityForResult(intent, 103);
 			break;
 		case R.id.userinfo_area_r:
 			showRegion();
 			break;
 		case R.id.userinfo_collect_r:
-
+			intent = new Intent(UserInfoActivity.this, SetUserActivity.class);
+			intent.putExtra("data", "collect");
+			startActivityForResult(intent, 103);
 			break;
 		default:
 			break;
@@ -177,16 +193,29 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode != 102) {
+		if (resultCode != RESULT_OK) {
 			return;
 		}
-		if (resultCode == RESULT_OK) {
+		if (requestCode == 102) {
 			if (UploadPhotoActivity.i == 3) {
-				// completetask_image.setImageBitmap(ImageHelper
-				// .getBitmap(UploadPhotoActivity.str));
 				userinfo_logo.setImageBitmap(ImageHelper
 						.getBitmap(UploadPhotoActivity.str));
+				strimage = UploadPhotoActivity.str;
 			}
+		}
+
+		// userinfo_name, userinfo_sex, userinfo_collect;
+		if (requestCode == 103) {
+			String st = data.getStringExtra("data");
+			String info = data.getStringExtra("info");
+			if (st.equals("name")) {
+				userinfo_name.setText(info);
+			} else if (st.equals("sex")) {
+				userinfo_sex.setText(info);
+			} else if (st.equals("collect")) {
+				userinfo_collect.setText(info);
+			}
+
 		}
 
 	}
@@ -222,17 +251,17 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 						ctCache[0] = c1;
 						ctCache[1] = c2;
 						ctCache[2] = c3;
-						cityTxt = AddressData.PROVINCES[c1] + " | "
-								+ AddressData.CITIES[c1][c2] + " | "
-								+ AddressData.COUNTIES[c1][c2][c3];
-						regionId = AddressData.C_C_ID[ctCache[0]][ctCache[1]][ctCache[2]]
+						cityTxt = AddressData.PROVINCES_BACK[c1] + " | "
+								+ AddressData.CITIES_BACK[c1][c2] + " | "
+								+ AddressData.COUNTIES_BACK[c1][c2][c3];
+						regionId = AddressData.C_C_ID_BACK[ctCache[0]][ctCache[1]][ctCache[2]]
 								+ "";
 						if (ctCache[2] == 0) {
-							regionId = AddressData.C_ID[ctCache[0]][ctCache[1]]
+							regionId = AddressData.C_ID_BACK[ctCache[0]][ctCache[1]]
 									+ "";
 						}
 						if (ctCache[1] == 0) {
-							regionId = AddressData.P_ID[ctCache[0]] + "";
+							regionId = AddressData.P_ID_BACK[ctCache[0]] + "";
 						}
 						userinfo_area.setText(cityTxt);
 						// ToastUtil.makeToast(RegisterActivity.this, cityTxt);
@@ -254,8 +283,8 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 		country.setVisibleItems(5);
 		country.setViewAdapter(new CountryAdapter(this));
 
-		final String cities[][] = AddressData.CITIES;
-		final String ccities[][][] = AddressData.COUNTIES;
+		final String cities[][] = AddressData.CITIES_BACK;
+		final String ccities[][][] = AddressData.COUNTIES_BACK;
 
 		city = (WheelView) contentView.findViewById(R.id.wheelcity_city);
 		city.setVisibleItems(5);
@@ -267,12 +296,12 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 		country.addChangingListener(new OnWheelChangedListener() {
 			public void onChanged(WheelView wheel, int oldValue, int newValue) {
 				updateCities(city, cities, newValue, 0);
-				cityTxt = AddressData.PROVINCES[country.getCurrentItem()]
+				cityTxt = AddressData.PROVINCES_BACK[country.getCurrentItem()]
 						+ " | "
-						+ AddressData.CITIES[country.getCurrentItem()][city
+						+ AddressData.CITIES_BACK[country.getCurrentItem()][city
 								.getCurrentItem()]
 						+ " | "
-						+ AddressData.COUNTIES[country.getCurrentItem()][city
+						+ AddressData.COUNTIES_BACK[country.getCurrentItem()][city
 								.getCurrentItem()][ccity.getCurrentItem()];
 
 			}
@@ -282,24 +311,24 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 			public void onChanged(WheelView wheel, int oldValue, int newValue) {
 				updatecCities(ccity, ccities, country.getCurrentItem(),
 						newValue, 0);
-				cityTxt = AddressData.PROVINCES[country.getCurrentItem()]
+				cityTxt = AddressData.PROVINCES_BACK[country.getCurrentItem()]
 						+ " | "
-						+ AddressData.CITIES[country.getCurrentItem()][city
+						+ AddressData.CITIES_BACK[country.getCurrentItem()][city
 								.getCurrentItem()]
 						+ " | "
-						+ AddressData.COUNTIES[country.getCurrentItem()][city
+						+ AddressData.COUNTIES_BACK[country.getCurrentItem()][city
 								.getCurrentItem()][ccity.getCurrentItem()];
 			}
 		});
 
 		ccity.addChangingListener(new OnWheelChangedListener() {
 			public void onChanged(WheelView wheel, int oldValue, int newValue) {
-				cityTxt = AddressData.PROVINCES[country.getCurrentItem()]
+				cityTxt = AddressData.PROVINCES_BACK[country.getCurrentItem()]
 						+ " | "
-						+ AddressData.CITIES[country.getCurrentItem()][city
+						+ AddressData.CITIES_BACK[country.getCurrentItem()][city
 								.getCurrentItem()]
 						+ " | "
-						+ AddressData.COUNTIES[country.getCurrentItem()][city
+						+ AddressData.COUNTIES_BACK[country.getCurrentItem()][city
 								.getCurrentItem()][ccity.getCurrentItem()];
 			}
 		});

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/layout_head_red" />
+
+    <RelativeLayout
+        android:id="@+id/set_data"
+        style="@style/set_relativeLayout"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            style="@style/set_black"
+            android:text="资料设置" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/set_image"
+        style="@style/set_relativeLayout" >
+
+        <TextView
+            style="@style/set_black"
+            android:text="我的照片" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/set_friend"
+        style="@style/set_relativeLayout"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            style="@style/set_black"
+            android:text="邀请好友" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/set_feedback"
+        style="@style/set_relativeLayout" >
+
+        <TextView
+            style="@style/set_black"
+            android:text="意见反馈" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/set_update"
+        style="@style/set_relativeLayout" >
+
+        <TextView
+            style="@style/set_black"
+            android:drawableRight="@null"
+            android:text="检查更新" />
+    </RelativeLayout>
+
+</LinearLayout>

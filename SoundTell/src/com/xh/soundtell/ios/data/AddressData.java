@@ -1,6 +1,5 @@
 package com.xh.soundtell.ios.data;
 
-
 /**
  * IOS 城市信息
  */
@@ -8,14 +7,14 @@ public class AddressData {
 	/** 固定未设定数组 */
 	public static final String NO_LIMITS_BACK[] = { "未设定" };
 	/** 固定省份信息 */
-	public static final String PROVINCES_BACK[] = { "未设定", "北京", "天津", "河北", "山西",
-			"内蒙古", "辽宁", "吉林", "黑龙江", "上海", "江苏", "浙江", "安徽", "福建", "江西", "山东",
-			"河南", "湖北", "湖南", "广东", "广西", "海南", "重庆", "四川", "贵州", "云南", "西藏",
-			"陕西", "甘肃", "青海", "宁夏", "新疆", "台湾", "香港", "澳门" };
+	public static final String PROVINCES_BACK[] = { "未设定", "北京", "天津", "河北",
+			"山西", "内蒙古", "辽宁", "吉林", "黑龙江", "上海", "江苏", "浙江", "安徽", "福建", "江西",
+			"山东", "河南", "湖北", "湖南", "广东", "广西", "海南", "重庆", "四川", "贵州", "云南",
+			"西藏", "陕西", "甘肃", "青海", "宁夏", "新疆", "台湾", "香港", "澳门" };
 	/** 固定省份编号数组 */
-	public static final int P_ID_BACK[] = { 0, 11, 12, 13, 14, 15, 21, 22, 23, 31,
-			32, 33, 34, 35, 36, 37, 41, 42, 43, 44, 45, 46, 50, 51, 52, 53, 54,
-			61, 62, 63, 64, 65, 71, 81, 82 };
+	public static final int P_ID_BACK[] = { 0, 11, 12, 13, 14, 15, 21, 22, 23,
+			31, 32, 33, 34, 35, 36, 37, 41, 42, 43, 44, 45, 46, 50, 51, 52, 53,
+			54, 61, 62, 63, 64, 65, 71, 81, 82 };
 	/** 固定城市信息 */
 	public static final String CITIES_BACK[][] = {
 			{ "未设定" },
@@ -1502,20 +1501,20 @@ public class AddressData {
 					{ 0, 659001, 659002, 659003, 659004 }, },
 			{ { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 }, { 0 } },
 			{ { 0 }, { 0 } }, { { 0 }, { 0 } } };
-	
-	/** 动态未设定数组 */
-	public static String NO_LIMITS[] = {"未设定"};
-	/** 动态省份信息 */
-	public static String PROVINCES[]={"暂无"};
-	/** 动态省份编号数组 */
-	public static int P_ID[] = {0};
-	/** 动态城市信息 */
-	public static String CITIES[][] = {{"暂无"}};
-	/** 动态城市编号数组 */
-	public static int C_ID[][] = {{0}};
-	/** 动态区县信息 */
-	public static String COUNTIES[][][] = {{{"暂无"}}};
-	/** 动态区县编号数组 */
-	public static int C_C_ID[][][] = {{{0}}};
+
+	// /** 动态未设定数组 */
+	// public static String NO_LIMITS[] = {"未设定"};
+	// /** 动态省份信息 */
+	// public static String PROVINCES[]={"暂无"};
+	// /** 动态省份编号数组 */
+	// public static int P_ID[] = {0};
+	// /** 动态城市信息 */
+	// public static String CITIES[][] = {{"暂无"}};
+	// /** 动态城市编号数组 */
+	// public static int C_ID[][] = {{0}};
+	// /** 动态区县信息 */
+	// public static String COUNTIES[][][] = {{{"暂无"}}};
+	// /** 动态区县编号数组 */
+	// public static int C_C_ID[][][] = {{{0}}};
 
 }
