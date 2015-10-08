@@ -18,8 +18,6 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.xh.soundtell.R;
-import com.xh.soundtell.SingRecordActivity;
-import com.xh.soundtell.SingStyleActivity;
 import com.xh.soundtell.setting.SettingHelper;
 import com.xh.soundtell.ui.fragment.ActivityFragment;
 import com.xh.soundtell.ui.fragment.FriendsFragment;

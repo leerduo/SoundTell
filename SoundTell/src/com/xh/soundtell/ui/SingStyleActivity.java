@@ -1,16 +1,19 @@
-package com.xh.soundtell;
+package com.xh.soundtell.ui;
+
+import com.xh.soundtell.R;
+import com.xh.soundtell.R.layout;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class SingRecordActivity extends Activity {
+public class SingStyleActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_sing_record);
+		setContentView(R.layout.activity_sing_style);
 	}
 
 }

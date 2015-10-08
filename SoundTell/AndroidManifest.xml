@@ -48,11 +48,11 @@
         </activity>
         
         <activity
-            android:name=".SingRecordActivity"
+            android:name="com.xh.soundtell.ui.SingRecordActivity"
             android:label="@string/title_activity_sing_record" >
         </activity>
         <activity
-            android:name=".SingStyleActivity"
+            android:name="com.xh.soundtell.ui.SingStyleActivity"
             android:label="@string/title_activity_sing_style" >
         </activity>
         
