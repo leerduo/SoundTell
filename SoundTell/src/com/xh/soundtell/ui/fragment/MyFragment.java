@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.xh.soundtell.R;
+import com.xh.soundtell.ui.SetActivity;
 import com.xh.soundtell.ui.UploadPhotoActivity;
 import com.xh.soundtell.ui.UserInfoActivity;
 import com.xh.soundtell.util.ImageHelper;
@@ -128,7 +129,7 @@ public class MyFragment extends Fragment implements OnClickListener {
 			startActivityForResult(intent, 100);
 			break;
 		case R.id.my_set:
-			Intent intent1 = new Intent(activity, UserInfoActivity.class);
+			Intent intent1 = new Intent(activity, SetActivity.class);
 			startActivityForResult(intent1, 101);
 			break;
 		case R.id.my_works_r:

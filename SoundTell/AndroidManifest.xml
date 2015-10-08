@@ -38,6 +38,14 @@
             android:name="com.xh.soundtell.ui.SetActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name="com.xh.soundtell.ui.AboutActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.xh.soundtell.ui.FriendActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />

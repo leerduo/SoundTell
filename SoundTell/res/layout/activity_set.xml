@@ -55,4 +55,34 @@
             android:text="检查更新" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/set_cache"
+        style="@style/set_relativeLayout" >
+
+        <TextView
+            style="@style/set_black"
+            android:drawableRight="@null"
+            android:text="清楚缓存" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/set_about"
+        style="@style/set_relativeLayout" >
+
+        <TextView
+            style="@style/set_black"
+            android:text="关于哼哼" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/set_exit"
+        android:layout_marginTop="10dp"
+        style="@style/set_relativeLayout" >
+
+        <TextView
+            style="@style/set_black"
+            android:drawableRight="@null"
+            android:text="退出登录" />
+    </RelativeLayout>
+
 </LinearLayout>
