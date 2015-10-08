@@ -3,14 +3,13 @@
     android:id="@+id/layout_head_red"
     android:layout_width="match_parent"
     android:layout_height="40dp"
-    android:background="@color/app_red"
+    android:background="@drawable/top_bg"
     android:orientation="horizontal" >
 
     <LinearLayout
         android:id="@+id/head_leftshow"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="@drawable/head_btn_red"
         android:orientation="horizontal" >
 
         <ImageView
@@ -70,7 +69,6 @@
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:background="@drawable/head_btn_red"
         android:orientation="horizontal" >
 
         <ImageView
@@ -101,7 +99,6 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_toLeftOf="@id/head_rightshow"
-        android:background="@drawable/head_btn_red"
         android:orientation="horizontal" >
 
         <ImageView

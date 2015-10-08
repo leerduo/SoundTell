@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/about_l"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <include layout="@layout/layout_head_red" />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_launcher" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/app_font_black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="版本号 1.0.0"
+            android:textColor="@color/app_font_black"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:id="@+id/about_weibo_r"
+            style="@style/set_relativeLayout"
+            android:layout_marginTop="10dp"
+            android:background="@color/white" >
+
+            <TextView
+                style="@style/set_black"
+                android:text="官方微博" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/about_course_r"
+            style="@style/set_relativeLayout"
+            android:background="@color/white" >
+
+            <TextView
+                style="@style/set_black"
+                android:text="新手教程" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <com.xh.soundtell.view.MyGallery
+        android:id="@+id/mygallery"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:unselectedAlpha="1"
+        android:visibility="gone" />
+
+    <com.xh.soundtell.view.MyHorizontalScrollView
+        android:id="@+id/id_horizontalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:background="@android:color/white"
+        android:scrollbars="none"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:id="@+id/id_gallery"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </com.xh.soundtell.view.MyHorizontalScrollView>
+
+</RelativeLayout>
