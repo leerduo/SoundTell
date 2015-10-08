@@ -75,7 +75,7 @@ public class SetActivity extends Activity implements OnClickListener {
 			
 			break;
 		case R.id.set_friend:
-			
+
 			break;
 		case R.id.set_feedback:
 
