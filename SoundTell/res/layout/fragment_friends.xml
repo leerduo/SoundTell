@@ -40,7 +40,7 @@
             android:layout_toLeftOf="@id/friends_search_tv"
             android:background="@null"
             android:singleLine="true"
-            android:text="天天风雨"
+            android:text=""
             android:textColor="@color/app_font_black"
             android:textSize="12sp" />
     </RelativeLayout>
