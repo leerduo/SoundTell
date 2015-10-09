@@ -55,6 +55,10 @@
             android:name="com.xh.soundtell.ui.SingStyleActivity"
             android:label="@string/title_activity_sing_style" >
         </activity>
+        <activity
+            android:name="com.xh.soundtell.ui.FriendsInfoActivity"
+            android:label="@string/title_activity_sing_style" >
+        </activity>
         
         
         

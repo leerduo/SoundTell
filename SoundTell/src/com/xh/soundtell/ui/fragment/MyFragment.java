@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,12 +18,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.xh.soundtell.R;
+import com.xh.soundtell.adapter.WorksAdapter;
+import com.xh.soundtell.listview.XListView;
+import com.xh.soundtell.listview.XListView.IXListViewListener;
+import com.xh.soundtell.model.Works;
 import com.xh.soundtell.ui.SetActivity;
 import com.xh.soundtell.ui.UploadPhotoActivity;
 import com.xh.soundtell.ui.UserInfoActivity;
 import com.xh.soundtell.util.ImageHelper;
 
-public class MyFragment extends Fragment implements OnClickListener {
+public class MyFragment extends Fragment implements OnClickListener,
+		IXListViewListener {
 	private Activity activity;
 	private View parent;
 
@@ -37,6 +43,13 @@ public class MyFragment extends Fragment implements OnClickListener {
 	private ImageView currentiv;
 
 	private List<ImageView> imageViews = new ArrayList<ImageView>();
+
+	private XListView xListView;
+	private Handler handler = new Handler();
+	private int start = 0;
+	private static int refreshCnt = 0;
+	private List<Works> mWorks;
+	private WorksAdapter worksAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -119,6 +132,18 @@ public class MyFragment extends Fragment implements OnClickListener {
 		imageViews.add(my_watch_iv);
 		imageViews.add(my_info_iv);
 		imageViews.add(my_collect_iv);
+		getItem();
+		xListView = (XListView) parent.findViewById(R.id.xListView);
+		xListView.setPullRefreshEnable(true);
+		worksAdapter = new WorksAdapter(activity, mWorks);
+		xListView.setAdapter(worksAdapter);
+		xListView.setXListViewListener(this);
+	}
+
+	private void getItem() {
+		mWorks = new ArrayList<Works>();
+		Works works = new Works("1", "歌唱祖国", "04:10");
+		mWorks.add(works);
 	}
 
 	@Override
@@ -133,18 +158,23 @@ public class MyFragment extends Fragment implements OnClickListener {
 			startActivityForResult(intent1, 101);
 			break;
 		case R.id.my_works_r:
+			xListView.setVisibility(View.VISIBLE);
 			hideView(my_works_iv);
 			break;
 		case R.id.my_fans_r:
+			xListView.setVisibility(View.GONE);
 			hideView(my_fans_iv);
 			break;
 		case R.id.my_watch_r:
+			xListView.setVisibility(View.GONE);
 			hideView(my_watch_iv);
 			break;
 		case R.id.my_info_r:
+			xListView.setVisibility(View.GONE);
 			hideView(my_info_iv);
 			break;
 		case R.id.my_collect_r:
+			xListView.setVisibility(View.GONE);
 			hideView(my_collect_iv);
 			break;
 		default:
@@ -161,12 +191,12 @@ public class MyFragment extends Fragment implements OnClickListener {
 			String image = data.getStringExtra("image");
 			String name = data.getStringExtra("name");
 			String collect = data.getStringExtra("collect");
-			if (!image.equals("123456")) {
-				my_iv.setImageBitmap(ImageHelper.getBitmap(image));
-				my_userlogo.setImageBitmap(ImageHelper.getBitmap(image));
-			}
-			my_username.setText(name);
-			my_intro.setText(collect);
+			// if (!image.equals("123456")) {
+			// my_iv.setImageBitmap(ImageHelper.getBitmap(image));
+			// my_userlogo.setImageBitmap(ImageHelper.getBitmap(image));
+			// }
+			// my_username.setText(name);
+			// my_intro.setText(collect);
 		}
 	}
 
@@ -178,19 +208,39 @@ public class MyFragment extends Fragment implements OnClickListener {
 				imageViews.get(i).setVisibility(View.GONE);
 			}
 		}
-		// my_works_iv.setVisibility(View.GONE);
-		// my_fans_iv.setVisibility(View.GONE);
-		// my_watch_iv.setVisibility(View.GONE);
-		// my_info_iv.setVisibility(View.GONE);
-		// my_collect_iv.setVisibility(View.GONE);
-		// if (my_works_iv.) {
-		//
-		// }
-		//
-		// if (currentiv != null && currentiv != iv) {
-		// iv.setVisibility(View.VISIBLE);
-		// }
-		// currentiv = iv;
+	}
 
+	@Override
+	public void onRefresh() {
+		handler.postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				start = ++refreshCnt;
+				getItem();
+				worksAdapter = new WorksAdapter(activity, mWorks);
+				xListView.setAdapter(worksAdapter);
+				onLoad();
+			}
+		}, 2000);
+	}
+
+	@Override
+	public void onLoadMore() {
+		handler.postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				getItem();
+				worksAdapter.notifyDataSetChanged();
+				onLoad();
+			}
+		}, 2000);
+	}
+
+	protected void onLoad() {
+		xListView.stopRefresh();
+		xListView.stopLoadMore();
+		xListView.setRefreshTime("2015:10:08 20:10:11");
 	}
 }

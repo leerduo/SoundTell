@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle" >
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <!-- 填充颜色 -->
-    <solid android:color="@color/app_bg" />
+    <solid android:color="#fcfcfc" />
 
     <!-- 四个角的弧度 -->
     <corners
@@ -14,12 +13,9 @@
 
     <!-- 字体边界距离位置 -->
     <padding
-        android:bottom="3dp"
+        android:bottom="4dp"
         android:left="8dp"
         android:right="8dp"
-        android:top="3dp" />
-    
-    <stroke android:width="1dp"
-         android:color="#7f878B94"/>
+        android:top="4dp" />
 
 </shape>
