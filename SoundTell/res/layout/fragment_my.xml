@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"
-            android:src="@drawable/meng" />
+            android:src="@drawable/fj" />
 
         <RelativeLayout
             android:id="@+id/my_r"
@@ -32,7 +32,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_margin="10dp"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/meng1"
+                android:src="@drawable/fj"
                 app:border_color="@color/white"
                 app:border_width="2dp" />
 
