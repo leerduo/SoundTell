@@ -59,7 +59,7 @@ public class ActivityAdapter extends BaseAdapter {
 		viewHolder.list_itme_activity_iv.setBackgroundResource(item
 				.getImage_id());
 		viewHolder.list_itme_activity_name.setText(item.getActivity_name());
-		viewHolder.list_itme_activity_name.setText(item.getActivity_state());
+		viewHolder.list_itme_activity_state.setText(item.getActivity_state());
 		return convertView;
 	}
 

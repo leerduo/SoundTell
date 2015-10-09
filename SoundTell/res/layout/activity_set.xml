@@ -5,7 +5,7 @@
     android:background="@color/app_bg"
     android:orientation="vertical" >
 
-    <include layout="@layout/layout_head_red" />
+    <include layout="@layout/layout_head" />
 
     <RelativeLayout
         android:id="@+id/set_data"
@@ -57,7 +57,8 @@
 
     <RelativeLayout
         android:id="@+id/set_cache"
-        style="@style/set_relativeLayout" >
+        style="@style/set_relativeLayout"
+        android:layout_marginBottom="0dp" >
 
         <TextView
             style="@style/set_black"
@@ -76,8 +77,8 @@
 
     <RelativeLayout
         android:id="@+id/set_exit"
-        android:layout_marginTop="10dp"
-        style="@style/set_relativeLayout" >
+        style="@style/set_relativeLayout"
+        android:layout_marginTop="10dp" >
 
         <TextView
             style="@style/set_black"

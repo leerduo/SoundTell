@@ -36,6 +36,7 @@ public class SetActivity extends Activity implements OnClickListener {
 	private void findView() {
 		head_centertext = (TextView) findViewById(R.id.head_centertext);
 		head_centertext.setVisibility(View.VISIBLE);
+		head_centertext.setText("设置");
 
 		head_leftimage = (ImageView) findViewById(R.id.head_leftimage);
 		head_leftimage.setVisibility(View.VISIBLE);
@@ -72,10 +73,10 @@ public class SetActivity extends Activity implements OnClickListener {
 			intent = new Intent(SetActivity.this, UserInfoActivity.class);
 			break;
 		case R.id.set_image:
-			
+
 			break;
 		case R.id.set_friend:
-
+			intent = new Intent(SetActivity.this, FriendActivity.class);
 			break;
 		case R.id.set_feedback:
 

@@ -56,6 +56,7 @@
         android:id="@+id/setuser_wordcount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
         android:text="请不要超过70字"
         android:textColor="@color/app_font_gray"
         android:visibility="gone" />
