@@ -46,6 +46,18 @@
             android:name="com.xh.soundtell.ui.FriendActivity"
             android:screenOrientation="portrait" >
         </activity>
+        
+        <activity
+            android:name="com.xh.soundtell.ui.SingRecordActivity"
+            android:label="@string/title_activity_sing_record" >
+        </activity>
+        <activity
+            android:name="com.xh.soundtell.ui.SingStyleActivity"
+            android:label="@string/title_activity_sing_style" >
+        </activity>
+        
+        
+        
     </application>
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
