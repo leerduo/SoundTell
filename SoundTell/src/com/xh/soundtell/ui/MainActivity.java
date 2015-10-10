@@ -42,7 +42,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		SettingHelper.getInstance().setApplicationContext(this);
 		findView();
 	}
-
 	private void findView() {
 		tv1 = (TextView) findViewById(R.id.tv1);
 		tv2 = (TextView) findViewById(R.id.tv2);
