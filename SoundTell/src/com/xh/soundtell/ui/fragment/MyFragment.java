@@ -90,7 +90,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 	// my_works_iv
 	// my_fans_iv
 	// my_watch_iv
-	// my_info_iv
+	// my_info  _iv   
 	// my_collect_iv
 
 	private void findView() {
