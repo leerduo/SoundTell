@@ -33,6 +33,7 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	private boolean isPlaying;
 	private SeekBar bar;
 	TextView tvTimeShow;
+	TextView tvTitle;
 	
     private final static int FLAG_WAV = 0;
     private int mState = -1;    //-1:没再录制，0：录制wav，1：录制amr
@@ -63,6 +64,7 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	private ImageView ivPrepare;
 	private ImageView ivChoose;
 	private TextView tvChoose;
+	private TextView tvGeCi;
 	
 	private boolean isRecord=false;
 	
@@ -71,7 +73,8 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sing_record);
-		
+		geci = getResources().getString(R.string.geci);
+		geci1 = getResources().getString(R.string.geci1);
 	    bar = (SeekBar) findViewById(R.id.singrecord_seeker);
 	    bar.setMax(4*60+32+10);//初始值在10上面 才能显示拖动的图标
 	    bar.setProgress(10);
@@ -87,18 +90,44 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	    tvChoose = (TextView) findViewById(R.id.singrecord_choose_tv);
 
 	    tvTimeShow=(TextView) findViewById(R.id.singrecord_time);
+	    tvTitle=(TextView) findViewById(R.id.singrecord_title);
+	    tvGeCi=(TextView) findViewById(R.id.geci);
 	    
 	    
-	    
-	    String fileBasePath1 = Environment.getExternalStorageDirectory().getAbsolutePath();
-	  	  String  mAudioWavPath = fileBasePath1+"/heCheng.wav";
+	 findViewById(R.id.singrecord_qu).setOnClickListener(this);
+	 findViewById(R.id.singrecord_ci).setOnClickListener(this);
+	
 	}
+	
+	
+	
+	
 	int mResult = -1;
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.singrecord_back:
 			onBackPressed();
+			break;
+		case R.id.singrecord_qu:
+			onBackPressed();
+			break;
+		case R.id.singrecord_ci:
+			if(tvTitle.getText().toString().equals("因你而在")){
+				tvTitle.setText("因你而在-林俊杰");
+				tvGeCi.setText(geci);
+			}else{
+				tvTitle.setText("因你而在");
+				tvGeCi.setText(geci1);
+			}
+			 if(isPlaying){
+	              isPlaying=false;
+	              ivPrepare.setImageResource(R.drawable.record_save_ib);
+	              handler.sendEmptyMessageDelayed(1, 0);
+	              MusicHelper.stopMusic();
+	              stop();
+				}
+			
 			break;
 		case R.id.singrecord_prepare:
 			ivPlay.setVisibility(View.GONE);
@@ -222,6 +251,8 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	
 	
    private  PopupWindow recordPopwindow;
+private String geci;
+private String geci1;
     private void getRecordPopwindow() {
     	final View	popView = LayoutInflater.from(this).inflate(R.layout.popup_record_alter,
 				null);
