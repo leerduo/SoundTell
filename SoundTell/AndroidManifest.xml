@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.xh.soundtell.ui.MainActivity"
+            android:name=".ui.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,45 +23,49 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.UserInfoActivity"
+            android:name=".ui.UserInfoActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.UploadPhotoActivity"
+            android:name=".ui.UploadPhotoActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.SetUserActivity"
+            android:name=".ui.SetUserActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.SetActivity"
+            android:name=".ui.SetActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.AboutActivity"
+            android:name=".ui.AboutActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.FriendActivity"
+            android:name=".ui.FriendActivity"
             android:screenOrientation="portrait" >
         </activity>
-        
         <activity
-            android:name="com.xh.soundtell.ui.SingRecordActivity"
+            android:name=".ui.SingRecordActivity"
             android:label="@string/title_activity_sing_record" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.SingStyleActivity"
+            android:name=".ui.SingStyleActivity"
             android:label="@string/title_activity_sing_style" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.FriendsInfoActivity"
+            android:name=".ui.FriendsInfoActivity"
             android:label="@string/title_activity_sing_style" >
         </activity>
-        
-        
-        
+        <activity
+            android:name=".ui.SoundPoolActivity"
+            android:label="@string/title_activity_sound_pool" >
+        </activity>
+        <activity
+            android:name="com.xh.soundtell.ui.RecordSucActivity"
+            android:label="@string/title_activity_record_suc" >
+        </activity>
     </application>
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
@@ -127,7 +131,6 @@
     </uses-permission>
     <!-- 拨打电话权限 -->
     <uses-permission android:name="android.permisson.CALL_PHONE" />
-    
-    
-<uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
 </manifest>

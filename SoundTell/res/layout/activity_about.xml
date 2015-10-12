@@ -18,7 +18,6 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:contentDescription="@string/app_name"
             android:src="@drawable/ic_launcher" />
 
         <TextView

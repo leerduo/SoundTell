@@ -1,13 +1,18 @@
 package com.xh.soundtell.ui;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import com.xh.soundtell.R;
 import com.xh.soundtell.R.layout;
+import com.xh.soundtell.model.MusicRecordModel;
 import com.xh.soundtell.music.AudioRecordFunc;
 import com.xh.soundtell.music.ErrorCode;
 import com.xh.soundtell.music.MusicHelper;
 import com.xh.soundtell.util.DensityUtil;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Environment;
@@ -34,6 +39,9 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	private SeekBar bar;
 	TextView tvTimeShow;
 	TextView tvTitle;
+	TextView tvSinger;
+	TextView tvType;
+	
 	
     private final static int FLAG_WAV = 0;
     private int mState = -1;    //-1:没再录制，0：录制wav，1：录制amr
@@ -41,6 +49,13 @@ public class SingRecordActivity extends Activity implements OnClickListener{
     private final static int CMD_RECORDFAIL = 2001;
     private final static int CMD_STOP = 2002;
 	
+    private ArrayList<MusicRecordModel>  musicRecordModels; 
+    private int position;
+    
+    MusicRecordModel model1;
+    MusicRecordModel model2;
+    MusicRecordModel model3;
+    
 	private Handler handler=new Handler(){
 		@Override
 		public void handleMessage(Message msg) {
@@ -69,12 +84,17 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	private boolean isRecord=false;
 	
 	 private int musicTime=-1;
+	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sing_record);
-		geci = getResources().getString(R.string.geci);
-		geci1 = getResources().getString(R.string.geci1);
+		musicRecordModels=new ArrayList<MusicRecordModel>();
+		initMusicModel();
+		musicRecordModels.add(model1);
+		musicRecordModels.add(model2);
+		musicRecordModels.add(model3);
+		
 	    bar = (SeekBar) findViewById(R.id.singrecord_seeker);
 	    bar.setMax(4*60+32+10);//初始值在10上面 才能显示拖动的图标
 	    bar.setProgress(10);
@@ -92,16 +112,13 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	    tvTimeShow=(TextView) findViewById(R.id.singrecord_time);
 	    tvTitle=(TextView) findViewById(R.id.singrecord_title);
 	    tvGeCi=(TextView) findViewById(R.id.geci);
+	    tvSinger=(TextView) findViewById(R.id.singrecord_singer);
+	    tvType=(TextView) findViewById(R.id.singrecord_type);
 	    
 	    
 	 findViewById(R.id.singrecord_qu).setOnClickListener(this);
 	 findViewById(R.id.singrecord_ci).setOnClickListener(this);
-	
 	}
-	
-	
-	
-	
 	int mResult = -1;
 	@Override
 	public void onClick(View v) {
@@ -113,21 +130,21 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 			onBackPressed();
 			break;
 		case R.id.singrecord_ci:
-			if(tvTitle.getText().toString().equals("因你而在")){
-				tvTitle.setText("因你而在-林俊杰");
-				tvGeCi.setText(geci);
-			}else{
-				tvTitle.setText("因你而在");
-				tvGeCi.setText(geci1);
-			}
-			 if(isPlaying){
+			
+			position=position+1;
+			position=position%musicRecordModels.size();
+			tvTitle.setText(musicRecordModels.get(position).getMusicTitle());
+			tvGeCi.setText(musicRecordModels.get(position).getMusicLyric());
+			tvSinger.setText(musicRecordModels.get(position).getMusicSinger());
+			tvType.setText(musicRecordModels.get(position).getMusicType());
+			
+			if(isPlaying){
 	              isPlaying=false;
 	              ivPrepare.setImageResource(R.drawable.record_save_ib);
 	              handler.sendEmptyMessageDelayed(1, 0);
 	              MusicHelper.stopMusic();
 	              stop();
 				}
-			
 			break;
 		case R.id.singrecord_prepare:
 			ivPlay.setVisibility(View.GONE);
@@ -143,8 +160,9 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	              stop();
 				}else{
 					 isPlaying=true;
-					 ivPrepare.setImageResource(R.drawable.record_done_ib);
-					 MusicHelper.startMusic(this, false);
+//					 ivPrepare.setImageResource(R.drawable.record_done_ib);
+					 ivPrepare.setImageResource(R.drawable.record_pause_ib);
+					 MusicHelper.startMusic(this,musicRecordModels.get(position).getMusicId(),false);
 			         record(FLAG_WAV);
 			         handler.sendEmptyMessageDelayed(0, 1000);
 					 }
@@ -159,13 +177,9 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 				 isPlaying=true;
 				 ivPlay.setImageResource(R.drawable.record_pause);
 				 handler.sendEmptyMessageDelayed(0, 1000);
-				 MusicHelper.startMusic(this, false);
+				 MusicHelper.startMusic(this,musicRecordModels.get(position).getMusicId(),false);
 				 }
 			break;
-			
-			
-			
-			
 			
 		case R.id.singrecord_tone:
 			getPopwindow();
@@ -188,12 +202,32 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.popupalter_again:
 			showDisRecordPopwindow();
+//			MusicHelper.startMusic(this,musicRecordModels.get(position).getMusicId(), false);
+//	        record(FLAG_WAV);
+	        
+	         isPlaying=true;
+			 ivPrepare.setImageResource(R.drawable.record_done_ib);
+			 MusicHelper.startMusic(this,musicRecordModels.get(position).getMusicId(),false);
+	         record(FLAG_WAV);
+	         handler.sendEmptyMessageDelayed(0, 1000);
+	        
 			break;
 		case R.id.popupalter_getup:
 			showDisRecordPopwindow();
+			onBackPressed();
 			break;
 		case R.id.popupalter_ok:
 			showDisRecordPopwindow();
+    	    isPlaying=false;
+            ivPlay.setImageResource(R.drawable.record_play);
+        	handler.sendEmptyMessageDelayed(1, 0);
+            MusicHelper.stopMusic();
+            stop();
+            bar.setMax(210);//初始值在10上面 才能显示拖动的图标
+    	    bar.setProgress(10);
+    	    tvTimeShow.setText("00:00");
+			Intent intent=new Intent (this,RecordSucActivity.class);
+			startActivity(intent);
 			break;
 		}
 	}
@@ -215,7 +249,8 @@ public class SingRecordActivity extends Activity implements OnClickListener{
         switch(mFlag){        
         case FLAG_WAV:
             AudioRecordFunc mRecord_1 = AudioRecordFunc.getInstance();
-            mResult = mRecord_1.startRecordAndFile();            
+            mResult = mRecord_1.startRecordAndFile("录制-"+musicRecordModels.get(position).getMusicTitle()); 
+            		           
             break;
         }
         if(mResult == ErrorCode.SUCCESS){
@@ -248,6 +283,55 @@ public class SingRecordActivity extends Activity implements OnClickListener{
             mState = -1;
         }
     } 
+	
+	@Override
+	protected void onDestroy() {
+		
+		if(isPlaying){
+			  MusicHelper.stopMusic();
+	          stop();
+	          String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath();
+	          deleteAllFiles(new File(fileBasePath+"录制-"+musicRecordModels.get(position).getMusicTitle()+".wav"));
+		}
+		
+		super.onDestroy();
+	}
+	
+	private void deleteAllFiles(File root) {
+		File files[] = root.listFiles();
+		if (files != null)
+			for (File f : files) {
+				if (f.isDirectory()) { // 判断是否为文件夹
+					deleteAllFiles(f);
+					try {
+						f.delete();
+					} catch (Exception e) {
+					}
+				} else {
+					if (f.exists()) { // 判断是否存在
+						deleteAllFiles(f);
+						try {
+							f.delete();
+						} catch (Exception e) {
+						}
+					}
+				}
+			}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
    private  PopupWindow recordPopwindow;
@@ -348,11 +432,6 @@ private String geci1;
 			}
 		}
 	}
-	
-	
-	
-	
-	
 	  private static String formatLongToTimeStr(int l) {
 	        int minute = 0;
 	        int second = l/ 1000;;
@@ -369,7 +448,11 @@ private String geci1;
 	            return "" + data;
 	        }
 	    }
-	
+	private void initMusicModel(){
+		model1=new MusicRecordModel(R.raw.exist_for_you, "因你而在", "", "林俊杰", getString(R.string.exist_for_you), "激昂-2-130-F(正常品质)");
+		model2=new MusicRecordModel(R.raw.li_byebye, "再见再见", "", "李易峰", getString(R.string.li_byebye), "伤心-1-78-E(正常品质)");
+		model3=new MusicRecordModel(R.raw.w_nightdj, "午夜DJ", "", "王绎龙", getString(R.string.w_nightdj), "摇滚-2-84-G(正常品质)");
+	}
 	
 	
 	}

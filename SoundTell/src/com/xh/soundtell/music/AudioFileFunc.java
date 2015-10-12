@@ -17,7 +17,7 @@ public class AudioFileFunc {
     //录音输出文件
     private final static String AUDIO_RAW_FILENAME = "RawAudio.raw";
 //    private final static String AUDIO_WAV_FILENAME = "FinalAudio.wav";
-    private final static String AUDIO_WAV_FILENAME = "音诉_因你而在.wav";
+    private final static String AUDIO_WAV_FILENAME = ".wav";
     public final static String AUDIO_AMR_FILENAME = "FinalAudio.amr";
      
     /**
@@ -49,11 +49,16 @@ public class AudioFileFunc {
      * 获取编码后的WAV格式音频文件路径
      * @return
      */
-    public static String getWavFilePath(){
+    public static String getWavFilePath(String musicFileName){
         String mAudioWavPath = "";
         if(isSdcardExit()){
+        	
             String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath();
-            mAudioWavPath = fileBasePath+"/"+AUDIO_WAV_FILENAME;
+            File file=new File(fileBasePath+"/音诉音乐/");
+            if(!file.exists()){
+            	file.mkdir();
+            }
+            mAudioWavPath = fileBasePath+"/音诉音乐/"+musicFileName+AUDIO_WAV_FILENAME;//.wav
         }
         return mAudioWavPath;
     }

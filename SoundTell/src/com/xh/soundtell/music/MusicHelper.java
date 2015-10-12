@@ -10,7 +10,6 @@ import android.media.MediaPlayer;
 public class MusicHelper {
 	//新建对象
 	public static MediaPlayer mediaPlayer;
-	public static int musicIds = R.raw.exist_for_you;
 	
 	public static int musicId = -1;
 	
@@ -22,7 +21,7 @@ public class MusicHelper {
 	 * @param looping  是否循环
 	 */
 //	public static void startMusic(Context context, int id, Boolean looping) {
-		public static void startMusic(Context context, Boolean looping) {
+		public static void startMusic(Context context,int id, Boolean looping) {
 		//判断状态
 		if (!musicState) {
 			return;
@@ -43,7 +42,8 @@ public class MusicHelper {
 			mediaPlayer = null;
 		}
 		//实例化
-		mediaPlayer = MediaPlayer.create(context, musicIds);
+		mediaPlayer = MediaPlayer.create(context, id);
+//		mediaPlayer = MediaPlayer.create(context, musicIds);
 		//设置循环
 		mediaPlayer.setLooping(looping);
 		//开启

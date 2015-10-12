@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="音诉音乐"
+        android:gravity="center"
+    android:textSize="16sp"
+    android:textColor="#ff0000"
+    android:background="#ffffff"
+    />
+    <ScrollView
+         android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+         android:scrollbars="none">
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+     >
+   <android.support.v4.view.ViewPager
+       android:layout_width="match_parent"
+       android:layout_height="150dp"
+       android:id="@+id/fraghot_vp"
+       android:layout_marginLeft="20dp"
+       android:layout_marginRight="20dp"
+       >
+   </android.support.v4.view.ViewPager>
+   <LinearLayout
+       android:id="@+id/fraghot_container"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        >
+   </LinearLayout>
+   
+   <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+     android:orientation="horizontal"
+     android:gravity="center_vertical"
+    android:padding="10dp"
+    >
+    <ImageView 
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/music_icon"
+        />
+        <TextView 
+             android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+              android:textSize="16sp"
+    android:textColor="#000000"
+    android:text="热歌榜"
+    android:layout_marginLeft="5dp"
+            />
+      <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:orientation="horizontal"
+     android:gravity="center_vertical|right"
+     >  
+     <TextView 
+         android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#cbcbcb"
+        android:text="更多"
+            /> 
+        <ImageView 
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/new_more"
+        />
+</LinearLayout>
+</LinearLayout>
+
+   <ImageView
+       android:layout_width="match_parent"
+       android:layout_height="300dp"
+       android:src="@drawable/demo_03" 
+       android:scaleType="fitXY"
+       android:layout_marginLeft="10dp"
+       android:layout_marginRight="10dp"
+       />
+
+      <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+     android:orientation="horizontal"
+     android:gravity="center_vertical"
+      android:padding="10dp"
+      >
+    <ImageView 
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/music_icon"
+        />
+        <TextView 
+             android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+              android:textSize="16sp"
+    android:textColor="#000000"
+    android:text="新词榜"
+    android:layout_marginLeft="5dp"
+            />
+</LinearLayout>
+     <ImageView 
+          android:layout_width="match_parent"
+          android:layout_height="90dp"
+          android:src="@drawable/demo_04"
+          android:scaleType="fitXY"
+          
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          />
+      <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+     android:orientation="horizontal"
+     android:gravity="center_vertical"
+    android:padding="10dp"
+    >
+    <ImageView 
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@drawable/music_icon"
+        />
+        <TextView 
+             android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+              android:textSize="16sp"
+    android:textColor="#000000"
+    android:text="推荐"
+    android:layout_marginLeft="5dp"
+            />
+</LinearLayout>
+
+      <ImageView 
+          android:layout_width="match_parent"
+          android:layout_height="60dp"
+          android:src="@drawable/demo_01"
+          android:layout_gravity="center_horizontal"
+          android:scaleType="fitXY"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp"
+          />
+      
+      <ImageView 
+           android:scaleType="fitXY"
+          android:layout_width="match_parent"
+          android:layout_height="60dp"
+          android:src="@drawable/demo_02"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+             />
+</LinearLayout>
+</ScrollView>
+</LinearLayout>

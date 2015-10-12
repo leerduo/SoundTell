@@ -35,8 +35,7 @@ public class AudioRecordFunc {
             mInstance = new AudioRecordFunc(); 
         return mInstance; 
     }
-     
-    public int startRecordAndFile() {
+    public int startRecordAndFile(String musicRecordName) {
         //判断是否有外部存储设备sdcard
         if(AudioFileFunc.isSdcardExit())
         {
@@ -47,8 +46,8 @@ public class AudioRecordFunc {
             else
             {
                 if(audioRecord == null)
-                    creatAudioRecord();
-                 
+                    creatAudioRecord(musicRecordName);
+                
                 audioRecord.startRecording();  
                 // 让录制状态为true  
                 isRecord = true;  
@@ -87,10 +86,10 @@ public class AudioRecordFunc {
     }
      
      
-    private void creatAudioRecord() {  
+    private void creatAudioRecord(String musicRecordName) {  
         // 获取音频文件路径
         AudioName = AudioFileFunc.getRawFilePath();
-        NewAudioName = AudioFileFunc.getWavFilePath(); 
+        NewAudioName = AudioFileFunc.getWavFilePath(musicRecordName); 
          
         // 获得缓冲区字节大小  
         bufferSizeInBytes = AudioRecord.getMinBufferSize(AudioFileFunc.AUDIO_SAMPLE_RATE,  
