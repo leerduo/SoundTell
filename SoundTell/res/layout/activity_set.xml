@@ -63,7 +63,7 @@
         <TextView
             style="@style/set_black"
             android:drawableRight="@null"
-            android:text="清楚缓存" />
+            android:text="清除缓存" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -72,7 +72,7 @@
 
         <TextView
             style="@style/set_black"
-            android:text="关于哼哼" />
+            android:text="关于音诉" />
     </RelativeLayout>
 
     <RelativeLayout
