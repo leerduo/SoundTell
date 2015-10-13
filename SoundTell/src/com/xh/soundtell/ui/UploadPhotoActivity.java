@@ -109,6 +109,18 @@ public class UploadPhotoActivity extends Activity implements
 			// uri = Uri.fromFile(new File(lastImageFilePath));
 			// startPhotoZoom(uri);
 			imagePathList.add(lastImageFilePath);
+
+			Bitmap bitmap = ImageHelper.getBitmap(lastImageFilePath);
+			if (bitmap.getWidth() < 699) {
+				System.out.println("进入页面是否已经输小了");
+				try {
+					ImageHelper.getThumbUploadPath(lastImageFilePath, 700800,
+							lastImageFilePath);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
 			System.out.println(lastImageFilePath + "          图库图片路径33");
 			postHandlePicture();
 		} else if (requestCode == PhotoActionDialog.REQUEST_IMAGE_CAPTURE
@@ -118,6 +130,17 @@ public class UploadPhotoActivity extends Activity implements
 			lastImageFilePath = ImageHelper
 					.generateCompressedImage(lastImageFilePath);
 			imagePathList.add(lastImageFilePath);
+			Bitmap bitmap = ImageHelper.getBitmap(lastImageFilePath);
+			if (bitmap.getWidth() < 699) {
+				System.out.println("进入页面是否已经输小了");
+				try {
+					ImageHelper.getThumbUploadPath(lastImageFilePath, 700800,
+							lastImageFilePath);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+
 			System.out.println(lastImageFilePath + "          拍照图片路径");
 			postHandlePicture();
 		} else if (requestCode == PHOTORESOULT && resultCode != 0) {
