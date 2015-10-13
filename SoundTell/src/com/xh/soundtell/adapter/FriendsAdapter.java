@@ -46,6 +46,8 @@ public class FriendsAdapter extends BaseAdapter {
 			convertView = LayoutInflater.from(context).inflate(
 					R.layout.list_item_friends, null);
 			viewHolder = new ViewHolder();
+			viewHolder.list_itme_activity_iv = (ImageView) convertView
+					.findViewById(R.id.list_itme_activity_iv);
 			viewHolder.list_itme_friends_name = (TextView) convertView
 					.findViewById(R.id.list_itme_friends_name);
 			viewHolder.list_itme_friends_intro = (TextView) convertView
@@ -54,12 +56,14 @@ public class FriendsAdapter extends BaseAdapter {
 		}
 		viewHolder = (ViewHolder) convertView.getTag();
 		Friends item = (Friends) getItem(position);
+		viewHolder.list_itme_activity_iv.setBackgroundResource(item.getImage());
 		viewHolder.list_itme_friends_name.setText(item.getName());
 		viewHolder.list_itme_friends_intro.setText(item.getIntro());
 		return convertView;
 	}
 
 	class ViewHolder {
+		private ImageView list_itme_activity_iv;
 		private TextView list_itme_friends_name, list_itme_friends_intro;
 	}
 

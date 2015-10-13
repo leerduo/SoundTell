@@ -245,14 +245,14 @@ public class ImageHelper {
 		// int reqWidth = bitmapMaxWidth;
 		// reqHeight = (reqWidth * height) / width;
 		// 在内存中创建bitmap对象，这个对象按照缩放大小创建的
-		options.inSampleSize = calculateInSampleSize(options, 480, 800);
+		options.inSampleSize = calculateInSampleSize(options, 700, 800);
 		// System.out.println("calculateInSampleSize(options, 480, 800);==="
 		// + calculateInSampleSize(options, 480, 800));
 		options.inJustDecodeBounds = false;
 		Bitmap bitmap = BitmapFactory.decodeFile(oldPath, options);
 		// Log.e("asdasdas", "reqWidth->"+reqWidth+"---reqHeight->"+reqHeight);
 		Bitmap bbb = compressImage(
-				Bitmap.createScaledBitmap(bitmap, 480, 800, false), result);
+				Bitmap.createScaledBitmap(bitmap, 700, 800, false), result);
 		return bbb;
 	}
 

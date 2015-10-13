@@ -106,16 +106,20 @@ public class UploadPhotoActivity extends Activity implements
 			}
 			lastImageFilePath = ImageHelper
 					.generateCompressedImage(lastImageFilePath);
-			uri = Uri.fromFile(new File(lastImageFilePath));
-			startPhotoZoom(uri);
+			// uri = Uri.fromFile(new File(lastImageFilePath));
+			// startPhotoZoom(uri);
 			imagePathList.add(lastImageFilePath);
 			System.out.println(lastImageFilePath + "          图库图片路径33");
+			postHandlePicture();
 		} else if (requestCode == PhotoActionDialog.REQUEST_IMAGE_CAPTURE
 				&& resultCode == RESULT_OK) {
-			uri = Uri.fromFile(new File(lastImageFilePath));
-			startPhotoZoom(uri);
+			// uri = Uri.fromFile(new File(lastImageFilePath));
+			// startPhotoZoom(uri);
+			lastImageFilePath = ImageHelper
+					.generateCompressedImage(lastImageFilePath);
 			imagePathList.add(lastImageFilePath);
 			System.out.println(lastImageFilePath + "          拍照图片路径");
+			postHandlePicture();
 		} else if (requestCode == PHOTORESOULT && resultCode != 0) {
 			if (uri != null) {
 				Bitmap photo = decodeUriAsBitmap(uri);
@@ -148,7 +152,7 @@ public class UploadPhotoActivity extends Activity implements
 				}
 				imagePathList.add(string);
 				System.out.println(string + "          图库图片路径");
-				postHandlePicture();
+				// postHandlePicture();
 			}
 
 		}
@@ -176,8 +180,8 @@ public class UploadPhotoActivity extends Activity implements
 		intent.putExtra("crop", "true");
 		intent.putExtra("aspectX", 1);
 		intent.putExtra("aspectY", 1);
-		intent.putExtra("outputX", 200);
-		intent.putExtra("outputY", 200);
+		intent.putExtra("outputX", 700);
+		intent.putExtra("outputY", 700);
 		intent.putExtra("scale", true);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
 		intent.putExtra("return-data", true);

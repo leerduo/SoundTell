@@ -35,7 +35,9 @@ import com.xh.soundtell.ios.view.SheetDialog;
 import com.xh.soundtell.ios.view.SheetDialog.OnSheetItemClickListener;
 import com.xh.soundtell.ios.view.SheetDialog.SheetItemColor;
 import com.xh.soundtell.ios.view.WheelView;
+import com.xh.soundtell.setting.SettingHelper;
 import com.xh.soundtell.util.ImageHelper;
+import com.xh.soundtell.util.PrefUtil;
 
 /**
  * 文件名称：UserInfoActivity.java
@@ -64,12 +66,19 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 	 * 省、市、县（区）、是否点击了确定(0:没点1:点了)
 	 */
 	private int[] ctCache = { 0, 0, 0 };// 省、市、县（区）
+	private PrefUtil prefUtil;
+
+	private String[] areaids;
+	private String area;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_userinfo);
 		findView();
+		prefUtil = PrefUtil.getInstance();
+
+		setData();
 	}
 
 	// userinfo_logo_r
@@ -116,6 +125,36 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 		userinfo_collect = (TextView) findViewById(R.id.userinfo_collect);
 	}
 
+	private void setData() {
+		if (prefUtil.getImageLogo() != null
+				&& !prefUtil.getImageLogo().equals("0")) {
+			userinfo_logo.setImageBitmap(ImageHelper.getBitmap(prefUtil
+					.getImageLogo()));
+		}
+
+		if (prefUtil.getUserName() != null
+				&& !prefUtil.getUserName().equals("0")) {
+			userinfo_name.setText(prefUtil.getUserName());
+		}
+
+		if (prefUtil.getUserSex() != null && !prefUtil.getUserSex().equals("0")) {
+			userinfo_sex.setText(prefUtil.getUserSex());
+		}
+
+		if (prefUtil.getAreaID() != null && !prefUtil.getAreaID().equals("0")) {
+			areaids = prefUtil.getAreaID().split(";");
+		}
+
+		if (prefUtil.getArea() != null && !prefUtil.getArea().equals("0")) {
+			userinfo_area.setText(prefUtil.getArea());
+		}
+
+		if (prefUtil.getIntro() != null && !prefUtil.getIntro().equals("0")) {
+			userinfo_collect.setText(prefUtil.getIntro());
+		}
+
+	};
+
 	// userinfo_logo_r
 	// userinfo_name_r
 	// userinfo_sex_r
@@ -135,6 +174,14 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 			intent.putExtra("collect", userinfo_collect.getText().toString()
 					.trim());
 			setResult(RESULT_OK, intent);
+			if (!strimage.equals("123456")) {
+				prefUtil.setImageLogo(strimage);
+			}
+			prefUtil.setUserName(userinfo_name.getText().toString().trim());
+			prefUtil.setUserSex(userinfo_sex.getText().toString().trim());
+			prefUtil.setAreaID(regionId);
+			prefUtil.setArea(cityTxt);
+			prefUtil.setIntro(userinfo_collect.getText().toString().trim());
 			UserInfoActivity.this.finish();
 			break;
 		case R.id.userinfo_logo_r:
@@ -251,19 +298,32 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 						ctCache[0] = c1;
 						ctCache[1] = c2;
 						ctCache[2] = c3;
-						cityTxt = AddressData.PROVINCES_BACK[c1] + " | "
-								+ AddressData.CITIES_BACK[c1][c2] + " | "
+						cityTxt = AddressData.PROVINCES_BACK[c1] + "  "
+								+ AddressData.CITIES_BACK[c1][c2] + "  "
 								+ AddressData.COUNTIES_BACK[c1][c2][c3];
-						regionId = AddressData.C_C_ID_BACK[ctCache[0]][ctCache[1]][ctCache[2]]
-								+ "";
-						if (ctCache[2] == 0) {
-							regionId = AddressData.C_ID_BACK[ctCache[0]][ctCache[1]]
-									+ "";
-						}
-						if (ctCache[1] == 0) {
-							regionId = AddressData.P_ID_BACK[ctCache[0]] + "";
-						}
+						// regionId = AddressData.P_ID_BACK[country
+						// .getCurrentItem()]
+						// + ";"
+						// + AddressData.C_ID_BACK[country
+						// .getCurrentItem()][city
+						// .getCurrentItem()]
+						// + ";"
+						// + AddressData.C_C_ID_BACK[country
+						// .getCurrentItem()][city
+						// .getCurrentItem()][ccity
+						// .getCurrentItem()];
+						regionId = c1 + ";" + c2 + ";" + c3;
+
+						// if (ctCache[2] == 0) {
+						// regionId =
+						// AddressData.C_ID_BACK[ctCache[0]][ctCache[1]]
+						// + "";
+						// }
+						// if (ctCache[1] == 0) {
+						// regionId = AddressData.P_ID_BACK[ctCache[0]] + "";
+						// }
 						userinfo_area.setText(cityTxt);
+						System.out.println("regionId:" + regionId);
 						// ToastUtil.makeToast(RegisterActivity.this, cityTxt);
 
 					}
@@ -303,7 +363,6 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 						+ " | "
 						+ AddressData.COUNTIES_BACK[country.getCurrentItem()][city
 								.getCurrentItem()][ccity.getCurrentItem()];
-
 			}
 		});
 
@@ -318,6 +377,7 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 						+ " | "
 						+ AddressData.COUNTIES_BACK[country.getCurrentItem()][city
 								.getCurrentItem()][ccity.getCurrentItem()];
+
 			}
 		});
 
@@ -330,11 +390,26 @@ public class UserInfoActivity extends Activity implements OnClickListener {
 						+ " | "
 						+ AddressData.COUNTIES_BACK[country.getCurrentItem()][city
 								.getCurrentItem()][ccity.getCurrentItem()];
+
 			}
 		});
-		country.setCurrentItem(ctCache[0]);// 设置四川
-		updateCities(city, cities, ctCache[0], ctCache[1]);
-		updatecCities(ccity, ccities, ctCache[0], ctCache[1], ctCache[2]);
+		// System.out.println("areaids[0]:" + areaids[0] + "areaids[1]:"
+		// + areaids[1] + "areaids[2]:" + areaids[2]);
+		// areaids[0]:29areaids[1]:8areaids[2]:5
+		if (areaids != null) {
+			System.out.println("areaids[0]:" + areaids[0] + "areaids[1]:"
+					+ areaids[1] + "areaids[2]:" + areaids[2]);
+			// System.out.println("1111111111111111111111111111111");
+			country.setCurrentItem(Integer.valueOf(areaids[0]));//
+			updateCities(city, cities, Integer.valueOf(areaids[0]),
+					Integer.valueOf(areaids[1]));
+			updatecCities(ccity, ccities, Integer.valueOf(areaids[0]),
+					Integer.valueOf(areaids[1]), Integer.valueOf(areaids[2]));
+		} else {
+			country.setCurrentItem(ctCache[0]);// 设置四川
+			updateCities(city, cities, ctCache[0], ctCache[1]);
+			updatecCities(ccity, ccities, ctCache[0], ctCache[1], ctCache[2]);
+		}
 		return contentView;
 	}
 

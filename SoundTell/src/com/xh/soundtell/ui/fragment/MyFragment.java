@@ -5,6 +5,8 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,7 +27,9 @@ import com.xh.soundtell.model.Works;
 import com.xh.soundtell.ui.SetActivity;
 import com.xh.soundtell.ui.UploadPhotoActivity;
 import com.xh.soundtell.ui.UserInfoActivity;
+import com.xh.soundtell.util.DensityUtil;
 import com.xh.soundtell.util.ImageHelper;
+import com.xh.soundtell.util.PrefUtil;
 
 public class MyFragment extends Fragment implements OnClickListener,
 		IXListViewListener {
@@ -50,6 +54,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 	private static int refreshCnt = 0;
 	private List<Works> mWorks;
 	private WorksAdapter worksAdapter;
+	private PrefUtil prefUtil;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -63,6 +68,8 @@ public class MyFragment extends Fragment implements OnClickListener,
 		activity = getActivity();
 		parent = getView();
 		findView();
+		prefUtil = PrefUtil.getInstance();
+		setData();
 	}
 
 	@Override
@@ -90,7 +97,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 	// my_works_iv
 	// my_fans_iv
 	// my_watch_iv
-	// my_info  _iv   
+	// my_info _iv
 	// my_collect_iv
 
 	private void findView() {
@@ -144,6 +151,37 @@ public class MyFragment extends Fragment implements OnClickListener,
 		mWorks = new ArrayList<Works>();
 		Works works = new Works("1", "歌唱祖国", "04:10");
 		mWorks.add(works);
+	}
+
+	private void setData() {
+		if (prefUtil.getImageLogo() != null
+				&& !prefUtil.getImageLogo().equals("0")) {
+			Bitmap bitmap = ImageHelper.getBitmap(prefUtil.getImageLogo());
+			if (bitmap.getWidth() < 700) {
+				try {
+					my_iv.setImageBitmap(ImageHelper.getThumbUploadPath(
+							prefUtil.getImageLogo(), 700800,
+							prefUtil.getImageLogo()));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else {
+				my_iv.setImageBitmap(ImageHelper.getBitmap(prefUtil
+						.getImageLogo()));
+			}
+
+			my_userlogo.setImageBitmap(ImageHelper.getBitmap(prefUtil
+					.getImageLogo()));
+		}
+
+		if (prefUtil.getUserName() != null
+				&& !prefUtil.getUserName().equals("0")) {
+			my_username.setText(prefUtil.getUserName());
+		}
+
+		if (prefUtil.getIntro() != null && !prefUtil.getIntro().equals("0")) {
+			my_intro.setText(prefUtil.getIntro());
+		}
 	}
 
 	@Override

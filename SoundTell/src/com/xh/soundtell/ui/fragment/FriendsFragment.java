@@ -86,7 +86,8 @@ public class FriendsFragment extends Fragment {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				if (position >= 0) {
-					Friends friends = (Friends) parent.getAdapter().getItem(position);
+					Friends friends = (Friends) parent.getAdapter().getItem(
+							position);
 					Intent intent = new Intent(activity,
 							FriendsInfoActivity.class);
 					intent.putExtra("friendsinfo", friends);
@@ -97,16 +98,25 @@ public class FriendsFragment extends Fragment {
 	}
 
 	public void getItem() {
-		Friends friends1 = new Friends("1", R.drawable.activity_1, "天蓝蓝",
-				"天空很蓝、也非常美丽");
-		Friends friends2 = new Friends("2", R.drawable.activity_2, "天色",
+		Friends friends1 = new Friends("1", R.drawable.ll, "张辉@氧气哥哥",
+				"宁愿强的让人嫉妒、也不愿若的让人可怜!");
+		Friends friends2 = new Friends("2", R.drawable.hotrank_default, "张德辉",
 				"这个人很懒，什么也没有留下");
-		Friends friends3 = new Friends("3", R.drawable.activity_3, "天谕",
+		Friends friends3 = new Friends("3", R.drawable.meng, "张晓霞",
 				"这个人很懒，什么也没有留下");
+		Friends friends4 = new Friends("4", R.drawable.hotrank_default, "张紫娜",
+				"这个人很懒什么也没有留下");
+		Friends friends5 = new Friends("5", R.drawable.meng, "张加",
+				"这个人很懒，什么也没有留下");
+		Friends friends6 = new Friends("6", R.drawable.hotrank_default, "张精良",
+				"这个人很懒什么也没有留下");
 
 		friends.add(friends1);
 		friends.add(friends2);
 		friends.add(friends3);
+		friends.add(friends4);
+		friends.add(friends5);
+		friends.add(friends6);
 	}
 
 	@Override

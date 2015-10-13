@@ -1,10 +1,13 @@
 package com.xh.soundtell.ui;
 
 import com.xh.soundtell.R;
+import com.xh.soundtell.util.PrefUtil;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -22,10 +25,13 @@ public class SetUserActivity extends Activity implements OnClickListener {
 	private String st;
 	private String setuser;
 
+	private PrefUtil prefUtil;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setuser);
+		prefUtil = PrefUtil.getInstance();
 		intent = getIntent();
 		st = intent.getStringExtra("data");
 		findView();
@@ -52,11 +58,38 @@ public class SetUserActivity extends Activity implements OnClickListener {
 		setuser_woman.setOnClickListener(this);
 
 		setuser_collect = (EditText) findViewById(R.id.setuser_collect);
+		setuser_collect.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				if (s.length() > 70) {
+					setuser_collect.setText(s.subSequence(0, 70));
+					setuser_collect.setSelection(setuser_collect.length());
+				}
+			}
+		});
 		setuser_wordcount = (TextView) findViewById(R.id.setuser_wordcount);
 
 		if (st.equals("name")) {
 			head_centertext.setText("姓名");
 			setuser_name.setVisibility(View.VISIBLE);
+
+			if (prefUtil.getUserName() != null
+					&& !prefUtil.getUserName().equals("0")) {
+				setuser_name.setText(prefUtil.getUserName());
+			}
+
 		} else if (st.equals("sex")) {
 			head_rightimage.setVisibility(View.GONE);
 			head_centertext.setText("性别");
@@ -66,6 +99,10 @@ public class SetUserActivity extends Activity implements OnClickListener {
 			head_centertext.setText("简介");
 			setuser_collect.setVisibility(View.VISIBLE);
 			setuser_wordcount.setVisibility(View.VISIBLE);
+			if (prefUtil.getIntro() != null && !prefUtil.getIntro().equals("0")) {
+				setuser_collect.setText(prefUtil.getIntro());
+				setuser_collect.setSelection(setuser_collect.length());
+			}
 		}
 	}
 

@@ -9,6 +9,7 @@ import com.xh.soundtell.adapter.WorksAdapter;
 import com.xh.soundtell.listview.XListView;
 import com.xh.soundtell.model.FActivity;
 import com.xh.soundtell.model.Works;
+import com.xh.soundtell.ui.ActivityWeb;
 import com.xh.soundtell.ui.SetActivity;
 import com.xh.soundtell.ui.UserInfoActivity;
 
@@ -20,6 +21,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -82,19 +85,41 @@ public class ActivityFragment extends Fragment {
 		ActivityAdapter activityAdapter = new ActivityAdapter(activity,
 				fActivities);
 		activity_lv.setAdapter(activityAdapter);
+		activity_lv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Intent intent = new Intent(activity, ActivityWeb.class);
+				intent.putExtra("web", position + "");
+				startActivity(intent);
+			}
+		});
 	}
 
 	public void getItem() {
-		FActivity fActivity1 = new FActivity("1", R.drawable.activity_1,
-				"两小无猜专辑成长计划", "正在进行");
 		FActivity fActivity2 = new FActivity("2", R.drawable.activity_2,
-				"两小无猜", "已结束");
+				"两小无猜", "正在进行");
 		FActivity fActivity3 = new FActivity("3", R.drawable.activity_3,
 				"通缉令，赏金丰厚", "正在进行");
+		FActivity fActivity4 = new FActivity("4", R.drawable.activity_4,
+				"一首歌证明我是小清新", "已结束");
+		FActivity fActivity5 = new FActivity("5", R.drawable.activity_5,
+				"唱首情歌给闺蜜", "已结束");
+		FActivity fActivity6 = new FActivity("6", R.drawable.activity_6,
+				"青春一起歌唱", "已结束");
+		FActivity fActivity7 = new FActivity("7", R.drawable.activity_7,
+				"这是唱给爸爸的歌", "已结束");
+		FActivity fActivity8 = new FActivity("8", R.drawable.activity_8,
+				"有一种声音叫做夏天", "已结束");
 
-		fActivities.add(fActivity1);
 		fActivities.add(fActivity2);
 		fActivities.add(fActivity3);
+		fActivities.add(fActivity4);
+		fActivities.add(fActivity5);
+		fActivities.add(fActivity6);
+		fActivities.add(fActivity7);
+		fActivities.add(fActivity8);
 	}
 
 	@Override

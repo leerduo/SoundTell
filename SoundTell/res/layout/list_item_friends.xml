@@ -12,7 +12,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center_vertical"
-        android:background="@drawable/hotrank_default"
+        android:background="@drawable/meng"
         android:contentDescription="@string/app_name" />
 
     <LinearLayout
@@ -37,8 +37,10 @@
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_alignParentRight="true"
+            android:ellipsize="end"
             android:gravity="center_vertical"
-            android:text="这个人很懒，什么也没有留下"
+            android:singleLine="true"
+            android:text="宁愿强的让人嫉妒、也不愿若的让人可怜!"
             android:textColor="@color/app_font_gray"
             android:textSize="12sp" />
     </LinearLayout>

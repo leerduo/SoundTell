@@ -3,19 +3,19 @@ package com.xh.soundtell.ui;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xh.soundtell.R;
 import com.xh.soundtell.setting.SettingHelper;
@@ -34,6 +34,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 	private PopupWindow popupWindow;
 
+	private Handler mHandler = new Handler();
+	private boolean isExit;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,6 +45,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		SettingHelper.getInstance().setApplicationContext(this);
 		findView();
 	}
+
 	private void findView() {
 		tv1 = (TextView) findViewById(R.id.tv1);
 		tv2 = (TextView) findViewById(R.id.tv2);
@@ -63,7 +67,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		if (currentView != null && currentView.equals(v)) {
 			return;
 		}
-		Intent intent=null;
+		Intent intent = null;
 		FragmentManager fm = getSupportFragmentManager();
 		FragmentTransaction ft = fm.beginTransaction();
 		switch (v.getId()) {
@@ -92,31 +96,32 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			setButton(v);
 			break;
 		case R.id.iv1:
-			//show popupwindow
+			// show popupwindow
 			getPopwindow();
 			break;
-			
-		/******* popupWindow ******/	
+
+		/******* popupWindow ******/
 		case R.id.popupsing_ll1:
-			intent=new Intent(this,SingRecordActivity.class);
+			intent = new Intent(this, SingRecordActivity.class);
 			showDisPopWindow();
-			break;	
+			break;
 		case R.id.popupsing_ll2:
-			intent=new Intent(this,SingRecordActivity.class);
+			intent = new Intent(this, SingRecordActivity.class);
 			showDisPopWindow();
-			break;	
+			break;
 		case R.id.popupsing_ll3:
-			intent=new Intent(this,SingStyleActivity.class);
+			intent = new Intent(this, SingStyleActivity.class);
 			showDisPopWindow();
-			break;	
+			break;
 		case R.id.popupsing_back:
 			showDisPopWindow();
-			break;	
+			break;
 		}
-		if(intent!=null){
+		if (intent != null) {
 			startActivity(intent);
 		}
 	}
+
 	private void setButton(View v) {
 		if (currentView != null && currentView != v) {
 			currentView.setSelected(false);
@@ -124,43 +129,45 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		v.setSelected(true);
 		currentView = v;
 	}
+
 	private void getPopwindow() {
-     	final View	popView = LayoutInflater.from(this).inflate(R.layout.popup_sing,
-				null);
-		View llView1=popView .findViewById(R.id.popupsing_ll1);
-		View llView2=popView .findViewById(R.id.popupsing_ll2);
-		View llView3=popView .findViewById(R.id.popupsing_ll3);
-		View backView=popView .findViewById(R.id.popupsing_back);
-		
+		final View popView = LayoutInflater.from(this).inflate(
+				R.layout.popup_sing, null);
+		View llView1 = popView.findViewById(R.id.popupsing_ll1);
+		View llView2 = popView.findViewById(R.id.popupsing_ll2);
+		View llView3 = popView.findViewById(R.id.popupsing_ll3);
+		View backView = popView.findViewById(R.id.popupsing_back);
+
 		llView1.setOnClickListener(this);
 		llView2.setOnClickListener(this);
 		llView3.setOnClickListener(this);
 		backView.setOnClickListener(this);
-		
-     	
-      popupWindow = new PopupWindow(popView,DensityUtil.getScreenWidthAndHeight(this)[0],
-     			DensityUtil.getScreenWidthAndHeight(this)[1]-DensityUtil.dip2px(this, 50));
+
+		popupWindow = new PopupWindow(popView,
+				DensityUtil.getScreenWidthAndHeight(this)[0],
+				DensityUtil.getScreenWidthAndHeight(this)[1]
+						- DensityUtil.dip2px(this, 50));
 		popupWindow.setFocusable(true);
 		popupWindow.setOutsideTouchable(true);
 		popupWindow.setBackgroundDrawable(new BitmapDrawable());
 		popupWindow
 				.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-		//		popView.setOnTouchListener(new OnTouchListener() {
-//			public boolean onTouch(View v, MotionEvent event) {
-//				int height = popView.findViewById(R.id.pop_layout).getTop();
-//				int y = (int) event.getY();
-//				if (event.getAction() == MotionEvent.ACTION_UP) {
-//					if (y < height) {
-//						popupWindow.dismiss();
-//					}
-//				}
-//				return true;
-//			}
-//		});
+		// popView.setOnTouchListener(new OnTouchListener() {
+		// public boolean onTouch(View v, MotionEvent event) {
+		// int height = popView.findViewById(R.id.pop_layout).getTop();
+		// int y = (int) event.getY();
+		// if (event.getAction() == MotionEvent.ACTION_UP) {
+		// if (y < height) {
+		// popupWindow.dismiss();
+		// }
+		// }
+		// return true;
+		// }
+		// });
 		showDisPopWindow();
 	}
-	
+
 	public void showDisPopWindow() {
 		if (popupWindow != null) {
 			if (popupWindow.isShowing()) {
@@ -171,6 +178,32 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			}
 		}
 	}
-	
-	
+
+	/**
+	 * 监听返回--是否退出程序
+	 */
+	@Override
+	public void onBackPressed() {
+		if (isExit) {
+			exit();
+		} else {
+			isExit = true;
+			mHandler.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					isExit = false;
+				}
+			}, 2000);
+			Toast.makeText(getApplicationContext(), "再按一次 退出程序",
+					Toast.LENGTH_SHORT).show();
+		}
+	}
+
+	/**
+	 * 退出程序
+	 */
+	private void exit() {
+		finish();
+	}
+
 }

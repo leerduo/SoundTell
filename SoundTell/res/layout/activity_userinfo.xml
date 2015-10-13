@@ -83,7 +83,7 @@
                 android:id="@+id/userinfo_area"
                 style="@style/my_black"
                 android:layout_alignParentRight="true"
-                android:text="四川省成都市双流县" />
+                android:text="四川省  成都市  双流县" />
         </RelativeLayout>
 
         <RelativeLayout

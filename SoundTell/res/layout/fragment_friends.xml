@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="center"
-                android:text="共搜索到3位好友"
+                android:text="共搜索到6位好友"
                 android:textColor="@color/app_font_black"
                 android:textSize="12sp"
                 android:visibility="gone" />
