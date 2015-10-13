@@ -90,9 +90,11 @@ public class ActivityFragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Intent intent = new Intent(activity, ActivityWeb.class);
-				intent.putExtra("web", position + "");
-				startActivity(intent);
+				if (position == 0 || position == 1) {
+					Intent intent = new Intent(activity, ActivityWeb.class);
+					intent.putExtra("web", position + "");
+					startActivity(intent);
+				}
 			}
 		});
 	}
