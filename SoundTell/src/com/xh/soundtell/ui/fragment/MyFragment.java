@@ -157,11 +157,13 @@ public class MyFragment extends Fragment implements OnClickListener,
 		if (prefUtil.getImageLogo() != null
 				&& !prefUtil.getImageLogo().equals("0")) {
 			Bitmap bitmap = ImageHelper.getBitmap(prefUtil.getImageLogo());
-			if (bitmap.getWidth() < 700) {
+			if (bitmap.getWidth() < 699) {
+				System.out.println("进入页面是否已经输小了");
 				try {
-					my_iv.setImageBitmap(ImageHelper.getThumbUploadPath(
+					Bitmap thumbUploadPath = ImageHelper.getThumbUploadPath(
 							prefUtil.getImageLogo(), 700800,
-							prefUtil.getImageLogo()));
+							prefUtil.getImageLogo());
+					my_iv.setImageBitmap(thumbUploadPath);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -229,12 +231,28 @@ public class MyFragment extends Fragment implements OnClickListener,
 			String image = data.getStringExtra("image");
 			String name = data.getStringExtra("name");
 			String collect = data.getStringExtra("collect");
-			// if (!image.equals("123456")) {
-			// my_iv.setImageBitmap(ImageHelper.getBitmap(image));
-			// my_userlogo.setImageBitmap(ImageHelper.getBitmap(image));
-			// }
-			// my_username.setText(name);
-			// my_intro.setText(collect);
+			if (!image.equals("123456")) {
+
+				Bitmap bitmap = ImageHelper.getBitmap(prefUtil.getImageLogo());
+				if (bitmap.getWidth() < 699) {
+					System.out.println("进入页面是否已经输小了");
+					try {
+						Bitmap thumbUploadPath = ImageHelper
+								.getThumbUploadPath(prefUtil.getImageLogo(),
+										700800, prefUtil.getImageLogo());
+						my_iv.setImageBitmap(thumbUploadPath);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				} else {
+					my_iv.setImageBitmap(ImageHelper.getBitmap(prefUtil
+							.getImageLogo()));
+				}
+
+				my_userlogo.setImageBitmap(ImageHelper.getBitmap(image));
+			}
+			my_username.setText(name);
+			my_intro.setText(collect);
 		}
 	}
 
