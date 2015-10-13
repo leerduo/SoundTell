@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    >
+<RelativeLayout 
+         android:layout_width="match_parent"
+          android:layout_height="40dp"
+        >
+        <ImageView 
+            android:id="@+id/hot_back"
+            android:src="@drawable/back_black"
+             android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+           android:layout_centerVertical="true"
+            />
+        <TextView 
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#ff0000"
+            android:text="热歌榜"
+           android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+   <ImageView 
+       android:layout_height="130dp"
+       android:layout_width="match_parent"
+       android:background="@drawable/demo001"
+       android:layout_marginLeft="15dp"
+       android:layout_marginRight="15dp"
+       />  
+   <ImageView 
+       android:id="@+id/hot_iv"
+       android:layout_height="match_parent"
+       android:layout_width="match_parent"
+       android:background="@drawable/demo002"
+       android:layout_marginTop="5dp"
+       android:layout_marginLeft="15dp"
+       android:layout_marginRight="15dp"
+       android:layout_marginBottom="50dp"
+       android:layout_gravity="center_horizontal"
+       />  
+
+
+
+</LinearLayout>

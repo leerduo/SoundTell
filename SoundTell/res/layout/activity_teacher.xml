@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+  android:orientation="vertical"
+   android:background="#ffffff"
+ >
+
+    <RelativeLayout 
+         android:layout_width="match_parent"
+          android:layout_height="40dp"
+        >
+        <ImageView 
+            android:id="@+id/teacher_back"
+            android:src="@drawable/back_black"
+             android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+           android:layout_centerVertical="true"
+            />
+        <TextView 
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#ff0000"
+            android:text="导师推荐"
+           android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+    
+<ImageView 
+       android:layout_height="140dp"
+       android:layout_width="match_parent"
+       android:background="@drawable/demo005"
+       android:layout_marginLeft="15dp"
+       android:layout_marginRight="15dp"
+       />  
+   <ImageView 
+       android:id="@+id/teacher_iv"
+       android:layout_height="match_parent"
+       android:layout_width="match_parent"
+       android:background="@drawable/demo006"
+       android:layout_marginLeft="15dp"
+       android:layout_marginRight="15dp"
+       android:layout_marginBottom="50dp"
+       />  
+</LinearLayout>

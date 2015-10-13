@@ -41,10 +41,8 @@ public class AudioFileFunc {
             String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath();
             mAudioRawPath = fileBasePath+"/"+AUDIO_RAW_FILENAME;
         }   
-         
         return mAudioRawPath;
     }
-     
     /**
      * 获取编码后的WAV格式音频文件路径
      * @return
@@ -62,8 +60,6 @@ public class AudioFileFunc {
         }
         return mAudioWavPath;
     }
-     
-     
     /**
      * 获取编码后的AMR格式音频文件路径
      * @return
@@ -76,8 +72,6 @@ public class AudioFileFunc {
         }
         return mAudioAMRPath;
     }   
-     
-     
     /**
      * 获取文件大小
      * @param path,文件的绝对路径

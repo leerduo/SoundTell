@@ -1,0 +1,98 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+     android:background="#ffffff"
+    >
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+<RelativeLayout 
+         android:layout_width="match_parent"
+          android:layout_height="40dp"
+        >
+        <ImageView 
+            android:id="@+id/newci_back"
+            android:src="@drawable/back_black"
+             android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+           android:layout_centerVertical="true"
+            />
+        <TextView 
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#ff0000"
+            android:text="新词榜"
+           android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+   <ImageView 
+       android:layout_height="140dp"
+       android:layout_width="match_parent"
+       android:background="@drawable/demo003"
+       android:layout_marginLeft="10dp"
+       android:layout_marginRight="10dp"
+       />  
+   <ImageView 
+       android:id="@+id/newci_iv"
+       android:layout_height="match_parent"
+       android:layout_width="match_parent"
+       android:background="@drawable/demo004"
+       android:layout_marginTop="10dp"
+       android:layout_marginLeft="10dp"
+       android:layout_marginRight="10dp"
+       android:layout_marginBottom="80dp"
+       android:layout_gravity="center_horizontal"
+      
+       />  
+       
+</LinearLayout>
+
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="39dp"
+    android:orientation="horizontal"
+   android:layout_alignParentBottom="true"
+   android:background="#fff"
+    >
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="match_parent"
+       android:layout_weight="1"
+       android:text="听歌写词"
+       android:textColor="#000000"
+       android:textSize="12sp"
+       android:gravity="center"
+       />
+   <TextView
+       android:layout_width="0.2dp"
+       android:layout_height="match_parent"
+       android:background="#000000"
+       />
+     
+   <TextView
+       android:gravity="center"
+       android:layout_width="wrap_content"
+       android:layout_height="match_parent"
+       android:layout_weight="1"
+       android:text="直接创作"
+       android:textColor="#000000"
+       android:textSize="12sp"
+       />
+</LinearLayout>
+<TextView
+       android:layout_width="match_parent"
+       android:layout_height="0.2dp"
+       android:background="#333333"
+       android:layout_marginBottom="39dp"
+       android:layout_alignParentBottom="true"
+       />
+
+
+
+
+</RelativeLayout>

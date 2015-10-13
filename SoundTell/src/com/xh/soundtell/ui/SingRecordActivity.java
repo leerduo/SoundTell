@@ -32,8 +32,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class SingRecordActivity extends Activity implements OnClickListener{
-
-	
 	ImageView  ivPlay;
 	private boolean isPlaying;
 	private SeekBar bar;
@@ -210,7 +208,6 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 			 MusicHelper.startMusic(this,musicRecordModels.get(position).getMusicId(),false);
 	         record(FLAG_WAV);
 	         handler.sendEmptyMessageDelayed(0, 1000);
-	        
 			break;
 		case R.id.popupalter_getup:
 			showDisRecordPopwindow();
@@ -290,7 +287,7 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 		if(isPlaying){
 			  MusicHelper.stopMusic();
 	          stop();
-	          String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath();
+	          String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath()+"";
 	          deleteAllFiles(new File(fileBasePath+"录制-"+musicRecordModels.get(position).getMusicTitle()+".wav"));
 		}
 		

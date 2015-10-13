@@ -26,9 +26,7 @@ public class AudioRecordFunc {
     private static AudioRecordFunc mInstance; 
           
     private AudioRecordFunc(){
-         
     }   
-     
     public synchronized static AudioRecordFunc getInstance()
     {
         if(mInstance == null) 
@@ -56,7 +54,6 @@ public class AudioRecordFunc {
                  
                 return ErrorCode.SUCCESS;
             }
-             
         }       
         else
         {
@@ -68,13 +65,9 @@ public class AudioRecordFunc {
     public void stopRecordAndFile() {  
         close();  
     }
-     
-     
     public long getRecordFileSize(){
         return AudioFileFunc.getFileSize(NewAudioName);
     }
-     
-   
     private void close() {  
         if (audioRecord != null) {  
             System.out.println("stopRecord");  
@@ -84,8 +77,6 @@ public class AudioRecordFunc {
             audioRecord = null;  
         }  
     }
-     
-     
     private void creatAudioRecord(String musicRecordName) {  
         // 获取音频文件路径
         AudioName = AudioFileFunc.getRawFilePath();
@@ -99,8 +90,6 @@ public class AudioRecordFunc {
         audioRecord = new AudioRecord(AudioFileFunc.AUDIO_INPUT, AudioFileFunc.AUDIO_SAMPLE_RATE,  
                 AudioFormat.CHANNEL_IN_STEREO, AudioFormat.ENCODING_PCM_16BIT, bufferSizeInBytes);  
     }
-     
-     
     class AudioRecordThread implements Runnable {  
         @Override 
         public void run() {  

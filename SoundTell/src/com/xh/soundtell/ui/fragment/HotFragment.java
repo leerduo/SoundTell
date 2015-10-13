@@ -3,8 +3,13 @@ package com.xh.soundtell.ui.fragment;
 import java.util.ArrayList;
 
 import com.xh.soundtell.R;
+import com.xh.soundtell.ui.HotActivity;
+import com.xh.soundtell.ui.NewCiActivity;
+import com.xh.soundtell.ui.RenQiActivity;
+import com.xh.soundtell.ui.TeacherActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
@@ -12,13 +17,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
-public class HotFragment extends Fragment {
+public class HotFragment extends Fragment implements OnClickListener{
 	
 	Activity act;
 	public HotFragment(){}
@@ -114,7 +120,37 @@ private void init() {
 		public void onPageScrollStateChanged(int arg0) {
 		}
 	});
-	
+	view.findViewById(R.id.fraghot_hot).setOnClickListener(this);
+	view.findViewById(R.id.fraghot_hotmore).setOnClickListener(this);
+	view.findViewById(R.id.fraghot_newci).setOnClickListener(this);
+	view.findViewById(R.id.fraghot_teacher).setOnClickListener(this);
+	view.findViewById(R.id.fraghot_renqi).setOnClickListener(this);
+}
+
+@Override
+public void onClick(View v) {
+	Intent intent=null;
+	switch (v.getId()) {
+	case R.id.fraghot_hot://热歌
+		intent=new Intent(act,HotActivity.class);
+		break;
+	case R.id.fraghot_hotmore://更多
+		intent=new Intent(act,HotActivity.class);
+		break;
+	case R.id.fraghot_newci://新词
+		intent=new Intent(act,NewCiActivity.class);
+		break;
+	case R.id.fraghot_teacher://导师
+		intent=new Intent(act,TeacherActivity.class);
+		break;
+	case R.id.fraghot_renqi://人气
+		intent=new Intent(act,RenQiActivity.class);
+		break;
+	}
+	if(intent!=null
+			){
+		startActivity(intent);
+	}
 }
 
 

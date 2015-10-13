@@ -14,7 +14,6 @@ public class MusicHelper {
 	public static int musicId = -1;
 	
 	public static boolean musicState = true;
-
 	/**
 	 * @param context 
 	 * @param id     音乐 id
@@ -30,7 +29,6 @@ public class MusicHelper {
 //		if (musicId == id && mediaPlayer.isPlaying()) {
 //			return;
 //		}
-//		
 //		musicId = id;
        //判断是否为空
 		if (mediaPlayer != null) {
@@ -43,6 +41,7 @@ public class MusicHelper {
 		}
 		//实例化
 		mediaPlayer = MediaPlayer.create(context, id);
+		
 //		mediaPlayer = MediaPlayer.create(context, musicIds);
 		//设置循环
 		mediaPlayer.setLooping(looping);
