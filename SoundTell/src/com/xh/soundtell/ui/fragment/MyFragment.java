@@ -29,6 +29,7 @@ import com.xh.soundtell.model.MusicInfomation;
 import com.xh.soundtell.model.Works;
 import com.xh.soundtell.ui.PlayMusicActivity;
 import com.xh.soundtell.ui.SetActivity;
+import com.xh.soundtell.ui.TestActivity;
 import com.xh.soundtell.ui.UserInfoActivity;
 import com.xh.soundtell.util.ImageHelper;
 import com.xh.soundtell.util.PrefUtil;
@@ -210,7 +211,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 			startActivityForResult(intent, 100);
 			break;
 		case R.id.my_set:
-			Intent intent1 = new Intent(activity, SetActivity.class);
+			Intent intent1 = new Intent(activity, TestActivity.class);
 			startActivityForResult(intent1, 101);
 			break;
 		case R.id.my_works_r:
