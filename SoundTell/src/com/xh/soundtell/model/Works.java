@@ -10,6 +10,7 @@ public class Works implements Serializable {
 
 	private String id;
 	private String name;
+	private int iamgeid;
 	private String time;
 
 	public String getId() {
@@ -28,6 +29,14 @@ public class Works implements Serializable {
 		this.name = name;
 	}
 
+	public int getIamgeid() {
+		return iamgeid;
+	}
+
+	public void setIamgeid(int iamgeid) {
+		this.iamgeid = iamgeid;
+	}
+
 	public String getTime() {
 		return time;
 	}
@@ -36,9 +45,10 @@ public class Works implements Serializable {
 		this.time = time;
 	}
 
-	public Works(String id, String name, String time) {
+	public Works(String id, String name, int iamgeid, String time) {
 		this.id = id;
 		this.name = name;
+		this.iamgeid = iamgeid;
 		this.time = time;
 	}
 }

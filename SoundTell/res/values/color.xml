@@ -11,6 +11,7 @@
     <color name="app_title_font_white">#FFFFFF</color>
     <color name="app_split_line">#dcdcdc</color>
     <color name="white">#FFFFFF</color>
+      <color name="light_gray">#c0c0c0</color>
     <!-- MyAlertDialog 窗口 -->
     <color name="trans">#00000000</color>
     <color name="black">#000000</color>

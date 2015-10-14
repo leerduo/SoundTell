@@ -75,8 +75,8 @@ public class FriendsInfoActivity extends Activity implements OnClickListener,
 		xListView = (XListView) findViewById(R.id.friendsinfo_xListView);
 		xListView.setPullRefreshEnable(true);
 		mWorks = new ArrayList<Works>();
-		worksAdapter = new WorksAdapter(FriendsInfoActivity.this, mWorks);
-		xListView.setAdapter(worksAdapter);
+		// worksAdapter = new WorksAdapter(FriendsInfoActivity.this, null);
+		// xListView.setAdapter(worksAdapter);
 		xListView.setXListViewListener(this);
 	}
 
@@ -114,9 +114,9 @@ public class FriendsInfoActivity extends Activity implements OnClickListener,
 			@Override
 			public void run() {
 				start = ++refreshCnt;
-				worksAdapter = new WorksAdapter(FriendsInfoActivity.this,
-						mWorks);
-				xListView.setAdapter(worksAdapter);
+				// worksAdapter = new WorksAdapter(FriendsInfoActivity.this,
+				// null);
+				// xListView.setAdapter(worksAdapter);
 				onLoad();
 			}
 		}, 2000);
@@ -128,7 +128,7 @@ public class FriendsInfoActivity extends Activity implements OnClickListener,
 
 			@Override
 			public void run() {
-				worksAdapter.notifyDataSetChanged();
+				// worksAdapter.notifyDataSetChanged();
 				onLoad();
 			}
 		}, 2000);
