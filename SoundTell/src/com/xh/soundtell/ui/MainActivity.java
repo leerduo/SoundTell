@@ -110,7 +110,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			showDisPopWindow();
 			break;
 		case R.id.popupsing_ll3:
-			intent = new Intent(this, SingStyleActivity.class);
+			intent = new Intent(this, PersonalOptionActivity.class);
 			showDisPopWindow();
 			break;
 		case R.id.popupsing_back:

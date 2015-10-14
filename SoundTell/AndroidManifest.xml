@@ -83,20 +83,29 @@
             android:label="@string/title_activity_new_ci" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.TeacherActivity"
+            android:name=".ui.TeacherActivity"
             android:label="@string/title_activity_teacher" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.RenQiActivity"
+            android:name=".ui.RenQiActivity"
             android:label="@string/title_activity_ren_qi" >
         </activity>
-          <activity
-            android:name="com.xh.soundtell.ui.PlayMusicActivity"
+        <activity
+            android:name=".ui.PlayMusicActivity"
             android:label="@string/title_activity_record_suc" >
         </activity>
-        <service 
-            android:name="com.xh.soundtell.service.ControlPlay"
-            ></service>
+        <activity
+            android:name=".ui.PersonalOptionActivity"
+            android:label="@string/title_activity_record_suc" >
+        </activity>
+
+        <service android:name=".service.ControlPlay" >
+        </service>
+
+        <activity
+            android:name=".AuditionActivity"
+            android:label="@string/title_activity_audition" >
+        </activity>
     </application>
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
