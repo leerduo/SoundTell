@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.xh.soundtell.ui.StartActivity"
+            android:name=".ui.StartActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.MainActivity"
+            android:name=".ui.MainActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
@@ -67,21 +67,36 @@
             android:label="@string/title_activity_sound_pool" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.RecordSucActivity"
+            android:name=".ui.RecordSucActivity"
             android:label="@string/title_activity_record_suc" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.ActivityWeb"
+            android:name=".ui.ActivityWeb"
             android:label="@string/title_activity_record_suc" >
         </activity>
         <activity
+            android:name=".ui.HotActivity"
+            android:label="@string/title_activity_hot_activityt" >
+        </activity>
+        <activity
+            android:name=".ui.NewCiActivity"
+            android:label="@string/title_activity_new_ci" >
+        </activity>
+        <activity
+            android:name="com.xh.soundtell.ui.TeacherActivity"
+            android:label="@string/title_activity_teacher" >
+        </activity>
+        <activity
+            android:name="com.xh.soundtell.ui.RenQiActivity"
+            android:label="@string/title_activity_ren_qi" >
+        </activity>
+          <activity
             android:name="com.xh.soundtell.ui.PlayMusicActivity"
             android:label="@string/title_activity_record_suc" >
         </activity>
         <service 
             android:name="com.xh.soundtell.service.ControlPlay"
             ></service>
-        
     </application>
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
