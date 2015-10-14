@@ -90,13 +90,17 @@
             android:name="com.xh.soundtell.ui.RenQiActivity"
             android:label="@string/title_activity_ren_qi" >
         </activity>
-          <activity
+        <activity
             android:name="com.xh.soundtell.ui.PlayMusicActivity"
             android:label="@string/title_activity_record_suc" >
         </activity>
-        <service 
-            android:name="com.xh.soundtell.service.ControlPlay"
-            ></service>
+        <activity
+            android:name="com.xh.soundtell.ui.TestActivity"
+            android:label="@string/title_activity_record_suc" >
+        </activity>
+
+        <service android:name="com.xh.soundtell.service.ControlPlay" >
+        </service>
     </application>
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />

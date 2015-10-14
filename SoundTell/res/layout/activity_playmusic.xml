@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <ScrollView
+    <com.xh.soundtell.view.MyScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none" >
@@ -305,6 +305,6 @@
                 android:dividerHeight="0.5dp" >
             </com.xh.soundtell.view.MyListView>
         </LinearLayout>
-    </ScrollView>
+    </com.xh.soundtell.view.MyScrollView>
 
 </LinearLayout>

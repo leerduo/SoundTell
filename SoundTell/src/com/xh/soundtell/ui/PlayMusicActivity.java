@@ -53,10 +53,9 @@ public class PlayMusicActivity extends Activity implements OnClickListener {
 	public static int song_time = 0;
 	public static int play_time = 0;
 
-	private View parent;
 	private ViewPager viewPager;
 	private TextView[] pointTextViews;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -97,25 +96,24 @@ public class PlayMusicActivity extends Activity implements OnClickListener {
 				PlayMusicActivity.this.finish();
 			}
 		});
-		
+
 		playmusic_logo = (ImageView) findViewById(R.id.playmusic_logo);
-		
-		viewPager = (ViewPager) parent.findViewById(R.id.playmusic_viewPager);
-		LinearLayout pointLayout = (LinearLayout) parent
-				.findViewById(R.id.layout_point);
+
+		viewPager = (ViewPager) findViewById(R.id.playmusic_viewPager);
+		LinearLayout pointLayout = (LinearLayout) findViewById(R.id.layout_point);
 
 		pointTextViews = new TextView[3];
 		for (int i = 0; i < 3; i++) {
-			TextView textView = (TextView) LayoutInflater.from(this)
-					.inflate(R.layout.textview_point, null);
+			TextView textView = (TextView) LayoutInflater.from(this).inflate(
+					R.layout.textview_point, null);
 			pointTextViews[i] = textView;
 			pointLayout.addView(textView);
 		}
-//		pointTextViews[currentIndex].setTextColor(getResources().getColor(
-//				R.color.white));
-//		viewPager.setAdapter(new PageAdapter());
-//		viewPager.setOnPageChangeListener(new MyPageChangeListener());
-		
+		// pointTextViews[currentIndex].setTextColor(getResources().getColor(
+		// R.color.white));
+		viewPager.setAdapter(new PageAdapter(this));
+		viewPager.setCurrentItem(1);
+		// viewPager.setOnPageChangeListener(new MyPageChangeListener());
 
 		playmusic_name = (TextView) findViewById(R.id.playmusic_name);
 		playmusic_username = (TextView) findViewById(R.id.playmusic_username);
