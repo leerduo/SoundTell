@@ -48,7 +48,7 @@ public class XListView extends ListView implements OnScrollListener {
 	private boolean mEnablePullLoad;
 	private boolean mPullLoading;
 	private boolean mIsFooterReady = false;
-	
+
 	// total list items, used to detect is at the bottom of listview.
 	private int mTotalItemCount;
 
@@ -122,7 +122,7 @@ public class XListView extends ListView implements OnScrollListener {
 	}
 
 	/**
-	 * enable or disable pull down refresh feature.
+	 * enable or disable pull down refresh feature. 启用或禁用下拉刷新功能。
 	 * 
 	 * @param enable
 	 */
@@ -136,7 +136,7 @@ public class XListView extends ListView implements OnScrollListener {
 	}
 
 	/**
-	 * enable or disable pull up load more feature.
+	 * enable or disable pull up load more feature. 启用或禁用打开负载更多的特性。
 	 * 
 	 * @param enable
 	 */
@@ -243,7 +243,7 @@ public class XListView extends ListView implements OnScrollListener {
 		}
 		mFooterView.setBottomMargin(height);
 
-//		setSelection(mTotalItemCount - 1); // scroll to bottom
+		// setSelection(mTotalItemCount - 1); // scroll to bottom
 	}
 
 	private void resetFooterHeight() {
@@ -304,8 +304,8 @@ public class XListView extends ListView implements OnScrollListener {
 			} else if (getLastVisiblePosition() == mTotalItemCount - 1) {
 				// invoke load more.
 				if (mEnablePullLoad
-				    && mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA
-				    && !mPullLoading) {
+						&& mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA
+						&& !mPullLoading) {
 					startLoadMore();
 				}
 				resetFooterHeight();

@@ -3,22 +3,73 @@
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:background="@color/white"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="10dp" >
 
-    <TextView
-        android:id="@+id/list_item_works_name"
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/hot_guanggao1" />
+
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="祖国祖国"
-        android:textColor="@color/app_font_gray" />
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/list_item_works_name"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="祖国祖国"
+            android:textColor="@color/app_font_black"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/works_like"
+                android:drawablePadding="3dp"
+                android:text="0"
+                android:textColor="@color/app_font_gray"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/works_collect"
+                android:drawablePadding="3dp"
+                android:text="0"
+                android:textColor="@color/app_font_gray"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/works_play"
+                android:drawablePadding="3dp"
+                android:text="0"
+                android:textColor="@color/app_font_gray"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/list_item_works_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="04:00"
-        android:textColor="@color/app_font_gray" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="right|center_vertical"
+        android:text="2015-10-24"
+        android:textColor="@color/app_font_gray"
+        android:textSize="13sp" />
 
 </LinearLayout>

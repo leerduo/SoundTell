@@ -2,245 +2,238 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
-    <RelativeLayout 
-         android:layout_width="match_parent"
-          android:layout_height="40dp"
-        >
-        <ImageView 
-            android:id="@+id/singrecord_back"
-            android:src="@drawable/back_black"
-             android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-           android:layout_centerVertical="true"
-            />
-        <TextView 
-            android:id="@+id/singrecord_title"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="#ff0000"
-            android:text="因你而在"
-           android:layout_centerInParent="true"
-            />
-        <TextView 
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@color/actionsheet_gray"
-            android:text="举报"
-           android:layout_centerVertical="true"
-           android:layout_alignParentRight="true"
-           android:layout_marginRight="20dp"
-            />
-    </RelativeLayout> 
-<RelativeLayout
-     android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:background="@drawable/record_bg"
-    android:orientation="vertical"
-    android:layout_weight="4" 
-     >
-    <ScrollView 
+    android:orientation="vertical" >
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="60dp"
-        >
+        android:layout_height="40dp" >
+
+        <ImageView
+            android:id="@+id/singrecord_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back_black" />
 
         <TextView
-            android:layout_width="150dp"
+            android:id="@+id/singrecord_title"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_marginTop="30dp"
-            android:text="@string/exist_for_you"
-            android:textColor="#ffffff"
-            android:textSize="14sp"
-            android:lineSpacingExtra="3dp" 
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/geci"
-            />
-    </ScrollView>    
-    
-    <LinearLayout 
-    android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:background="#40000000"
-    android:layout_alignParentBottom="true"
-    android:orientation="horizontal"
-     >
-    <LinearLayout 
-    android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_weight="1"
-    android:paddingLeft="20dp"
-     >
-     <TextView 
-         android:id="@+id/singrecord_singer"
-     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-     android:text="林俊杰" 
-        android:textColor="#ffffff"
-       android:textSize="16sp" 
-           android:layout_weight="1"  
-            android:gravity="center_vertical"
-             /> 
-     <TextView 
-           android:id="@+id/singrecord_type"
-     android:gravity="center_vertical"
-     android:layout_width="match_parent"
-     android:layout_height="match_parent" 
-     android:text="流行音乐—2-74-A（正常音质）" 
-        android:textColor="#ffffff"
-       android:textSize="14sp" 
-        android:layout_weight="1"  
-        android:singleLine="true"
-        android:ellipsize="end"
-       /> 
+            android:layout_centerInParent="true"
+            android:text="因你而在"
+            android:textColor="#ff0000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:text="举报"
+            android:textColor="@color/actionsheet_gray"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:background="@drawable/record_bg"
+        android:orientation="vertical" >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="60dp" >
+
+            <TextView
+                android:id="@+id/geci"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="30dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/exist_for_you"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:background="#40000000"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingLeft="20dp" >
+
+                <TextView
+                    android:id="@+id/singrecord_singer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="林俊杰"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/singrecord_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="流行音乐—2-74-A（正常音质）"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/singrecord_qu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_recordact"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:text="一键换曲"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/singrecord_ci"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/shape_recordact"
+                    android:gravity="center_vertical"
+                    android:padding="5dp"
+                    android:text="一键换词"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.2"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp" >
+
+            <ImageView
+                android:id="@+id/singrecord_play"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/record_play" />
+
+            <TextView
+                android:id="@+id/singrecord_time"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:gravity="clip_vertical"
+                android:text="00:00"
+                android:textColor="@color/black" />
+
+            <SeekBar
+                android:id="@+id/singrecord_seeker"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10.0dip"
+                android:layout_marginRight="10.0dip"
+                android:layout_toLeftOf="@id/singrecord_time"
+                android:layout_toRightOf="@id/singrecord_play"
+                android:focusable="true"
+                android:maxHeight="5.0dip"
+                android:minHeight="5.0dip"
+                android:progressDrawable="@drawable/record_play_track"
+                android:thumb="@drawable/console_toggle" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/singrecord_choose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/record_free_choose" />
+
+                <TextView
+                    android:id="@+id/singrecord_choose_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="素材库"
+                    android:textColor="#999999" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/singrecord_prepare"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/record_prepare" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/singrecord_tone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/record_tone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="调音台"
+                    android:textColor="#999999" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout 
-    android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:layout_weight="1"
-    android:gravity="center"
-     >
-     <TextView 
-         android:id="@+id/singrecord_qu"
-     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" 
-     android:text="一键换曲" 
-       android:textColor="#ffffff"
-       android:textSize="14sp" 
-       android:gravity="center_vertical"
-       android:background="@drawable/shape_recordact"  
-          android:padding="5dp" />
-     
-     <TextView 
-          android:id="@+id/singrecord_ci"
-     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" 
-     android:text="一键换词" 
-        android:textColor="#ffffff"
-       android:textSize="14sp" 
-            android:gravity="center_vertical"
-          android:background="@drawable/shape_recordact"  
-          android:padding="5dp" 
-          android:layout_marginLeft="10dp"/>
-        
-    </LinearLayout>
-    </LinearLayout>
-        
-    
-</RelativeLayout>
-<LinearLayout
-     android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:orientation="vertical"
-    android:layout_weight="1.2" 
-    android:padding="10dp"
-     >
-    <RelativeLayout 
-        android:layout_height="20dp"
-       android:layout_width="match_parent"
-        >
-        <ImageView 
-            android:id="@+id/singrecord_play"
-            android:layout_height="match_parent"
-            android:layout_width="wrap_content"
-            android:src="@drawable/record_play"
-            android:layout_marginLeft="10dp"
-            />
-        <TextView 
-            android:id="@+id/singrecord_time"
-            android:layout_height="match_parent"
-            android:layout_width="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="00:00"
-            android:textColor="@color/black"
-            android:layout_marginRight="10dp"
-            android:gravity="clip_vertical"
-            />
-   <SeekBar
-        android:id="@+id/singrecord_seeker"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:focusable="true"
-        android:maxHeight="5.0dip"
-        android:minHeight="5.0dip"
-        android:layout_marginLeft="10.0dip"
-        android:layout_marginRight="10.0dip"
-        android:progressDrawable="@drawable/record_play_track"
-        android:thumb="@drawable/console_toggle"
-        android:layout_toRightOf="@id/singrecord_play"
-        android:layout_toLeftOf="@id/singrecord_time"
-         android:layout_centerVertical="true"
-         />
-    </RelativeLayout>
-    
-    <LinearLayout
-     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-     >
-    <LinearLayout
-     android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-     android:layout_weight="1"
-     android:gravity="center"
-     >
-    <ImageView 
-        android:id="@+id/singrecord_choose"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:src="@drawable/record_free_choose"
-        android:scaleType="centerInside"
-        />
-    <TextView 
-         android:id="@+id/singrecord_choose_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="素材库"
-        android:layout_marginTop="5dp"
-        android:textColor="#999999"
-        />
-    </LinearLayout>
-    <ImageView 
-        android:id="@+id/singrecord_prepare"
-        android:layout_height="match_parent"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:src="@drawable/record_prepare"
-        android:scaleType="centerInside"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        />
-    
-     <LinearLayout
-     android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-     android:layout_weight="1"
-     android:gravity="center"
-     >
-    <ImageView 
-        android:id="@+id/singrecord_tone"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:src="@drawable/record_tone"
-        android:scaleType="centerInside"
-        />
-    <TextView 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="调音台"
-        android:layout_marginTop="5dp"
-        android:textColor="#999999"
-        />
-    </LinearLayout>
-</LinearLayout>
-</LinearLayout>
 </LinearLayout>

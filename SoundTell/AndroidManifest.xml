@@ -74,6 +74,13 @@
             android:name="com.xh.soundtell.ui.ActivityWeb"
             android:label="@string/title_activity_record_suc" >
         </activity>
+        <activity
+            android:name="com.xh.soundtell.ui.PlayMusicActivity"
+            android:label="@string/title_activity_record_suc" >
+        </activity>
+        <service 
+            android:name="com.xh.soundtell.service.ControlPlay"
+            ></service>
         
     </application>
     <!-- 网络权限 -->

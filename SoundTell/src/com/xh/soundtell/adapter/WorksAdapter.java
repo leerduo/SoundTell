@@ -3,6 +3,7 @@ package com.xh.soundtell.adapter;
 import java.util.List;
 
 import com.xh.soundtell.R;
+import com.xh.soundtell.model.MusicInfomation;
 import com.xh.soundtell.model.Works;
 
 import android.content.Context;
@@ -14,21 +15,21 @@ import android.widget.TextView;
 
 public class WorksAdapter extends BaseAdapter {
 	private Context context;
-	private List<Works> works;
+	private List<MusicInfomation> mis;
 
-	public WorksAdapter(Context context, List<Works> works) {
+	public WorksAdapter(Context context, List<MusicInfomation> mis) {
 		this.context = context;
-		this.works = works;
+		this.mis = mis;
 	}
 
 	@Override
 	public int getCount() {
-		return works.size();
+		return mis.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return works.get(position);
+		return mis.get(position);
 	}
 
 	@Override
@@ -45,18 +46,15 @@ public class WorksAdapter extends BaseAdapter {
 			viewHolder = new ViewHolder();
 			viewHolder.list_item_works_name = (TextView) convertView
 					.findViewById(R.id.list_item_works_name);
-			viewHolder.list_item_works_time = (TextView) convertView
-					.findViewById(R.id.list_item_works_time);
 			convertView.setTag(viewHolder);
 		}
 		viewHolder = (ViewHolder) convertView.getTag();
-		Works item = (Works) getItem(position);
-		viewHolder.list_item_works_name.setText(item.getName());
-		viewHolder.list_item_works_time.setText(item.getTime());
+		MusicInfomation mi = (MusicInfomation) getItem(position);
+		viewHolder.list_item_works_name.setText(mi.getMusicName());
 		return convertView;
 	}
 
 	class ViewHolder {
-		private TextView list_item_works_name, list_item_works_time;
+		private TextView list_item_works_name;
 	}
 }

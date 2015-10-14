@@ -55,7 +55,7 @@ public class MyGallery extends Gallery {
 		onKeyDown(kEvent, null);
 
 		if (this.getSelectedItemPosition() == (AboutActivity.picture.length - 1)) {// 实现后退功能
-		// this.setSelection(AboutActivity.picture.length);
+			// this.setSelection(AboutActivity.picture.length);
 			System.out.println("11111111111111");
 			AboutActivity.pictureGallery.setVisibility(View.GONE);
 		}
