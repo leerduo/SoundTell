@@ -29,7 +29,6 @@ public class PersonalOptionActivity extends Activity implements OnClickListener{
       scrollView = (ScrollView) findViewById(R.id.personaloption_sv);
 	  findViewById(R.id.peraloption_back).setOnClickListener(this);
 	  findViewById(R.id.personaloption_zhuti).setOnClickListener(this);
-	  
 	}
 	private boolean isBuZou;
 	private ScrollView scrollView;

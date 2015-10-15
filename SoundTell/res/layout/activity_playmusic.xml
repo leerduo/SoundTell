@@ -3,7 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+<ScrollView android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:scrollbars="none"
+    android:id="@+id/playmusic_sv">
+    <LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp" >
@@ -44,36 +51,33 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.5"
+            android:layout_height="200dp"
             android:background="@drawable/record_bg"
-            android:orientation="vertical" >
+            android:orientation="vertical" 
+             android:id="@+id/playmusic_rl">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.8" >
-
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/playmusic_viewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <LinearLayout
+                android:layout_height="match_parent"
+                 >
+                   <LinearLayout
                     android:id="@+id/layout_point"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_alignParentTop="true"
-                    android:background="#7f333333"
                     android:gravity="center"
                     android:orientation="horizontal" >
                 </LinearLayout>
-            </RelativeLayout>
-
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/playmusic_viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="80dp"
+                     />
             <LinearLayout
+                android:layout_alignParentBottom="true"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.2"
+                android:layout_height="80dp"
                 android:background="#40000000"
                 android:orientation="horizontal" >
 
@@ -123,7 +127,6 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="horizontal" >
-
                     <TextView
                         android:id="@+id/playmusic_follow"
                         android:layout_width="0dp"
@@ -173,12 +176,14 @@
                         android:textSize="13sp" />
                 </LinearLayout>
             </LinearLayout>
+             </RelativeLayout>
         </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1" >
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+             >
 
             <TextView
                 android:id="@+id/playmusic_start"
@@ -222,10 +227,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.3"
+            android:layout_height="80dp"
             android:gravity="center_vertical"
-            android:orientation="horizontal" >
+            android:orientation="horizontal" 
+            android:layout_marginTop="20dp"
+            >
 
             <RelativeLayout
                 android:id="@+id/playmusic_choose_tv"
@@ -264,7 +270,7 @@
             <TextView
                 android:id="@+id/playmusic_meto"
                 android:layout_width="0dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawablePadding="5dp"
                 android:drawableTop="@drawable/song_detail_letmesing"
@@ -273,14 +279,40 @@
                 android:textColor="#999999" />
         </LinearLayout>
     </LinearLayout>
-
+    <LinearLayout 
+        android:layout_height="20dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+       android:background="#bcbcbc"
+      android:gravity="center_vertical"       
+>
+        <TextView 
+            android:layout_height="wrap_content"
+           android:layout_width="wrap_content"
+            android:text="评论"
+            android:textColor="#000"
+            android:textSize="10dp"
+           android:layout_marginLeft="10dp"
+            />
+        <TextView 
+            android:layout_height="wrap_content"
+           android:layout_width="match_parent"
+            android:text="共10条"
+            android:textColor="#777"
+            android:textSize="10dp"
+           android:layout_marginRight="10dp"
+           android:gravity="right"
+            />
+    </LinearLayout>
     <com.xh.soundtell.listview.XListView
         android:id="@+id/playmusic_xListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@color/app_split_line"
         android:dividerHeight="0.5dp"
-        android:visibility="gone" >
+        android:layout_marginTop="10dp"
+         >
     </com.xh.soundtell.listview.XListView>
-
+    </LinearLayout>
+</ScrollView>
 </LinearLayout>

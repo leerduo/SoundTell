@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.xh.soundtell.R;
 import com.xh.soundtell.ui.HotActivity;
 import com.xh.soundtell.ui.NewCiActivity;
+import com.xh.soundtell.ui.PlayMusicActivity;
 import com.xh.soundtell.ui.RenQiActivity;
 import com.xh.soundtell.ui.TeacherActivity;
 
@@ -132,7 +133,8 @@ public void onClick(View v) {
 	Intent intent=null;
 	switch (v.getId()) {
 	case R.id.fraghot_hot://热歌
-		intent=new Intent(act,HotActivity.class);
+		intent=new Intent(act,PlayMusicActivity.class);
+		intent.putExtra("hotfragment", "hotfragment");
 		break;
 	case R.id.fraghot_hotmore://更多
 		intent=new Intent(act,HotActivity.class);

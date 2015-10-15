@@ -63,7 +63,15 @@ public class XListView extends ListView implements OnScrollListener {
 														// load more.
 	private final static float OFFSET_RADIO = 1.8f; // support iOS like pull
 													// feature.
-
+    @Override
+    /**
+     * 重写该方法，达到使ListView适应ScrollView的效果
+     */
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,
+        MeasureSpec.AT_MOST);
+        super.onMeasure(widthMeasureSpec, expandSpec);
+    }
 	/**
 	 * @param context
 	 */

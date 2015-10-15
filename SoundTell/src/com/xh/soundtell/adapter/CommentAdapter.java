@@ -21,8 +21,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xh.soundtell.R;
@@ -55,6 +57,17 @@ public class CommentAdapter extends BaseAdapter {
 		return position;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder viewHolder = null;
