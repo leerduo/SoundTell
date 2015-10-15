@@ -160,11 +160,16 @@ public class MyFragment extends Fragment implements OnClickListener,
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				MusicInfomation musicInfomation = (MusicInfomation) parent
-						.getAdapter().getItem(position);
-				Intent intent = new Intent(activity, PlayMusicActivity.class);
-				intent.putExtra("musicInfomation", musicInfomation);
-				startActivity(intent);
+				System.out.println("position" + position + "<br/>"
+						+ "mis.size()" + mis.size());
+				if (position <= mis.size()) {
+					MusicInfomation musicInfomation = (MusicInfomation) parent
+							.getAdapter().getItem(position);
+					Intent intent = new Intent(activity,
+							PlayMusicActivity.class);
+					intent.putExtra("musicInfomation", musicInfomation);
+					startActivity(intent);
+				}
 			}
 		});
 	}
@@ -329,6 +334,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 	 * 而_path存放音乐文件的路径（删除文件时会用到）。
 	 */
 	private void ShowMp3List() {
+		mis = new ArrayList<MusicInfomation>();
 		// 用游标查找媒体详细信息
 		Cursor cursor = activity.getContentResolver().query(
 				MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
@@ -354,7 +360,6 @@ public class MyFragment extends Fragment implements OnClickListener,
 		// music_info = new Music_infoAdapter(this, cursor);
 		// new MusicListView().disPlayList(musicListView, this, cursor);
 
-		mis = new ArrayList<MusicInfomation>();
 		System.out.println("111111111111");
 		/** 将游标移到第一位 **/
 		cursor.moveToFirst();
