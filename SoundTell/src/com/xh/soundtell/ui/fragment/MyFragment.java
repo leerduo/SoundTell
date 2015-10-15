@@ -379,6 +379,14 @@ public class MyFragment extends Fragment implements OnClickListener,
 					mi.setMusicPath(cursor.getString(5));// 路径
 					mi.set_id(cursor.getInt(6));// 歌曲id
 
+					System.out.println("歌名：" + cursor.getString(0) + "<br/>"
+							+ "长度：" + cursor.getInt(1) + "<br/>" + "专辑："
+							+ cursor.getString(2) + "<br/>" + "歌手："
+							+ cursor.getString(3) + "<br/>" + "大小："
+							+ cursor.getInt(4) + "<br/>" + "路径："
+							+ cursor.getString(5) + "<br/>" + "歌曲id："
+							+ cursor.getInt(6));
+
 					// System.out.println("-----------------------");
 					// Nothing In The World
 					// 238971
