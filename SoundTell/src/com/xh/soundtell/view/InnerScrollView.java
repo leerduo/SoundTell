@@ -1,3 +1,18 @@
+/*************************************************************************************************
+ * 版权所有 (C)2015,  成都市商联汇通技术有限公司
+ * 
+ * 文件名称：InnerScrollView.java
+ * 内容摘要：升级服务
+ * 当前版本： TODO
+ * 作        者： 李加蒙
+ * 完成日期：2015-10-15 上午9:50:45
+ * 修改记录：
+ * 修改日期：2015-10-15 上午9:50:45
+ * 版   本  号：
+ * 修   改  人：
+ * 修改内容：
+ ************************************************************************************************/
+
 package com.xh.soundtell.view;
 
 import android.content.Context;
@@ -6,10 +21,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ScrollView;
 
-public class MyScrollView extends ScrollView {
+/**
+ * 文件名称：InnerScrollView.java
+ */
+public class InnerScrollView extends ScrollView {
 	public ScrollView parentScrollView;
 
-	public MyScrollView(Context context, AttributeSet attrs) {
+	public InnerScrollView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 
 	}
@@ -47,21 +65,18 @@ public class MyScrollView extends ScrollView {
 
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
-		System.out.println("MyScrollView1");
 		if (parentScrollView == null) {
 			return super.onInterceptTouchEvent(ev);
 		} else {
 			if (ev.getAction() == MotionEvent.ACTION_DOWN) {
 				// 将父scrollview的滚动事件拦截
 				currentY = (int) ev.getY();
-				// setParentScrollAble(false);
-				getParent().requestDisallowInterceptTouchEvent(true);
+				setParentScrollAble(false);
 				return super.onInterceptTouchEvent(ev);
 			} else if (ev.getAction() == MotionEvent.ACTION_UP) {
 				// 把滚动事件恢复给父Scrollview
 				setParentScrollAble(true);
 			} else if (ev.getAction() == MotionEvent.ACTION_MOVE) {
-				getParent().requestDisallowInterceptTouchEvent(true);
 			}
 		}
 		return super.onInterceptTouchEvent(ev);
@@ -70,7 +85,6 @@ public class MyScrollView extends ScrollView {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
-		System.out.println("MyScrollView2");
 		View child = getChildAt(0);
 		if (parentScrollView != null) {
 			if (ev.getAction() == MotionEvent.ACTION_MOVE) {
@@ -95,7 +109,7 @@ public class MyScrollView extends ScrollView {
 				} else if (currentY > y) {
 					if (scrollY >= height) {
 						// 如果向上滑动到头，就把滚动交给父Scrollview
-						setParentScrollAble(true);
+						setParentScrollAble(false);
 						return false;
 					} else {
 						setParentScrollAble(false);
@@ -114,4 +128,5 @@ public class MyScrollView extends ScrollView {
 
 		parentScrollView.requestDisallowInterceptTouchEvent(!flag);
 	}
+
 }

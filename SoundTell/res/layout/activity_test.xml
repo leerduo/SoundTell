@@ -2,11 +2,96 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/app_bg"
     android:orientation="vertical" >
 
-    <com.xh.soundtell.view.WrapContentHeightViewPager
-        android:id="@+id/playmusic_viewPager"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:text="第1个scellview" />
+
+    <com.xh.soundtell.view.InnerScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/app_red_press"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="第二个scellview" />
+
+                <com.xh.soundtell.view.InnerScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginTop="30dp"
+                        android:lineSpacingExtra="3dp"
+                        android:text="@string/w_nightdj"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+                </com.xh.soundtell.view.InnerScrollView>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/geci"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="30dp"
+                android:layout_marginTop="30dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/exist_for_you"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/app_red_press"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="第3个scellview" />
+
+                <com.xh.soundtell.view.InnerScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="30dp"
+                        android:layout_marginTop="30dp"
+                        android:lineSpacingExtra="3dp"
+                        android:text="@string/li_byebye"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+                </com.xh.soundtell.view.InnerScrollView>
+            </LinearLayout>
+        </LinearLayout>
+    </com.xh.soundtell.view.InnerScrollView>
 
 </LinearLayout>

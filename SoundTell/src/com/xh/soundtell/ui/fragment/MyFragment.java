@@ -151,8 +151,10 @@ public class MyFragment extends Fragment implements OnClickListener,
 
 		xListView = (XListView) parent.findViewById(R.id.xListView);
 		xListView.setPullRefreshEnable(true);
-		worksAdapter = new WorksAdapter(activity, mis);
-		xListView.setAdapter(worksAdapter);
+		if (mis != null && mis.size() > 0) {
+			worksAdapter = new WorksAdapter(activity, mis);
+			xListView.setAdapter(worksAdapter);
+		}
 		xListView.setXListViewListener(this);
 		xListView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -292,8 +294,10 @@ public class MyFragment extends Fragment implements OnClickListener,
 			public void run() {
 				start = ++refreshCnt;
 				getItem();
-				worksAdapter = new WorksAdapter(activity, mis);
-				xListView.setAdapter(worksAdapter);
+				if (mis != null && mis.size() > 0) {
+					worksAdapter = new WorksAdapter(activity, mis);
+					xListView.setAdapter(worksAdapter);
+				}
 				onLoad();
 			}
 		}, 2000);
@@ -306,7 +310,9 @@ public class MyFragment extends Fragment implements OnClickListener,
 			@Override
 			public void run() {
 				getItem();
-				worksAdapter.notifyDataSetChanged();
+				if (mis != null && mis.size() > 0) {
+					worksAdapter.notifyDataSetChanged();
+				}
 				onLoad();
 			}
 		}, 2000);
