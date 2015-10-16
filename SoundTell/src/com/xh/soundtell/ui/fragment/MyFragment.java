@@ -163,6 +163,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 				System.out.println("position" + position + "<br/>"
 						+ "mis.size()" + mis.size());
 				if (position <= mis.size()) {
+					System.out.println("position" + position);
 					MusicInfomation musicInfomation = (MusicInfomation) parent
 							.getAdapter().getItem(position);
 					Intent intent = new Intent(activity,
@@ -323,6 +324,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 		}, 2000);
 	}
 
+	
 	protected void onLoad() {
 		xListView.stopRefresh();
 		xListView.stopLoadMore();
