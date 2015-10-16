@@ -275,8 +275,6 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 				songHandler.sendEmptyMessageDelayed(1111, 1000);
 				}
 			}
-			
-			
 			break;
 		case R.id.playmusic_comment:
 //			xListView.setVisibility(View.VISIBLE);
@@ -287,11 +285,8 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 			Intent intent=new Intent(this,SingRecordActivity.class);
 			startActivity(intent);
 			break;
-		default:
-			break;
 		}
 	}
-
 	@Override
 	public void onBackPressed() {
 		if (xListView.getVisibility() == View.VISIBLE) {

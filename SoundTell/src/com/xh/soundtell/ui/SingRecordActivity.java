@@ -48,7 +48,6 @@ public class SingRecordActivity extends Activity implements OnClickListener{
     private final static int CMD_STOP = 2002;
 	
     private ArrayList<MusicRecordModel>  musicRecordModels; 
-    private int position;
     
     MusicRecordModel model1;
     MusicRecordModel model2;
@@ -118,6 +117,7 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	 findViewById(R.id.singrecord_ci).setOnClickListener(this);
 	}
 	int mResult = -1;
+	int ciPosition,quPosition;
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -125,17 +125,8 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 			onBackPressed();
 			break;
 		case R.id.singrecord_qu:
-			onBackPressed();
-			break;
-		case R.id.singrecord_ci:
-			
-			position=position+1;
-			position=position%musicRecordModels.size();
-			tvTitle.setText(musicRecordModels.get(position).getMusicTitle());
-			tvGeCi.setText(musicRecordModels.get(position).getMusicLyric());
-			tvSinger.setText(musicRecordModels.get(position).getMusicSinger());
-			tvType.setText(musicRecordModels.get(position).getMusicType());
-			
+			quPosition=quPosition+1;
+			quPosition=quPosition%musicRecordModels.size();
 			if(isPlaying){
 	              isPlaying=false;
 	              ivPrepare.setImageResource(R.drawable.record_save_ib);
@@ -143,6 +134,14 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	              MusicHelper.stopMusic();
 	              stop();
 				}
+			break;
+		case R.id.singrecord_ci:
+			ciPosition=ciPosition+1;
+			ciPosition=ciPosition%musicRecordModels.size();
+			tvTitle.setText(musicRecordModels.get(ciPosition).getMusicTitle());
+			tvGeCi.setText(musicRecordModels.get(ciPosition).getMusicLyric());
+			tvSinger.setText(musicRecordModels.get(ciPosition).getMusicSinger());
+			tvType.setText(musicRecordModels.get(ciPosition).getMusicType());
 			break;
 		case R.id.singrecord_prepare:
 			ivPlay.setVisibility(View.GONE);
@@ -160,7 +159,7 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 					 isPlaying=true;
 //					 ivPrepare.setImageResource(R.drawable.record_done_ib);
 					 ivPrepare.setImageResource(R.drawable.record_pause_ib);
-					 MusicHelper.startMusic(this,musicRecordModels.get(position).getMusicId(),false);
+					 MusicHelper.startMusic(this,musicRecordModels.get(quPosition).getMusicId(),false);
 			         record(FLAG_WAV);
 			         handler.sendEmptyMessageDelayed(0, 1000);
 					 }
@@ -175,7 +174,7 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 				 isPlaying=true;
 				 ivPlay.setImageResource(R.drawable.record_pause);
 				 handler.sendEmptyMessageDelayed(0, 1000);
-				 MusicHelper.startMusic(this,musicRecordModels.get(position).getMusicId(),false);
+				 MusicHelper.startMusic(this,musicRecordModels.get(quPosition).getMusicId(),false);
 				 }
 			break;
 			
@@ -205,7 +204,7 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	        
 	         isPlaying=true;
 			 ivPrepare.setImageResource(R.drawable.record_done_ib);
-			 MusicHelper.startMusic(this,musicRecordModels.get(position).getMusicId(),false);
+			 MusicHelper.startMusic(this,musicRecordModels.get(quPosition).getMusicId(),false);
 	         record(FLAG_WAV);
 	         handler.sendEmptyMessageDelayed(0, 1000);
 			break;
@@ -246,7 +245,7 @@ public class SingRecordActivity extends Activity implements OnClickListener{
         switch(mFlag){        
         case FLAG_WAV:
             AudioRecordFunc mRecord_1 = AudioRecordFunc.getInstance();
-            mResult = mRecord_1.startRecordAndFile("录制-"+musicRecordModels.get(position).getMusicTitle()); 
+            mResult = mRecord_1.startRecordAndFile("录制-"+musicRecordModels.get(quPosition).getMusicTitle()); 
             		           
             break;
         }
@@ -283,14 +282,12 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	
 	@Override
 	protected void onDestroy() {
-		
 		if(isPlaying){
 			  MusicHelper.stopMusic();
 	          stop();
 	          String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath()+"";
-	          deleteAllFiles(new File(fileBasePath+"录制-"+musicRecordModels.get(position).getMusicTitle()+".wav"));
+	          deleteAllFiles(new File(fileBasePath+"录制-"+musicRecordModels.get(quPosition).getMusicTitle()+".wav"));
 		}
-		
 		super.onDestroy();
 	}
 	
