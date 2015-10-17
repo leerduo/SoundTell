@@ -12,6 +12,8 @@ import com.xh.soundtell.music.MusicHelper;
 import com.xh.soundtell.util.DensityUtil;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -115,6 +117,7 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	    
 	 findViewById(R.id.singrecord_qu).setOnClickListener(this);
 	 findViewById(R.id.singrecord_ci).setOnClickListener(this);
+	 findViewById(R.id.singrecord_report).setOnClickListener(this);
 	}
 	int mResult = -1;
 	int ciPosition,quPosition;
@@ -180,6 +183,9 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 			
 		case R.id.singrecord_tone:
 			getPopwindow();
+			break;
+		case R.id.singrecord_report:
+			reportDialog();
 			break;
 		case R.id.popuprecord_yes:
 			showDisPopWindow();
@@ -290,7 +296,6 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 		}
 		super.onDestroy();
 	}
-	
 	private void deleteAllFiles(File root) {
 		File files[] = root.listFiles();
 		if (files != null)
@@ -312,10 +317,31 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 				}
 			}
 	}
-	
-	
-	
-	
+	  private void reportDialog(){
+			AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+			dialog.setTitle("举报类型");
+			String [] dataArray = new String[]{"版权","色情","政治","暴力","取消"};
+			dialog.setItems(dataArray, new DialogInterface.OnClickListener() {
+				/***
+				 * 我们这里传递给dialog.setItems方法的参数为数组，这就导致了我们下面的
+				 * onclick方法中的which就跟数组下标是一样的，点击hello时返回0；点击baby返回1……
+				 */
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+					switch (which) {
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+				Toast.makeText(SingRecordActivity.this, "举报成功", 1).show();;		
+						break;
+					case 4:
+						break;
+					}
+				}
+			}).show();
+}
 	
 	
 	

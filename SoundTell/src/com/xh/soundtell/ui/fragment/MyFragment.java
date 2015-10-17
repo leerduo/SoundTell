@@ -33,6 +33,7 @@ import com.xh.soundtell.listview.XListView.IXListViewListener;
 import com.xh.soundtell.model.MusicInfomation;
 import com.xh.soundtell.model.Works;
 import com.xh.soundtell.ui.PlayMusicActivity;
+import com.xh.soundtell.ui.SetActivity;
 import com.xh.soundtell.ui.TestActivity;
 import com.xh.soundtell.ui.UserInfoActivity;
 import com.xh.soundtell.util.ImageHelper;
@@ -77,7 +78,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 		super.onActivityCreated(savedInstanceState);
 		activity = getActivity();
 		parent = getView();
-//		ShowMp3List();
+		// ShowMp3List();
 		WavList();
 		findView();
 		prefUtil = PrefUtil.getInstance();
@@ -156,7 +157,8 @@ public class MyFragment extends Fragment implements OnClickListener,
 
 		xListView = (XListView) parent.findViewById(R.id.xListView);
 		xListView.setPullRefreshEnable(true);
-		if (mis != null && mis.size() > 0) {
+		if (mis != null) {
+			System.out.println("111111111111111111");
 			worksAdapter = new WorksAdapter(activity, mis);
 			xListView.setAdapter(worksAdapter);
 		}
@@ -175,6 +177,8 @@ public class MyFragment extends Fragment implements OnClickListener,
 							PlayMusicActivity.class);
 					intent.putExtra("musicInfomation", musicInfomation);
 					startActivity(intent);
+				}else{
+					onLoadMore();
 				}
 			}
 		});
@@ -224,7 +228,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 			startActivityForResult(intent, 100);
 			break;
 		case R.id.my_set:
-			Intent intent1 = new Intent(activity, TestActivity.class);
+			Intent intent1 = new Intent(activity, SetActivity.class);
 			startActivityForResult(intent1, 101);
 			break;
 		case R.id.my_works_r:
@@ -305,7 +309,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 			public void run() {
 				start = ++refreshCnt;
 				getItem();
-				if (mis != null && mis.size() > 0) {
+				if (mis != null) {
 					worksAdapter = new WorksAdapter(activity, mis);
 					xListView.setAdapter(worksAdapter);
 				}
@@ -316,12 +320,13 @@ public class MyFragment extends Fragment implements OnClickListener,
 
 	@Override
 	public void onLoadMore() {
+		System.out.println("gengduo");
 		handler.postDelayed(new Runnable() {
-
+		
 			@Override
 			public void run() {
 				getItem();
-				if (mis != null && mis.size() > 0) {
+				if (mis != null) {
 					worksAdapter.notifyDataSetChanged();
 				}
 				onLoad();
@@ -337,43 +342,43 @@ public class MyFragment extends Fragment implements OnClickListener,
 
 	private void WavList() {
 		mis = new ArrayList<MusicInfomation>();
-		 if (Environment.getExternalStorageState().equals(  
-	                Environment.MEDIA_MOUNTED)) {  
-	            File path = Environment.getExternalStorageDirectory();// 获得SD卡路径  
-	            File Stringpath = new File(path, "/音诉音乐");
-	            System.out.println();
-	            File[] files = Stringpath.listFiles();// 读取  
-	            getFileName(files);  
-	        }  
+		if (Environment.getExternalStorageState().equals(
+				Environment.MEDIA_MOUNTED)) {
+			File path = Environment.getExternalStorageDirectory();// 获得SD卡路径
+			File Stringpath = new File(path, "/音诉音乐");
+			System.out.println();
+			File[] files = Stringpath.listFiles();// 读取
+			getFileName(files);
+		}
 	}
 
-	 private void getFileName(File[] files) {  
-	        if (files != null) {// 先判断目录是否为空，否则会报空指针  
-	            for (File file : files) {  
-	                if (file.isDirectory()) {  
-//	                    Log.i("zeng", "若是文件目录。继续读1" + file.getName().toString()  
-//	                            + file.getPath().toString());  
-//	  
-//	                    getFileName(file.listFiles());  
-//	                    Log.i("zeng", "若是文件目录。继续读2" + file.getName().toString()  
-//	                            + file.getPath().toString());  
-	                } else {  
-	                    String fileName = file.getName();  
-	                    System.out.println("ap"+file.getAbsolutePath());
-	                    
-	                    if (fileName.endsWith(".wav")) {  
-	                        String s = fileName.substring(0,  
-	                                fileName.lastIndexOf(".")).toString();  
-	                        MusicInfomation infomation=new MusicInfomation();
-	                        infomation.setMusicName(s);
-	                        infomation.setMusicPath(file.getAbsolutePath());
-	                        mis.add(infomation);
-	                    }  
-	                }  
-	            }  
-	        }  
-	    }  
-	
+	private void getFileName(File[] files) {
+		if (files != null) {// 先判断目录是否为空，否则会报空指针
+			for (File file : files) {
+				if (file.isDirectory()) {
+					// Log.i("zeng", "若是文件目录。继续读1" + file.getName().toString()
+					// + file.getPath().toString());
+					//
+					// getFileName(file.listFiles());
+					// Log.i("zeng", "若是文件目录。继续读2" + file.getName().toString()
+					// + file.getPath().toString());
+				} else {
+					String fileName = file.getName();
+					System.out.println("ap" + file.getAbsolutePath());
+
+					if (fileName.endsWith(".wav")) {
+						String s = fileName.substring(0,
+								fileName.lastIndexOf(".")).toString();
+						MusicInfomation infomation = new MusicInfomation();
+						infomation.setMusicName(s);
+						infomation.setMusicPath(file.getAbsolutePath());
+						mis.add(infomation);
+					}
+				}
+			}
+		}
+	}
+
 	/**
 	 * 显示MP3信息,其中_ids保存了所有音乐文件的_ID，用来确定到底要播放哪一首歌曲，_titles存放音乐名，用来显示在播放界面，
 	 * 而_path存放音乐文件的路径（删除文件时会用到）。

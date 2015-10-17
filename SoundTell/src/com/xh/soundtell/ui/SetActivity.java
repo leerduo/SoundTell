@@ -91,7 +91,7 @@ public class SetActivity extends Activity implements OnClickListener {
 			intent = new Intent(SetActivity.this, AboutActivity.class);
 			break;
 		case R.id.set_exit:
-
+			intent=new Intent(SetActivity.this, LoginArrayActivity.class);
 			break;
 
 		default:

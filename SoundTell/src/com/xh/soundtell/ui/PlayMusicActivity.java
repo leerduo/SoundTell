@@ -5,7 +5,9 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -30,6 +32,7 @@ import android.widget.SeekBar;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xh.soundtell.R;
 import com.xh.soundtell.adapter.CommentAdapter;
@@ -237,6 +240,8 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 		commentAdapter = new CommentAdapter(this, comments);
 		xListView.setAdapter(commentAdapter);
 		xListView.setXListViewListener(this);
+		
+		findViewById(R.id.playmusic_right).setOnClickListener(this);
 	}
 
 	private void setData() {
@@ -257,6 +262,9 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.playmusic_right:
+			reportDialog();
+			break;
 		case R.id.singrecord_back:
 			// if (xListView.getVisibility() == View.VISIBLE) {
 			// System.out.println("VISIBLE");
@@ -301,7 +309,6 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 			break;
 		}
 	}
-
 	@Override
 	public void onBackPressed() {
 		if (xListView.getVisibility() == View.VISIBLE) {
@@ -314,13 +321,37 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 			PlayMusicActivity.this.finish();
 		}
 	}
-
+	  private void reportDialog(){
+			AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+			dialog.setTitle("举报类型");
+			String [] dataArray = new String[]{"版权","色情","政治","暴力","取消"};
+			dialog.setItems(dataArray, new DialogInterface.OnClickListener() {
+				/***
+				 * 我们这里传递给dialog.setItems方法的参数为数组，这就导致了我们下面的
+				 * onclick方法中的which就跟数组下标是一样的，点击hello时返回0；点击baby返回1……
+				 */
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+					switch (which) {
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+				Toast.makeText(PlayMusicActivity.this, "举报成功", 1).show();;		
+						break;
+					case 4:
+						break;
+					}
+				}
+			}).show();
+}
 	@Override
 	protected void onDestroy() {
 		MusicHelper.stopMusic();
 		super.onDestroy();
 	}
-
+	
 	class PageAdapter extends PagerAdapter {
 		public PageAdapter() {
 		}
