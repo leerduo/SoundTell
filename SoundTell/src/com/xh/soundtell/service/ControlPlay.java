@@ -375,7 +375,8 @@ public class ControlPlay extends Service {
 					.setProgress(PlayMusicActivity.play_time);
 			// SeekBar的最大值填充歌曲时间
 			PlayMusicActivity.playmusic_seeker
-					.setMax(PlayMusicActivity.musicInfomation.getMusicTime());
+					.setMax(myMediaPlayer.getDuration());
+			PlayMusicActivity.song_time=myMediaPlayer.getDuration();
 
 			// 线程延迟1000毫秒启动
 			handler.postDelayed(updatesb, 1000);

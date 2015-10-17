@@ -1,15 +1,20 @@
 package com.xh.soundtell.ui.fragment;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,7 +33,6 @@ import com.xh.soundtell.listview.XListView.IXListViewListener;
 import com.xh.soundtell.model.MusicInfomation;
 import com.xh.soundtell.model.Works;
 import com.xh.soundtell.ui.PlayMusicActivity;
-import com.xh.soundtell.ui.SetActivity;
 import com.xh.soundtell.ui.TestActivity;
 import com.xh.soundtell.ui.UserInfoActivity;
 import com.xh.soundtell.util.ImageHelper;
@@ -73,7 +77,8 @@ public class MyFragment extends Fragment implements OnClickListener,
 		super.onActivityCreated(savedInstanceState);
 		activity = getActivity();
 		parent = getView();
-		ShowMp3List();
+//		ShowMp3List();
+		WavList();
 		findView();
 		prefUtil = PrefUtil.getInstance();
 		setData();
@@ -324,13 +329,51 @@ public class MyFragment extends Fragment implements OnClickListener,
 		}, 2000);
 	}
 
-	
 	protected void onLoad() {
 		xListView.stopRefresh();
 		xListView.stopLoadMore();
 		xListView.setRefreshTime("2015:10:08 20:10:11");
 	}
 
+	private void WavList() {
+		mis = new ArrayList<MusicInfomation>();
+		 if (Environment.getExternalStorageState().equals(  
+	                Environment.MEDIA_MOUNTED)) {  
+	            File path = Environment.getExternalStorageDirectory();// 获得SD卡路径  
+	            File Stringpath = new File(path, "/音诉音乐");
+	            System.out.println();
+	            File[] files = Stringpath.listFiles();// 读取  
+	            getFileName(files);  
+	        }  
+	}
+
+	 private void getFileName(File[] files) {  
+	        if (files != null) {// 先判断目录是否为空，否则会报空指针  
+	            for (File file : files) {  
+	                if (file.isDirectory()) {  
+//	                    Log.i("zeng", "若是文件目录。继续读1" + file.getName().toString()  
+//	                            + file.getPath().toString());  
+//	  
+//	                    getFileName(file.listFiles());  
+//	                    Log.i("zeng", "若是文件目录。继续读2" + file.getName().toString()  
+//	                            + file.getPath().toString());  
+	                } else {  
+	                    String fileName = file.getName();  
+	                    System.out.println("ap"+file.getAbsolutePath());
+	                    
+	                    if (fileName.endsWith(".wav")) {  
+	                        String s = fileName.substring(0,  
+	                                fileName.lastIndexOf(".")).toString();  
+	                        MusicInfomation infomation=new MusicInfomation();
+	                        infomation.setMusicName(s);
+	                        infomation.setMusicPath(file.getAbsolutePath());
+	                        mis.add(infomation);
+	                    }  
+	                }  
+	            }  
+	        }  
+	    }  
+	
 	/**
 	 * 显示MP3信息,其中_ids保存了所有音乐文件的_ID，用来确定到底要播放哪一首歌曲，_titles存放音乐名，用来显示在播放界面，
 	 * 而_path存放音乐文件的路径（删除文件时会用到）。
