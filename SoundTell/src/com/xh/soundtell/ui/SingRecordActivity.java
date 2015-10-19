@@ -197,7 +197,8 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 			 if (View.GONE==tvChoose.getVisibility()) {
 				 getRecordPopwindow();
 			}else{
-				Toast.makeText(this, "您点击了素材库", Toast.LENGTH_SHORT).show();
+				Intent intent=new Intent(this,PersonalOptionActivity.class);
+				startActivity(intent);
 			}
 			break;
 		case R.id.popupalter_cancel:

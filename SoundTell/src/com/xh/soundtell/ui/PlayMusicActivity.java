@@ -1,6 +1,8 @@
 package com.xh.soundtell.ui;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -10,6 +12,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,12 +25,17 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.MeasureSpec;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
@@ -242,8 +252,28 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 		xListView.setXListViewListener(this);
 		
 		findViewById(R.id.playmusic_right).setOnClickListener(this);
+		
+		follow = (TextView) findViewById(R.id.playmusic_follow);
+		cai = (TextView) findViewById(R.id.playmusic_cai);
+		share = (TextView) findViewById(R.id.playmusic_share);
+		mark = (TextView) findViewById(R.id.playmusic_mark);
+          follow.setOnClickListener(this);
+          cai.setOnClickListener(this);
+          share.setOnClickListener(this);
+          mark.setOnClickListener(this);
+          
+          commentSum = (TextView) findViewById(R.id.playmusic_comment_sum);
+	 
+	     playmusic_commentcount = (TextView) findViewById(R.id.playmusic_commentcount);
+	
+	   popupcomment = (LinearLayout) findViewById(R.id.popupcomment);
+	   commentEt = (EditText)findViewById(R.id.popup_comment_et);
+	   commentBtn = (TextView) findViewById(R.id.popup_comment_btn);
+	   commentBtn.setOnClickListener(this);
 	}
 
+	boolean isSelFollow,isSelCai,isSelMark;
+	
 	private void setData() {
 		if (!isSong) {
 			playmusic_name.setText(musicInfomation.getMusicName());
@@ -298,19 +328,75 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 			}
 			break;
 		case R.id.playmusic_comment:
-			// xListView.setVisibility(View.VISIBLE);
-			// findViewById(R.id.playmusic_l).setVisibility(View.GONE);
-			// playmusic_right.setText("回复");
+//			 xListView.setVisibility(View.VISIBLE);
+//			 findViewById(R.id.playmusic_l).setVisibility(View.GONE);
+//			 playmusic_right.setText("回复");
+			popupcomment.setVisibility(View.VISIBLE);
+			break;
+		case R.id.popup_comment_btn:
+			if(TextUtils.isEmpty(commentEt.getText())){
+			Toast.makeText(PlayMusicActivity.this, "请输入评论内容", 0).show();
+		}else{
+	     commentSum.setText((Integer.parseInt(commentSum.getText().toString())+1)+"");
+            SimpleDateFormat dateFormat=new SimpleDateFormat("MM-dd HH:mm");
+            String format = dateFormat.format(new Date());
+	     comments.add(0,new Comment((comments.size()+1)+"", R.drawable.console_corridor, "一克拉", commentEt.getText().toString(),format 
+	              ));
+	     commentEt.setText("");
+	     commentAdapter.setComments(comments);
+	     playmusic_commentcount.setText("共"+comments.size()+"条");
+	     popupcomment.setVisibility(View.GONE);
+		}
+			
+			
 			break;
 		case R.id.playmusic_meto:
 			Intent intent = new Intent(this, SingRecordActivity.class);
 			startActivity(intent);
             MusicHelper.stopMusic();
 			break;
+			
+		case R.id.playmusic_follow:
+			if(!isSelFollow){
+			       //点赞
+			setTextDrawable(R.drawable.song_detail_zan_checked, follow, !isSelFollow);
+			}else{
+				//取消点赞
+				setTextDrawable(R.drawable.song_detail_zan_nomal, follow, !isSelFollow);
+			}
+			isSelFollow=!isSelFollow;
+			break;
+		case R.id.playmusic_cai:
+			if(!isSelCai){
+			       //点赞
+			setTextDrawable(R.drawable.song_detail_cai_checked, cai, !isSelCai);
+			}else{
+				//取消点赞
+				setTextDrawable(R.drawable.song_detail_cai_nomal, cai, !isSelCai);
+			}
+			isSelCai=!isSelCai;
+			break;
+		case R.id.playmusic_share:
+			getSharePopupWindow();
+			break;
+		case R.id.playmusic_mark:
+			if(!isSelMark){
+			       //点赞
+			setTextDrawable(R.drawable.song_detail_mark_checked, mark, !isSelMark);
+			}else{
+				//取消点赞
+				setTextDrawable(R.drawable.song_detail_mark_nomal, mark, !isSelMark);
+			}
+			isSelMark=!isSelMark;
+			break;
 		}
 	}
 	@Override
 	public void onBackPressed() {
+		if(popupcomment.getVisibility()==View.VISIBLE){
+			popupcomment.setVisibility(View.GONE);
+		   return;
+		 }
 		if (xListView.getVisibility() == View.VISIBLE) {
 			System.out.println("VISIBLE");
 			xListView.setVisibility(View.GONE);
@@ -320,6 +406,7 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 			System.out.println("GONE");
 			PlayMusicActivity.this.finish();
 		}
+		
 	}
 	  private void reportDialog(){
 			AlertDialog.Builder dialog = new AlertDialog.Builder(this);
@@ -352,6 +439,108 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 		super.onDestroy();
 	}
 	
+	private void setTextDrawable(int imgId,TextView tv,boolean isSel){
+	Drawable topDrawable = getResources().getDrawable(imgId);
+	topDrawable.setBounds(0, 0, topDrawable.getMinimumWidth(), topDrawable.getMinimumHeight());
+	tv.setCompoundDrawables(null, topDrawable, null, null);
+	int parseInt = Integer.parseInt(tv.getText().toString());
+	if(isSel){
+		parseInt++;
+	}else{
+		parseInt--;
+	}
+	tv.setText(parseInt+"");
+	}
+	
+	
+	private void getSharePopupWindow(){
+		View shareWindow=LayoutInflater.from(this).inflate(R.layout.popup_share, null);
+		popupWindowShare = new PopupWindow(shareWindow,DensityUtil.getScreenWidthAndHeight(this)[0],
+     			DensityUtil.getScreenWidthAndHeight(this)[1]);
+		popupWindowShare.setFocusable(true);
+		popupWindowShare.setOutsideTouchable(true);
+		popupWindowShare.setBackgroundDrawable(new BitmapDrawable());
+		popupWindowShare
+				.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+		  shareWindow.findViewById(R.id.popup_share_cancel).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showDisPopWindow();
+			}
+		});
+		  showDisPopWindow();
+	}
+	public void showDisPopWindow() {
+		if (popupWindowShare != null) {
+			if (popupWindowShare.isShowing()) {
+				popupWindowShare.dismiss();
+			} else {
+				popupWindowShare.showAtLocation(getWindow().getDecorView(),
+						Gravity.TOP, 0, 0);
+			}
+		}
+	}
+	
+//	private void getCommentPopupWindow(){
+//		View commentWindow=LayoutInflater.from(this).inflate(R.layout.popup_comment, null);
+//		popupWindowComment = new PopupWindow(commentWindow,DensityUtil.getScreenWidthAndHeight(this)[0],
+//     			DensityUtil.getScreenWidthAndHeight(this)[1]);
+//		popupWindowComment.setFocusable(true);
+//		popupWindowComment.setOutsideTouchable(true);
+//		popupWindowComment.setBackgroundDrawable(new BitmapDrawable());
+////		popupWindowComment
+////				.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+//	   commentEt = (EditText) commentWindow.findViewById(R.id.popup_comment_et);
+//		commentWindow.findViewById(R.id.popup_comment_btn).setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				if(TextUtils.isEmpty(commentEt.getText())){
+//					Toast.makeText(PlayMusicActivity.this, "请输入评论内容", 0).show();
+//				}else{
+//			     commentSum.setText((Integer.parseInt(commentSum.getText().toString())+1)+"");
+//                    SimpleDateFormat dateFormat=new SimpleDateFormat("MM-dd HH:mm");
+//                    String format = dateFormat.format(new Date());
+//			     comments.add(0,new Comment((comments.size()+1)+"", R.drawable.console_corridor, "一克拉", commentEt.getText().toString(),format 
+//			              ));
+//			     commentAdapter.setComments(comments);
+//			     playmusic_commentcount.setText("共"+comments.size()+"条");
+//			     showDisCommentPopWindow();
+//			}
+//				}
+//		});
+//		showDisCommentPopWindow();
+//	}
+	
+//	public void showDisCommentPopWindow() {
+//		if (popupWindowComment != null) {
+//			if (popupWindowComment.isShowing()) {
+//				popupWindowComment.dismiss();
+//			} else {
+//				popupWindowComment.showAtLocation(getWindow().getDecorView(),
+//						Gravity.TOP, 0, 0);
+//			}
+//		}
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	class PageAdapter extends PagerAdapter {
 		public PageAdapter() {
 		}
@@ -378,7 +567,6 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 
 		}
 	}
-
 	Handler songHandler = new Handler() {
 		@Override
 		public void handleMessage(Message msg) {
@@ -392,6 +580,17 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 			songHandler.sendEmptyMessageDelayed(1111, 1000);
 		}
 	};
+	private TextView follow;
+	private TextView cai;
+	private TextView share;
+	private TextView mark;
+	private PopupWindow popupWindowShare;
+	private TextView comment;
+	private TextView commentSum;
+	private EditText commentEt;
+	private TextView playmusic_commentcount;
+	private LinearLayout popupcomment;
+	private TextView commentBtn;
 
 	@Override
 	public void onRefresh() {
@@ -408,6 +607,7 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 		}, 2000);
 	}
 
+	
 	@Override
 	public void onLoadMore() {
 		handler.postDelayed(new Runnable() {

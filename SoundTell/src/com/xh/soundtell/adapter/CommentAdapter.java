@@ -18,6 +18,7 @@ package com.xh.soundtell.adapter;
 import java.util.List;
 
 import android.content.Context;
+import android.content.res.Resources.NotFoundException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,12 @@ public class CommentAdapter extends BaseAdapter {
 		this.comments = comments;
 	}
 
+	public void setComments(List<Comment> comments){
+		this.comments = comments;
+     notifyDataSetChanged();
+	}
+	
+	
 	@Override
 	public int getCount() {
 		return comments.size();

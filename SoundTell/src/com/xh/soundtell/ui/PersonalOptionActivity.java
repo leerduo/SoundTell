@@ -2,6 +2,7 @@ package com.xh.soundtell.ui;
 
 import com.xh.soundtell.AuditionActivity;
 import com.xh.soundtell.R;
+import com.xh.soundtell.SongStyleSearch;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -29,17 +30,22 @@ public class PersonalOptionActivity extends Activity implements OnClickListener{
       scrollView = (ScrollView) findViewById(R.id.personaloption_sv);
 	  findViewById(R.id.peraloption_back).setOnClickListener(this);
 	  findViewById(R.id.personaloption_zhuti).setOnClickListener(this);
+	  findViewById(R.id.personaloption_search).setOnClickListener(this);
 	}
 	private boolean isBuZou;
 	private ScrollView scrollView;
 	@Override
 	public void onClick(View v) {
+		Intent intent=null;
 		switch (v.getId()) {
 		case R.id.peraloption_back:
 			onBackPressed();
 			break;
+		case R.id.personaloption_search:
+			intent=new Intent(this,SongStyleSearch.class);
+			break;
 		case R.id.personaloption_zhuti:
-         Intent intent=new Intent(this,AuditionActivity.class);
+          intent=new Intent(this,AuditionActivity.class);
 		startActivity(intent);	
          break;
 		case R.id.personaloption_banzou:
@@ -64,7 +70,9 @@ public class PersonalOptionActivity extends Activity implements OnClickListener{
 				banzou.setBackgroundResource(R.drawable.shape_bg_personaloption_left);
 			}
 			break;
-
+		}
+		if(intent!=null){
+			startActivity(intent);
 		}
 	}
 }
