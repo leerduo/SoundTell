@@ -21,6 +21,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ import android.widget.Toast;
 
 import com.xh.soundtell.R;
 import com.xh.soundtell.adapter.WorksAdapter;
+import com.xh.soundtell.ios.view.MyAlertDialog;
 import com.xh.soundtell.listview.XListView;
 import com.xh.soundtell.listview.XListView.IXListViewListener;
 import com.xh.soundtell.model.MusicInfomation;
@@ -177,9 +179,43 @@ public class MyFragment extends Fragment implements OnClickListener,
 							PlayMusicActivity.class);
 					intent.putExtra("musicInfomation", musicInfomation);
 					startActivity(intent);
-				}else{
+				} else {
 					onLoadMore();
 				}
+			}
+		});
+
+		xListView.setOnItemLongClickListener(new OnItemLongClickListener() {
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				if (position <= mis.size()) {
+					System.out.println("position" + position);
+					MusicInfomation musicInfomation = (MusicInfomation) parent
+							.getAdapter().getItem(position);
+					final String musicPath = musicInfomation.getMusicPath();
+					String musicName = musicInfomation.getMusicName();
+					MyAlertDialog alertDialog = new MyAlertDialog(activity)
+							.builder().setTitle("你确定要删除歌曲" + musicName)
+							.setPositiveButton("确定", new OnClickListener() {
+								@Override
+								public void onClick(View v) {
+									File file = new File(musicPath);
+									if (file.exists()) {
+										file.delete();
+										WavList();
+										worksAdapter = new WorksAdapter(
+												activity, mis);
+										xListView.setAdapter(worksAdapter);
+									}
+								}
+							});
+					alertDialog.setNegativeButton("取消", null).show();
+
+				} else {
+					onLoadMore();
+				}
+				return false;
 			}
 		});
 	}
@@ -222,6 +258,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 
 	@Override
 	public void onClick(View v) {
+		List<MusicInfomation> infomations = new ArrayList<MusicInfomation>();
 		switch (v.getId()) {
 		case R.id.my_userlogo:
 			Intent intent = new Intent(activity, UserInfoActivity.class);
@@ -232,23 +269,34 @@ public class MyFragment extends Fragment implements OnClickListener,
 			startActivityForResult(intent1, 101);
 			break;
 		case R.id.my_works_r:
+			WavList();
+			worksAdapter = new WorksAdapter(activity, mis);
+			xListView.setAdapter(worksAdapter);
 			xListView.setVisibility(View.VISIBLE);
 			hideView(my_works_iv);
 			break;
 		case R.id.my_fans_r:
-			xListView.setVisibility(View.GONE);
+			worksAdapter = new WorksAdapter(activity, infomations);
+			xListView.setAdapter(worksAdapter);
+			xListView.setVisibility(View.VISIBLE);
 			hideView(my_fans_iv);
 			break;
 		case R.id.my_watch_r:
-			xListView.setVisibility(View.GONE);
+			worksAdapter = new WorksAdapter(activity, infomations);
+			xListView.setAdapter(worksAdapter);
+			xListView.setVisibility(View.VISIBLE);
 			hideView(my_watch_iv);
 			break;
 		case R.id.my_info_r:
-			xListView.setVisibility(View.GONE);
+			worksAdapter = new WorksAdapter(activity, infomations);
+			xListView.setAdapter(worksAdapter);
+			xListView.setVisibility(View.VISIBLE);
 			hideView(my_info_iv);
 			break;
 		case R.id.my_collect_r:
-			xListView.setVisibility(View.GONE);
+			worksAdapter = new WorksAdapter(activity, infomations);
+			xListView.setAdapter(worksAdapter);
+			xListView.setVisibility(View.VISIBLE);
 			hideView(my_collect_iv);
 			break;
 		default:
@@ -322,7 +370,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 	public void onLoadMore() {
 		System.out.println("gengduo");
 		handler.postDelayed(new Runnable() {
-		
+
 			@Override
 			public void run() {
 				getItem();
