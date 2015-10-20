@@ -121,7 +121,9 @@ private void init() {
 		public void onPageScrollStateChanged(int arg0) {
 		}
 	});
-	view.findViewById(R.id.fraghot_hot).setOnClickListener(this);
+	view.findViewById(R.id.fraghot_hot1).setOnClickListener(this);
+	view.findViewById(R.id.fraghot_hot2).setOnClickListener(this);
+	view.findViewById(R.id.fraghot_hot3).setOnClickListener(this);
 	view.findViewById(R.id.fraghot_hotmore).setOnClickListener(this);
 	view.findViewById(R.id.fraghot_newci).setOnClickListener(this);
 	view.findViewById(R.id.fraghot_teacher).setOnClickListener(this);
@@ -132,7 +134,9 @@ private void init() {
 public void onClick(View v) {
 	Intent intent=null;
 	switch (v.getId()) {
-	case R.id.fraghot_hot://热歌
+	case R.id.fraghot_hot1://热歌
+	case R.id.fraghot_hot2://热歌
+	case R.id.fraghot_hot3://热歌
 		intent=new Intent(act,PlayMusicActivity.class);
 		intent.putExtra("hotfragment", "hotfragment");
 		break;

@@ -26,23 +26,22 @@
             />
     </RelativeLayout>
    <ImageView 
-       android:layout_height="130dp"
+       android:layout_height="wrap_content"
        android:layout_width="match_parent"
-       android:background="@drawable/demo001"
-       android:layout_marginLeft="15dp"
-       android:layout_marginRight="15dp"
+       android:src="@drawable/demo001"
+       android:layout_marginLeft="10dp"
+       android:layout_marginRight="10dp"
+       android:scaleType="centerInside"
        />  
-   <ImageView 
-       android:id="@+id/hot_iv"
-       android:layout_height="match_parent"
-       android:layout_width="match_parent"
-       android:background="@drawable/demo002"
-       android:layout_marginTop="5dp"
-       android:layout_marginLeft="15dp"
-       android:layout_marginRight="15dp"
-       android:layout_marginBottom="50dp"
-       android:layout_gravity="center_horizontal"
-       />  
+     <ListView 
+     android:id="@+id/newci_lv"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     android:divider="#00000000"
+     android:dividerHeight="1dp"
+     android:layout_margin="10dp"
+    android:scrollbars="none"
+     />
 
 
 

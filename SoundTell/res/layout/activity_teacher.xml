@@ -26,21 +26,21 @@
            android:layout_centerInParent="true"
             />
     </RelativeLayout>
-    
 <ImageView 
-       android:layout_height="140dp"
+       android:layout_height="wrap_content"
        android:layout_width="match_parent"
-       android:background="@drawable/demo005"
-       android:layout_marginLeft="15dp"
-       android:layout_marginRight="15dp"
+       android:src="@drawable/demo005"
+       android:scaleType="centerInside"
        />  
-   <ImageView 
-       android:id="@+id/teacher_iv"
-       android:layout_height="match_parent"
-       android:layout_width="match_parent"
-       android:background="@drawable/demo006"
-       android:layout_marginLeft="15dp"
-       android:layout_marginRight="15dp"
-       android:layout_marginBottom="50dp"
-       />  
+        <ListView 
+     android:id="@+id/newci_lv"
+     android:layout_height="match_parent"
+     android:layout_width="match_parent"
+     android:divider="#00000000"
+     android:dividerHeight="1dp"
+     android:layout_margin="10dp"
+    android:scrollbars="none"
+     />
+
+
 </LinearLayout>

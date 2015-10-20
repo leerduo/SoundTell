@@ -201,5 +201,7 @@ Come on Together go to party!\n
     <string name="title_activity_ren_qi">RenQiActivity</string>
     <string name="title_activity_audition">AuditionActivity</string>
     <string name="title_activity_song_style_search">SongStyleSearch</string>
+    <string name="title_activity_listen_create">ListenCreateActivity</string>
+    <string name="title_activity_write_create">WriteCreateActivity</string>
 
 </resources>

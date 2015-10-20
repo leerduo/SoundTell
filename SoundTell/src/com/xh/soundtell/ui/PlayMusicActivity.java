@@ -347,8 +347,6 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 	     playmusic_commentcount.setText("共"+comments.size()+"条");
 	     popupcomment.setVisibility(View.GONE);
 		}
-			
-			
 			break;
 		case R.id.playmusic_meto:
 			Intent intent = new Intent(this, SingRecordActivity.class);

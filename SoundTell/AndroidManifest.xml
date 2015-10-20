@@ -92,8 +92,8 @@
         </activity>
         <activity
             android:name=".ui.PlayMusicActivity"
-            android:label="@string/title_activity_record_suc" 
-            android:windowSoftInputMode="stateUnchanged|adjustPan">
+            android:label="@string/title_activity_record_suc"
+            android:windowSoftInputMode="stateUnchanged|adjustPan" >
         </activity>
         <activity
             android:name=".ui.TestActivity"
@@ -118,6 +118,14 @@
         <activity
             android:name=".SongStyleSearch"
             android:label="@string/title_activity_song_style_search" >
+        </activity>
+        <activity
+            android:name=".ListenCreateActivity"
+            android:label="@string/title_activity_listen_create" >
+        </activity>
+        <activity
+            android:name=".WriteCreateActivity"
+            android:label="@string/title_activity_write_create" >
         </activity>
     </application>
     <!-- 网络权限 -->
