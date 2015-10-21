@@ -54,6 +54,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/infoactivity_info"
                     android:layout_width="wrap_content"
                     android:layout_height="35dp"
                     android:layout_alignParentRight="true"
@@ -63,10 +64,93 @@
                     android:text="详细规则"
                     android:textColor="@color/app_red" />
             </RelativeLayout>
-            
-            
-            
-            
+
+            <TextView
+                android:id="@+id/infoactivity_infotv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"
+                android:lineSpacingExtra="2dp"
+                android:lineSpacingMultiplier="1.2"
+                android:text="@string/infoactivity3"
+                android:textColor="@color/app_font_gray"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/black"
+                android:contentDescription="@string/app_name" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingTop="5dp" >
+
+                <Button
+                    android:id="@+id/infoactivity_ranking"
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_rectangle_ranking_pressed"
+                    android:text="排行榜"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/infoactivity_works"
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_rectangle_works_normal"
+                    android:text="最新作品"
+                    android:textColor="@color/app_font_black" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/black"
+                android:contentDescription="@string/app_name" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/app_bg"
+                android:orientation="vertical" >
+
+                <com.xh.soundtell.view.MyListView
+                    android:id="@+id/infoactivity_lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/app_bg"
+                    android:divider="@color/black"
+                    android:dividerHeight="1dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:scrollbars="none" >
+                </com.xh.soundtell.view.MyListView>
+
+                <TextView
+                    android:id="@+id/infoactivity_number"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="50dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/bg_btn_works"
+                    android:gravity="center"
+                    android:text="活动已结束"
+                    android:textColor="@color/app_font_black"
+                    android:textSize="12sp" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

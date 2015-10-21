@@ -12,6 +12,9 @@
     <color name="app_split_line">#dcdcdc</color>
     <color name="white">#FFFFFF</color>
       <color name="light_gray">#c0c0c0</color>
+      
+       <color name="ranking_info">#b7b7b7</color>
+    
     <!-- MyAlertDialog 窗口 -->
     <color name="trans">#00000000</color>
     <color name="black">#000000</color>
@@ -19,5 +22,6 @@
     <color name="actionsheet_blue">#037BFF</color>
     <color name="actionsheet_red">#FD4A2E</color>
     <color name="actionsheet_gray">#8F8F8F</color>
+    
 
 </resources>

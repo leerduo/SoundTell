@@ -52,6 +52,7 @@ public class ActivityWeb extends Activity {
 		head_centertext = (TextView) findViewById(R.id.head_centertext);
 		head_centertext.setVisibility(View.VISIBLE);
 		head_centertext.setText("活动");
+		head_centertext.setTextColor(getResources().getColor(R.color.app_red));
 
 		head_leftimage = (ImageView) findViewById(R.id.head_leftimage);
 		head_leftimage.setImageResource(R.drawable.back_black);

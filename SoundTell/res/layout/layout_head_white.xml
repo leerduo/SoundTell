@@ -58,9 +58,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dp"
-            android:textColor="@color/white"
+            android:textColor="@color/app_red"
             android:textSize="18sp"
-            android:visibility="gone" />
+          android:text="活动" />
     </LinearLayout>
 
     <LinearLayout

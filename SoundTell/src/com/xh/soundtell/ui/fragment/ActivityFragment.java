@@ -9,6 +9,7 @@ import com.xh.soundtell.adapter.WorksAdapter;
 import com.xh.soundtell.listview.XListView;
 import com.xh.soundtell.model.FActivity;
 import com.xh.soundtell.model.Works;
+import com.xh.soundtell.ui.ActivityInfoActivity;
 import com.xh.soundtell.ui.ActivityWeb;
 import com.xh.soundtell.ui.SetActivity;
 import com.xh.soundtell.ui.UserInfoActivity;
@@ -90,10 +91,18 @@ public class ActivityFragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				FActivity item = (FActivity) parent.getAdapter().getItem(
+						position);
 				if (position == 0 || position == 1) {
 					Intent intent = new Intent(activity, ActivityWeb.class);
 					intent.putExtra("web", position + "");
 					startActivity(intent);
+				} else {
+					Intent intent = new Intent(activity,
+							ActivityInfoActivity.class);
+					intent.putExtra("Activity_name", item.getActivity_name());
+					startActivity(intent);
+
 				}
 			}
 		});
