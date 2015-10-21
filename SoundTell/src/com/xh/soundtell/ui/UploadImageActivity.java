@@ -37,6 +37,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xh.soundtell.R;
+import com.xh.soundtell.ios.view.SheetDialog;
+import com.xh.soundtell.ios.view.SheetDialog.OnSheetItemClickListener;
+import com.xh.soundtell.ios.view.SheetDialog.SheetItemColor;
 import com.xh.soundtell.ui.pickphoto.AlbumActivity;
 import com.xh.soundtell.ui.pickphoto.AlbumBimpUtil;
 import com.xh.soundtell.ui.pickphoto.GalleryActivity;
@@ -105,17 +108,56 @@ public class UploadImageActivity extends Activity implements OnClickListener {
 			UploadImageActivity.this.finish();
 			break;
 		case R.id.head_rightimage:
-			Intent intent = new Intent(UploadImageActivity.this,
-					AlbumActivity.class);
-			intent.putExtra("position", "1");
-			intent.putExtra("upimage", "1");
-			intent.putExtra("ID", 0);
-			startActivity(intent);
+			// Intent intent = new Intent(UploadImageActivity.this,
+			// AlbumActivity.class);
+			// intent.putExtra("position", "1");
+			// intent.putExtra("upimage", "1");
+			// intent.putExtra("ID", 0);
+			// startActivity(intent);
+			new SheetDialog(UploadImageActivity.this)
+					.builder()
+					.setCancelable(true)
+					.setCanceledOnTouchOutside(true)
+					.addSheetItem("拍照", SheetItemColor.Blue,
+							new OnSheetItemClickListener() {
+								@Override
+								public void onClick(int which) {
+									// Intent intent1 = new Intent(
+									// UploadImageActivity.this,
+									// AlbumActivity.class);
+									// intent1.putExtra("position", "1");
+									// intent1.putExtra("upimage", "1");
+									// intent1.putExtra("ID", 0);
+									// startActivityForResult(intent1, 102);
+								}
+							})
+					.addSheetItem("从相册选取照片", SheetItemColor.Blue,
+							new OnSheetItemClickListener() {
+								@Override
+								public void onClick(int which) {
+									Intent intent1 = new Intent(
+											UploadImageActivity.this,
+											AlbumActivity.class);
+									intent1.putExtra("position", "1");
+									intent1.putExtra("upimage", "1");
+									intent1.putExtra("ID", 0);
+									startActivityForResult(intent1, 102);
+								}
+							}).show();
 			break;
 		default:
 			break;
 		}
+	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode != RESULT_OK) {
+			return;
+		}
+		if (requestCode == 102) {
+			System.out.println("102jiushimouge dongxi");
+		}
 	}
 
 	public class GridImageAdapter extends BaseAdapter {
