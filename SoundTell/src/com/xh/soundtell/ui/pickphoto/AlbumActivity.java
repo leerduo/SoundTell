@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -33,6 +34,10 @@ import com.xh.soundtell.util.ImageBucket;
  * @version 2015年08月14日 下午11:47:15
  */
 public class AlbumActivity extends Activity {
+	// 字体 以及返回按钮
+	private TextView head_centertext;
+	private ImageView head_leftimage;
+
 	// 显示手机里的所有图片的列表控件
 	private GridView gridView;
 	// 当手机里没有图片时，提示用户没有图片的控件
@@ -46,6 +51,9 @@ public class AlbumActivity extends Activity {
 	// 取消按钮
 	private Button cancel;
 	private Intent intent;
+	// 是从上传图片进还是继续添加
+	private String upimage;
+
 	// 预览按钮
 	private Button preview;
 	private Context mContext;
@@ -54,6 +62,9 @@ public class AlbumActivity extends Activity {
 	private int check = 0;
 	public static List<ImageBucket> contentList;
 	public static Bitmap bitmap;
+
+	// 取消按钮
+	// private
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -128,6 +139,15 @@ public class AlbumActivity extends Activity {
 
 	// 初始化，给一些对象赋值
 	private void init() {
+		head_centertext = (TextView) findViewById(R.id.head_centertext);
+		head_centertext.setVisibility(View.VISIBLE);
+		head_centertext.setText("手机相册");
+
+		head_leftimage = (ImageView) findViewById(R.id.head_leftimage);
+		head_leftimage.setVisibility(View.VISIBLE);
+		head_leftimage.setImageResource(R.drawable.back_wihte);
+		head_leftimage.setOnClickListener(new CancelListener());
+
 		helper = AlbumHelper.getHelper();
 		helper.init(getApplicationContext());
 
@@ -142,8 +162,9 @@ public class AlbumActivity extends Activity {
 		cancel.setOnClickListener(new CancelListener());
 		back.setOnClickListener(new BackListener());
 		preview = (Button) findViewById(R.id.preview);
-		preview.setOnClickListener(new PreviewListener());
+		preview.setOnClickListener(new CancelListener());
 		intent = getIntent();
+		upimage = intent.getStringExtra("upimage");
 		Bundle bundle = intent.getExtras();
 		gridView = (GridView) findViewById(R.id.myGrid);
 		gridImageAdapter = new AlbumGridViewAdapter(this, dataList,
@@ -152,8 +173,16 @@ public class AlbumActivity extends Activity {
 		tv = (TextView) findViewById(R.id.myText);
 		gridView.setEmptyView(tv);
 		okButton = (Button) findViewById(R.id.ok_button);
-		okButton.setText("完成" + "(" + AlbumBimpUtil.tempSelectBitmap.size()
-				+ "/" + AlbumBimpUtil.num + ")");
+
+		if (upimage.equals("1")) {
+			okButton.setText("选择");
+		} else if (upimage.equals("2")) {
+			okButton.setText("选择");
+		} else {
+			okButton.setText("完成" + "(" + AlbumBimpUtil.tempSelectBitmap.size()
+					+ "/" + AlbumBimpUtil.num + ")");
+		}
+
 	}
 
 	private void initListener() {
@@ -164,31 +193,36 @@ public class AlbumActivity extends Activity {
 					@Override
 					public void onItemClick(final ToggleButton toggleButton,
 							int position, boolean isChecked, Button chooseBt) {
-						if (AlbumBimpUtil.tempSelectBitmap.size() >= AlbumBimpUtil.num) {
-							toggleButton.setChecked(false);
-							chooseBt.setVisibility(View.GONE);
-							if (!removeOneData(dataList.get(position))) {
-								Toast.makeText(AlbumActivity.this,
-										R.string.only_choose_num, 200).show();
-							}
-							return;
-						}
+						// 现在不用超过张数了
+						// if (AlbumBimpUtil.tempSelectBitmap.size() >=
+						// AlbumBimpUtil.num) {
+						// toggleButton.setChecked(false);
+						// chooseBt.setVisibility(View.GONE);
+						// if (!removeOneData(dataList.get(position))) {
+						// Toast.makeText(AlbumActivity.this,
+						// R.string.only_choose_num, 200).show();
+						// }
+						// return;
+						// }
 						if (isChecked) {
 							++check;
 							chooseBt.setVisibility(View.VISIBLE);
 							AlbumBimpUtil.tempSelectBitmap.add(dataList
 									.get(position));
-							okButton.setText("完成" + "("
+							// okButton.setText("完成" + "("
+							// + AlbumBimpUtil.tempSelectBitmap.size()
+							// + "/" + AlbumBimpUtil.num + ")");
+							okButton.setText("已选" + "("
 									+ AlbumBimpUtil.tempSelectBitmap.size()
-									+ "/" + AlbumBimpUtil.num + ")");
+									+ "张" + ")");
 						} else {
 							--check;
 							AlbumBimpUtil.tempSelectBitmap.remove(dataList
 									.get(position));
 							chooseBt.setVisibility(View.GONE);
-							okButton.setText("完成" + "("
+							okButton.setText("已选" + "("
 									+ AlbumBimpUtil.tempSelectBitmap.size()
-									+ "/" + AlbumBimpUtil.num + ")");
+									+ "张" + ")");
 						}
 						isShowOkBt();
 					}
@@ -210,23 +244,18 @@ public class AlbumActivity extends Activity {
 
 	public void isShowOkBt() {
 		if (AlbumBimpUtil.tempSelectBitmap.size() > 0) {
-			okButton.setText("完成" + "(" + AlbumBimpUtil.tempSelectBitmap.size()
-					+ "/" + AlbumBimpUtil.num + ")");
+			okButton.setText("已选" + "(" + AlbumBimpUtil.tempSelectBitmap.size()
+					+ "张" + ")");
 			preview.setPressed(true);
 			okButton.setPressed(true);
 			preview.setClickable(true);
 			okButton.setClickable(true);
-			okButton.setTextColor(Color.WHITE);
-			preview.setTextColor(Color.WHITE);
 		} else {
-			okButton.setText("完成" + "(" + AlbumBimpUtil.tempSelectBitmap.size()
-					+ "/" + AlbumBimpUtil.num + ")");
+			okButton.setText("选择");
 			preview.setPressed(false);
 			preview.setClickable(false);
 			okButton.setPressed(false);
 			okButton.setClickable(false);
-			okButton.setTextColor(Color.parseColor("#E1E0DE"));
-			preview.setTextColor(Color.parseColor("#E1E0DE"));
 		}
 	}
 

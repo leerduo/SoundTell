@@ -1,5 +1,4 @@
 /*************************************************************************************************
- * 版权所有 (C)2015,  成都市商联汇通技术有限公司
  * 
  * 文件名称：UploadImageActivity.java
  * 内容摘要：升级服务
@@ -38,6 +37,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xh.soundtell.R;
+import com.xh.soundtell.ios.view.SheetDialog;
+import com.xh.soundtell.ios.view.SheetDialog.OnSheetItemClickListener;
+import com.xh.soundtell.ios.view.SheetDialog.SheetItemColor;
 import com.xh.soundtell.ui.pickphoto.AlbumActivity;
 import com.xh.soundtell.ui.pickphoto.AlbumBimpUtil;
 import com.xh.soundtell.ui.pickphoto.GalleryActivity;
@@ -53,6 +55,7 @@ public class UploadImageActivity extends Activity implements OnClickListener {
 	private ImageView uploadimage_iv;
 	private GridViewForScrollView uploadimage_gv;
 	private GridAdapter adapter;
+	private GridImageAdapter gridImageAdapter;
 
 	public static Bitmap bimap;
 
@@ -66,7 +69,7 @@ public class UploadImageActivity extends Activity implements OnClickListener {
 	private void findView() {
 		head_centertext = (TextView) findViewById(R.id.head_centertext);
 		head_centertext.setVisibility(View.VISIBLE);
-		head_centertext.setText("意见反馈");
+		head_centertext.setText("我的相册");
 
 		head_leftimage = (ImageView) findViewById(R.id.head_leftimage);
 		head_leftimage.setVisibility(View.VISIBLE);
@@ -79,13 +82,17 @@ public class UploadImageActivity extends Activity implements OnClickListener {
 		head_rightimage.setOnClickListener(this);
 
 		uploadimage_iv = (ImageView) findViewById(R.id.uploadimage_iv);
+		if (AlbumBimpUtil.tempSelectBitmap.size() > 0) {
+			uploadimage_iv.setVisibility(View.GONE);
+		}
 		uploadimage_gv = (GridViewForScrollView) findViewById(R.id.uploadimage_gv);
 
-		uploadimage_gv.setSelector(new ColorDrawable(Color.TRANSPARENT));
+		// uploadimage_gv.setSelector(new ColorDrawable(Color.TRANSPARENT));
 		adapter = new GridAdapter(this);
+		gridImageAdapter = new GridImageAdapter(this);
 		// adapter.update();
 		// adapter.update();
-		uploadimage_gv.setAdapter(adapter);
+		uploadimage_gv.setAdapter(gridImageAdapter);
 		uploadimage_gv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
@@ -101,14 +108,101 @@ public class UploadImageActivity extends Activity implements OnClickListener {
 			UploadImageActivity.this.finish();
 			break;
 		case R.id.head_rightimage:
-			Intent intent = new Intent(UploadImageActivity.this,
-					AlbumActivity.class);
-			intent.putExtra("position", "1");
-			intent.putExtra("ID", 0);
-			startActivity(intent);
+			// Intent intent = new Intent(UploadImageActivity.this,
+			// AlbumActivity.class);
+			// intent.putExtra("position", "1");
+			// intent.putExtra("upimage", "1");
+			// intent.putExtra("ID", 0);
+			// startActivity(intent);
+			new SheetDialog(UploadImageActivity.this)
+					.builder()
+					.setCancelable(true)
+					.setCanceledOnTouchOutside(true)
+					.addSheetItem("拍照", SheetItemColor.Blue,
+							new OnSheetItemClickListener() {
+								@Override
+								public void onClick(int which) {
+									// Intent intent1 = new Intent(
+									// UploadImageActivity.this,
+									// AlbumActivity.class);
+									// intent1.putExtra("position", "1");
+									// intent1.putExtra("upimage", "1");
+									// intent1.putExtra("ID", 0);
+									// startActivityForResult(intent1, 102);
+								}
+							})
+					.addSheetItem("从相册选取照片", SheetItemColor.Blue,
+							new OnSheetItemClickListener() {
+								@Override
+								public void onClick(int which) {
+									Intent intent1 = new Intent(
+											UploadImageActivity.this,
+											AlbumActivity.class);
+									intent1.putExtra("position", "1");
+									intent1.putExtra("upimage", "1");
+									intent1.putExtra("ID", 0);
+									startActivityForResult(intent1, 102);
+								}
+							}).show();
 			break;
 		default:
 			break;
+		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode != RESULT_OK) {
+			return;
+		}
+		if (requestCode == 102) {
+			System.out.println("102jiushimouge dongxi");
+		}
+	}
+
+	public class GridImageAdapter extends BaseAdapter {
+		private LayoutInflater inflater;
+
+		public GridImageAdapter(Context context) {
+			inflater = LayoutInflater.from(context);
+		}
+
+		@Override
+		public int getCount() {
+			System.out.println(AlbumBimpUtil.tempSelectBitmap.size()
+					+ "AlbumBimpUtil.tempSelectBitmap.size()");
+			return AlbumBimpUtil.tempSelectBitmap.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+			return AlbumBimpUtil.tempSelectBitmap.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			ViewHolder holder = null;
+			if (convertView == null) {
+				convertView = inflater.inflate(R.layout.item_published_grida,
+						parent, false);
+				holder = new ViewHolder();
+				holder.image = (ImageView) convertView
+						.findViewById(R.id.item_grida_image);
+				convertView.setTag(holder);
+			}
+			holder = (ViewHolder) convertView.getTag();
+			holder.image.setImageBitmap(AlbumBimpUtil.tempSelectBitmap.get(
+					position).getBitmap());
+			return convertView;
+		}
+
+		class ViewHolder {
+			public ImageView image;
 		}
 
 	}
