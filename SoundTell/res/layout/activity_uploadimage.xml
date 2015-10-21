@@ -32,13 +32,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:columnWidth="100dp"
-                android:horizontalSpacing="2dp"
+                android:horizontalSpacing="5dp"
                 android:listSelector="@android:color/transparent"
-                android:numColumns="auto_fit"
-                android:paddingLeft="1dp"
-                android:paddingRight="1dp"
+                android:numColumns="3"
+                android:padding="5dp"
                 android:stretchMode="columnWidth"
-                android:verticalSpacing="2dp" >
+                android:verticalSpacing="10dp" >
             </com.xh.soundtell.view.GridViewForScrollView>
         </LinearLayout>
     </ScrollView>
