@@ -109,7 +109,8 @@
         </activity>
         <activity
             android:name=".ui.LoginArrayActivity"
-            android:label="@string/title_activity_audition" >
+            android:label="@string/title_activity_audition"
+            android:screenOrientation="portrait" >
         </activity>
 
         <service android:name=".service.ControlPlay" >
@@ -129,11 +130,47 @@
         </activity>
         <activity
             android:name="com.xh.soundtell.ui.ActivityInfoActivity"
-            android:label="@string/title_activity_write_create" >
+            android:label="@string/title_activity_write_create"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.xh.soundtell.ui.RuleActivity"
-            android:label="@string/title_activity_write_create" >
+            android:label="@string/title_activity_write_create"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.xh.soundtell.ui.ActivityFeedBack"
+            android:label="@string/title_activity_write_create"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.xh.soundtell.ui.UploadImageActivity"
+            android:label="@string/title_activity_write_create"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.xh.soundtell.ui.pickphoto.AlbumActivity"
+            android:label="@string/title_activity_write_create"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.xh.soundtell.ui.pickphoto.GalleryActivity"
+            android:label="@string/title_activity_write_create"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.xh.soundtell.ui.pickphoto.ImageFileActivity"
+            android:label="@string/title_activity_write_create"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.xh.soundtell.ui.pickphoto.ShowAllPhotoActivity"
+            android:label="@string/title_activity_write_create"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
     <!-- 网络权限 -->

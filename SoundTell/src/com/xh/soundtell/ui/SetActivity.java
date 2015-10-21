@@ -1,6 +1,7 @@
 package com.xh.soundtell.ui;
 
 import com.xh.soundtell.R;
+import com.xh.soundtell.util.ToastUtil;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -73,25 +74,25 @@ public class SetActivity extends Activity implements OnClickListener {
 			intent = new Intent(SetActivity.this, UserInfoActivity.class);
 			break;
 		case R.id.set_image:
-
+			intent = new Intent(SetActivity.this, UploadImageActivity.class);
 			break;
 		case R.id.set_friend:
 			intent = new Intent(SetActivity.this, FriendActivity.class);
 			break;
 		case R.id.set_feedback:
-
+			intent = new Intent(SetActivity.this, ActivityFeedBack.class);
 			break;
 		case R.id.set_update:
-
+			ToastUtil.makeToast(SetActivity.this, "当前版本是最新版本");
 			break;
 		case R.id.set_cache:
-
+			ToastUtil.makeToast(SetActivity.this, "清楚缓存成功");
 			break;
 		case R.id.set_about:
 			intent = new Intent(SetActivity.this, AboutActivity.class);
 			break;
 		case R.id.set_exit:
-			intent=new Intent(SetActivity.this, LoginArrayActivity.class);
+			intent = new Intent(SetActivity.this, LoginArrayActivity.class);
 			break;
 
 		default:

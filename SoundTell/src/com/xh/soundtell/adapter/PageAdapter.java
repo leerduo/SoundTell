@@ -58,9 +58,10 @@ public class PageAdapter extends PagerAdapter {
 	public Object instantiateItem(ViewGroup container, int position) {
 		container.addView(views.get(position));
 
-//		ScrollView scrollView=(ScrollView) container.findViewById(R.id.myScrollView);
-//		scrollView.setFocusable(true);
-//		scrollView.setFocusableInTouchMode(true);
+		// ScrollView scrollView=(ScrollView)
+		// container.findViewById(R.id.myScrollView);
+		// scrollView.setFocusable(true);
+		// scrollView.setFocusableInTouchMode(true);
 		return views.get(position);
 	}
 
