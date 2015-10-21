@@ -157,10 +157,26 @@ public class HotFragment extends Fragment implements OnClickListener {
 		Intent intent = null;
 		switch (v.getId()) {
 		case R.id.fraghot_hot1:// 热歌
+			intent = new Intent(act, PlayMusicActivity.class);
+			intent.putExtra("hotfragment", "hotfragment");
+            intent.putExtra("songId", R.raw.exist_for_you_song);
+            intent.putExtra("songName", "因你而在");
+            intent.putExtra("songBody", getResources().getString(R.string.exist_for_you));
+            break;
 		case R.id.fraghot_hot2:// 热歌
+			intent = new Intent(act, PlayMusicActivity.class);
+			intent.putExtra("hotfragment", "hotfragment");
+			intent.putExtra("songId", R.raw.li_byebye_song);
+			  intent.putExtra("songName", "再见 再见");
+	            intent.putExtra("songBody", getResources().getString(R.string.li_byebye));
+	            break;
+			
 		case R.id.fraghot_hot3:// 热歌
 			intent = new Intent(act, PlayMusicActivity.class);
 			intent.putExtra("hotfragment", "hotfragment");
+			intent.putExtra("songId", R.raw.w_nightdj_song);
+			  intent.putExtra("songName", "午夜DJ");
+	            intent.putExtra("songBody", getResources().getString(R.string.w_nightdj));
 			break;
 		case R.id.fraghot_hotmore:// 更多
 			intent = new Intent(act, HotActivity.class);

@@ -108,6 +108,8 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	    ivChoose.setOnClickListener(this);
 	    tvChoose = (TextView) findViewById(R.id.singrecord_choose_tv);
 
+	    
+	    strBgMusicsStrs = new String[] {"激昂-2-130-F(正常品质)","伤心-1-78-E(正常品质)","摇滚-2-84-G(正常品质)"};
 	    tvTimeShow=(TextView) findViewById(R.id.singrecord_time);
 	    tvTitle=(TextView) findViewById(R.id.singrecord_title);
 	    tvGeCi=(TextView) findViewById(R.id.geci);
@@ -130,6 +132,7 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 		case R.id.singrecord_qu:
 			quPosition=quPosition+1;
 			quPosition=quPosition%musicRecordModels.size();
+			tvType.setText(strBgMusicsStrs[quPosition]);
 			if(isPlaying){
 	              isPlaying=false;
 	              ivPrepare.setImageResource(R.drawable.record_save_ib);
@@ -358,6 +361,7 @@ public class SingRecordActivity extends Activity implements OnClickListener{
    private  PopupWindow recordPopwindow;
 private String geci;
 private String geci1;
+private String[] strBgMusicsStrs;
     private void getRecordPopwindow() {
     	final View	popView = LayoutInflater.from(this).inflate(R.layout.popup_record_alter,
 				null);

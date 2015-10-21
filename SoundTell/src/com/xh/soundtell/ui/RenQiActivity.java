@@ -5,15 +5,19 @@ import java.util.ArrayList;
 import com.xh.soundtell.R;
 import com.xh.soundtell.R.id;
 import com.xh.soundtell.R.layout;
+import com.xh.soundtell.SongerMainActivity;
 import com.xh.soundtell.adapter.RankingAdapter;
 import com.xh.soundtell.model.Ranking;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 public class RenQiActivity extends Activity {
@@ -47,5 +51,16 @@ public class RenQiActivity extends Activity {
 		 RankingAdapter  adapter=new RankingAdapter(this, ranks);
 		 adapter.setSonger(true);
 		 lv.setAdapter(adapter);
-		 }
+          lv.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+        if(position==0){
+        	Intent intent=new Intent(RenQiActivity.this,SongerMainActivity.class);
+        	startActivity(intent);
+        }				
+			}
+		});        			
+  }
 }

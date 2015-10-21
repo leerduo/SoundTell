@@ -44,7 +44,6 @@ public class ActivityWeb extends Activity {
 		setContentView(R.layout.activity_liangxiao);
 		intent = getIntent();
 		id = intent.getStringExtra("web");
-
 		findView();
 	}
 

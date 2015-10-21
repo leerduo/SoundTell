@@ -195,14 +195,14 @@
                <TextView 
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="2 向日葵 - "
+                   android:text="2 两小无猜- "
                    android:textSize="13sp"
                    android:textColor="#000"
                    /> 
                 <TextView 
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="前夏"
+                   android:text="萧然萧冉"
                    android:textColor="#777777"
                    android:textSize="13sp"
                    /> 
@@ -218,14 +218,14 @@
                <TextView 
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="3 向日葵 - "
+                   android:text="3 西瓜 - "
                    android:textSize="13sp"
                    android:textColor="#000"
                    /> 
                 <TextView 
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="前夏"
+                   android:text="作为一个小号"
                    android:textColor="#777777"
                    android:textSize="13sp"
                    /> 

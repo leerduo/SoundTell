@@ -98,18 +98,23 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 	}
 
 	private boolean isSong;
+	private int songId;
+	private String songName;
+	private String songBody;
 
 	private void getData() {
 		intent = getIntent();
 		if (!TextUtils.isEmpty(intent.getStringExtra("hotfragment"))) {
 			isSong = true;
+			songId=intent.getIntExtra("songId",0); //歌曲ID
+			songName=intent.getStringExtra("songName");//歌曲名
+			songBody=intent.getStringExtra("songBody");//歌曲歌词
 		} else {
 			musicInfomation = (MusicInfomation) intent
 					.getSerializableExtra("musicInfomation");
 			isSong = false;
 		}
 	}
-
 	private void getComments() {
 		comments = new ArrayList<Comment>();
 		Comment comment = null;
@@ -149,7 +154,7 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 		lin.setOrientation(LinearLayout.VERTICAL);
 
 		TextView tv3 = new TextView(this);
-		tv3.setText(R.string.exist_for_you);
+		tv3.setText(songBody);
 		tv3.setTextColor(Color.parseColor("#ffffff"));
 		tv3.setGravity(Gravity.CENTER_HORIZONTAL);
 		tv3.setLayoutParams(params);
@@ -168,7 +173,9 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 		singrecord_title.setFocusable(true);
 		singrecord_title.setFocusableInTouchMode(true);
 		singrecord_title.requestFocus();
-
+		if(!TextUtils.isEmpty(songName)){
+		singrecord_title.setText(songName);
+		}
 		singrecord_back = (ImageView) findViewById(R.id.singrecord_back);
 		singrecord_back.setOnClickListener(this);
 
@@ -224,7 +231,7 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 							if (MusicHelper.mediaPlayer == null)
 								MusicHelper.mediaPlayer = MediaPlayer.create(
 										PlayMusicActivity.this,
-										R.raw.exist_foryou);
+										songId);
 							playmusic_time.setText("-"
 									+ MusicUtil.toTime(MusicHelper.mediaPlayer
 											.getDuration() - progress));
@@ -280,7 +287,7 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 //			playmusic_time.setText(MusicUtil.toTime(musicInfomation
 //					.getMusicTime()) + "");
 		} else {
-			playmusic_name.setText("因你而在");
+			playmusic_name.setText(songName);
 			// if(MusicHelper.mediaPlayer==null)
 			// MusicHelper.mediaPlayer=MediaPlayer.create(PlayMusicActivity.this,
 			// R.raw.exist_foryou);
@@ -321,7 +328,7 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 					playmusic_play
 							.setImageResource(R.drawable.song_detail_play_btn);
 				} else {
-					MusicHelper.startMusic(this, R.raw.exist_foryou, false);
+					MusicHelper.startMusic(this, songId, false);
 					songHandler.sendEmptyMessageDelayed(1111, 1000);
 					playmusic_play.setImageResource(R.drawable.record_pause_ib);
 				}

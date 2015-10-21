@@ -33,8 +33,8 @@
     <string name="hot">热门</string>
     <string name="activity">活动</string>
     <string name="friends">好友</string>
-    
-      <!-- 图片浏览 -->
+
+    <!-- 图片浏览 -->
     <string name="only_choose_num">超出可选图片张数</string>
     <string name="finish">完成</string>
     <string name="invalidSD">sdcard无效或没有插入！</string>
@@ -215,11 +215,11 @@ Come on Together go to party!\n
     <string name="title_activity_song_style_search">SongStyleSearch</string>
     <string name="title_activity_listen_create">ListenCreateActivity</string>
     <string name="title_activity_write_create">WriteCreateActivity</string>
-
     <string name="infoactivity3">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;不管你是爱阅读的还是爱电影的；爱音乐的还是爱旅行的；或者只是仰望华丽的45度天空的；只要你是小清新你几时我们要找的人奥，阳春三月，草长莺飞，哼哼小清新来袭。参加哼哼专属活动#一首歌证明我是小清新#，用你清新自然的音乐治愈下这个物欲横流，喧嚣繁杂的大千世界吧。</string>
     <string name="infoactivity4">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;一起逛街，一起当个开心的吃货,一起看剧集,一起花痴某个型男偶像。亲爱的，你跟闺蜜多久了？在你的心里，有没有一首情歌是唱给闺蜜听的？不管你叫她死女人，好朋友，闺蜜，甚至直呼其名，有一些话只有你们两人懂。亲爱的，赶快唱首情歌给闺蜜吧！你送情歌，我送礼物哦！</string>
     <string name="infoactivity5">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;一路风景一路歌，又是一年毕业季，浓情六月，你是否依然记得当年那青葱的匆匆岁月，凤凰花已开，关于青春的故事，等你一起来哼唱！即日起至6月28日，参加青春一起哼唱，超酷露营者户外音箱、手机话费等你来拿哦~</string>
     <string name="infoactivity6">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;爸爸，用宽阔的肩膀撑起了整个家，其实他是一个外表坚强内心柔弱的男人！ 父亲节之际，用歌声唱出你对父亲的爱吧！</string>
     <string name="infoactivity7">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;炎炎夏日，没有音乐激情何处释放?在劲爆的摇滚乐下，尽情狂欢，挥汗如雨，这该是何等酣畅爽快!这个夏天，小哼约你一起high起来，让音乐带你放飞一整个夏天。 即日起至8月17日上午11点，参加#有一种声音叫做夏天#，小米手环，手机话费等你来拿哦~</string>
-    
+    <string name="title_activity_songer_main">SongerMainActivity</string>
+
 </resources>

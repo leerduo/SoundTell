@@ -62,7 +62,7 @@ public class AuditionActivity extends Activity implements OnClickListener{
 				tvAudition1.setTextColor(Color.parseColor(tvColor2));
 				tvAudition1.setBackgroundColor(Color.parseColor(bgColor2));
 				tvAudition1.setText("取消试听");
-			    MusicHelper.startMusic(this, R.raw.exist_foryou, false);
+			    MusicHelper.startMusic(this, R.raw.exist_for_you_song, false);
 			 return;
 			}
 			if(isPlay1){
@@ -76,7 +76,7 @@ public class AuditionActivity extends Activity implements OnClickListener{
 				tvAudition1.setTextColor(Color.parseColor(tvColor2));
 				tvAudition1.setBackgroundColor(Color.parseColor(bgColor2));
 				tvAudition1.setText("取消试听");
-			    MusicHelper.startMusic(this, R.raw.exist_foryou, false);
+			    MusicHelper.startMusic(this, R.raw.exist_for_you_song, false);
 			}
 			break;
 		case R.id.audition_2:
@@ -92,7 +92,7 @@ public class AuditionActivity extends Activity implements OnClickListener{
 				tvAudition2.setTextColor(Color.parseColor(tvColor2));
 				tvAudition2.setBackgroundColor(Color.parseColor(bgColor2));
 				tvAudition2.setText("取消试听");
-			    MusicHelper.startMusic(this, R.raw.exist_foryou, false);
+			    MusicHelper.startMusic(this, R.raw.exist_for_you_song, false);
 			 return;
 			}
 			if(isPlay2){
@@ -106,7 +106,7 @@ public class AuditionActivity extends Activity implements OnClickListener{
 				tvAudition2.setTextColor(Color.parseColor(tvColor2));
 				tvAudition2.setBackgroundColor(Color.parseColor(bgColor2));
 				tvAudition2.setText("取消试听");
-			    MusicHelper.startMusic(this, R.raw.exist_foryou, false);
+			    MusicHelper.startMusic(this, R.raw.exist_for_you_song, false);
 			}
 			
 			break;
