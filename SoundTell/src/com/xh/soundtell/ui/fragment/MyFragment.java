@@ -68,6 +68,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 
 	private List<MusicInfomation> mis;
 	private MusicInfomation mi;
+	private boolean isLongClick;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -165,10 +166,12 @@ public class MyFragment extends Fragment implements OnClickListener,
 			xListView.setAdapter(worksAdapter);
 		}
 		xListView.setXListViewListener(this);
+		isLongClick = false;
 		xListView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				if(!isLongClick){
 				System.out.println("position" + position + "<br/>"
 						+ "mis.size()" + mis.size());
 				if (position <= mis.size()) {
@@ -182,13 +185,17 @@ public class MyFragment extends Fragment implements OnClickListener,
 				} else {
 					onLoadMore();
 				}
+			}else{
+				isLongClick=false;
 			}
+				}
 		});
 
 		xListView.setOnItemLongClickListener(new OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long id) {
+				 isLongClick=true;
 				if (position <= mis.size()) {
 					System.out.println("position" + position);
 					MusicInfomation musicInfomation = (MusicInfomation) parent
@@ -211,7 +218,6 @@ public class MyFragment extends Fragment implements OnClickListener,
 								}
 							});
 					alertDialog.setNegativeButton("取消", null).show();
-
 				} else {
 					onLoadMore();
 				}
@@ -220,6 +226,12 @@ public class MyFragment extends Fragment implements OnClickListener,
 		});
 	}
 
+	@Override
+	public void onResume() {
+		isLongClick=false;
+		super.onResume();
+	}
+	
 	private void getItem() {
 
 	}
