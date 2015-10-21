@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.xh.soundtell.ui.StartActivity"
+            android:name=".ui.StartActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -129,54 +129,52 @@
             android:label="@string/title_activity_write_create" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.ActivityInfoActivity"
+            android:name=".ui.ActivityInfoActivity"
             android:label="@string/title_activity_write_create"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.RuleActivity"
+            android:name=".ui.RuleActivity"
             android:label="@string/title_activity_write_create"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.ActivityFeedBack"
+            android:name=".ui.ActivityFeedBack"
             android:label="@string/title_activity_write_create"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.UploadImageActivity"
+            android:name=".ui.UploadImageActivity"
             android:label="@string/title_activity_write_create"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.pickphoto.AlbumActivity"
+            android:name=".ui.pickphoto.AlbumActivity"
             android:label="@string/title_activity_write_create"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.pickphoto.GalleryActivity"
+            android:name=".ui.pickphoto.GalleryActivity"
             android:label="@string/title_activity_write_create"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.pickphoto.ImageFileActivity"
+            android:name=".ui.pickphoto.ImageFileActivity"
             android:label="@string/title_activity_write_create"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.pickphoto.ShowAllPhotoActivity"
+            android:name=".ui.pickphoto.ShowAllPhotoActivity"
             android:label="@string/title_activity_write_create"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.ConfirmImageActivity"
-            android:label="@string/title_activity_write_create"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" >
+            android:name=".SongerMainActivity"
+            android:label="@string/title_activity_songer_main" >
         </activity>
     </application>
     <!-- 网络权限 -->
