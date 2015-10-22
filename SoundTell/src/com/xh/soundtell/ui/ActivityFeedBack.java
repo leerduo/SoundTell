@@ -52,7 +52,8 @@ public class ActivityFeedBack extends Activity implements OnClickListener {
 		head_leftimage.setImageResource(R.drawable.back_wihte);
 		head_leftimage.setOnClickListener(this);
 
-		button=(Button) findViewById(R.id.feedback_bt);
+		button = (Button) findViewById(R.id.feedback_bt);
+		button.setOnClickListener(this);
 	}
 
 	@Override
@@ -62,8 +63,10 @@ public class ActivityFeedBack extends Activity implements OnClickListener {
 			ActivityFeedBack.this.finish();
 			break;
 		case R.id.feedback_bt:
-			ToastUtil.makeToast(ActivityFeedBack.this,"上传成功");
+			ToastUtil.makeToast(ActivityFeedBack.this, "上传成功");
 			ActivityFeedBack.this.finish();
+
+			System.out.println("000000000000");
 			break;
 		default:
 			break;
