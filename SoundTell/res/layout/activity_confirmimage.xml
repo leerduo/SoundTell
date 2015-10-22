@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/bottom_layout"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="3dp"
         android:background="@color/app_bg"
@@ -40,16 +40,16 @@
     </LinearLayout>
 
     <GridView
-        android:id="@+id/myGrid"
+        android:id="@+id/gridview"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@id/bottom_layout"
         android:layout_below="@id/layout_head"
         android:layout_centerInParent="true"
-        android:layout_margin="5dp"
         android:background="@color/albumback"
         android:horizontalSpacing="10dp"
         android:numColumns="3"
+        android:padding="5dp"
         android:verticalSpacing="10dp" />
 
 </RelativeLayout>

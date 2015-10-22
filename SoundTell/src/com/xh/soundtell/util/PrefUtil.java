@@ -1,9 +1,12 @@
 package com.xh.soundtell.util;
 
+import java.util.List;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.xh.soundtell.setting.SettingHelper;
+import com.xh.soundtell.ui.pickphoto.ImageItem;
 
 public class PrefUtil {
 	private SharedPreferences sharedPreferences;
@@ -83,6 +86,15 @@ public class PrefUtil {
 
 	public void setIntro(String Intro) {
 		editor.putString("Intro", Intro);
+		editor.commit();
+	}
+
+	public String getUpload() {
+		return sharedPreferences.getString("Upload", "0");
+	}
+
+	public void setUpload(String upload) {
+		editor.putString("Upload", upload);
 		editor.commit();
 	}
 }

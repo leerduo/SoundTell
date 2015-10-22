@@ -74,7 +74,7 @@ public class SetActivity extends Activity implements OnClickListener {
 			intent = new Intent(SetActivity.this, UserInfoActivity.class);
 			break;
 		case R.id.set_image:
-//			intent = new Intent(SetActivity.this, UploadImageActivity.class);
+			intent = new Intent(SetActivity.this, UploadImageActivity.class);
 			break;
 		case R.id.set_friend:
 			intent = new Intent(SetActivity.this, FriendActivity.class);

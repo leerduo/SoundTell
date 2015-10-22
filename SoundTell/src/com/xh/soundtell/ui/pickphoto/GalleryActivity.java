@@ -16,10 +16,14 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.xh.soundtell.R;
+import com.xh.soundtell.ui.UploadImageActivity;
+import com.xh.soundtell.util.ImageHelper;
+import com.xh.soundtell.util.PrefUtil;
 
 /**
  * 这个是用于进行图片浏览时的界面
@@ -30,7 +34,9 @@ import com.xh.soundtell.R;
 public class GalleryActivity extends Activity {
 	private Intent intent;
 	// 返回按钮
-	private Button back_bt;
+	private ImageView back_bt;
+	// 中部图片的多少
+	private TextView gallery_num;
 	// 发送按钮
 	private Button send_bt;
 	// 删除按钮
@@ -54,34 +60,56 @@ public class GalleryActivity extends Activity {
 
 	RelativeLayout photo_relativeLayout;
 
+	private int size;
+	private String iamge;
+	private PrefUtil prefUtil;
+
+	private int imagesize;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.plugin_camera_gallery);// 切屏到主界面
+		prefUtil = PrefUtil.getInstance();
 		AlbumBimpUtil.putActivty(this);
 		mContext = this;
-		back_bt = (Button) findViewById(R.id.gallery_back);
+		gallery_num = (TextView) findViewById(R.id.gallery_num);
+		back_bt = (ImageView) findViewById(R.id.gallery_back);
 		send_bt = (Button) findViewById(R.id.send_button);
 		del_bt = (Button) findViewById(R.id.gallery_del);
-		back_bt.setOnClickListener(new BackListener());
+		back_bt.setOnClickListener(new CancelListener());
 		send_bt.setOnClickListener(new GallerySendListener());
 		del_bt.setOnClickListener(new DelListener());
 		intent = getIntent();
 		position = Integer.parseInt(intent.getStringExtra("position"));
+		iamge = intent.getStringExtra("iamge");
 		isShowOkBt();
 		// 为发送按钮设置文字
 		pager = (ViewPagerFixed) findViewById(R.id.gallery01);
 		pager.setOnPageChangeListener(pageChangeListener);
-		for (int i = 0; i < AlbumBimpUtil.tempSelectBitmap.size(); i++) {
-			initListViews(AlbumBimpUtil.tempSelectBitmap.get(i).getBitmap());
+		if (iamge.equals("2")) {
+			for (int i = 0; i < AlbumBimpUtil.tempSelectBitmap.size(); i++) {
+				initListViews(AlbumBimpUtil.tempSelectBitmap.get(i).getBitmap());
+			}
+			imagesize = AlbumBimpUtil.tempSelectBitmap.size();
+		} else {
+			for (int i = 0; i < UploadImageActivity.list.size(); i++) {
+				initListViews(ImageHelper.readBitMap(UploadImageActivity.list
+						.get(i)));
+			}
+			imagesize = AlbumBimpUtil.tempSelectBitmap.size();
 		}
 
 		adapter = new MyPageAdapter(listViews);
 		pager.setAdapter(adapter);
 		pager.setPageMargin((int) getResources().getDimensionPixelOffset(
 				R.dimen.ui_10_dip));
+		pager.setOnPageChangeListener(pageChangeListener);
 		int id = intent.getIntExtra("ID", 0);
 		pager.setCurrentItem(id);
+
+		gallery_num.setText((id + 1) + "/" + size);
+
 	}
 
 	@Override
@@ -100,6 +128,7 @@ public class GalleryActivity extends Activity {
 
 		public void onPageSelected(int arg0) {
 			location = arg0;
+			gallery_num.setText((location + 1) + "/" + size);
 		}
 
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
@@ -122,7 +151,7 @@ public class GalleryActivity extends Activity {
 		listViews.add(img);
 	}
 
-	// 返回按钮添加的监听器
+	// 返回按钮添加的监听器 去相册
 	private class BackListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -131,31 +160,79 @@ public class GalleryActivity extends Activity {
 		}
 	}
 
+	// 取消按钮的监听
+	private class CancelListener implements OnClickListener {
+		public void onClick(View v) {
+			// cancel.setClickable(false);
+			// intent.setClass(mContext, PointsmanActivity.class);
+			// startActivity(intent);
+			// for (int i = 0; i < check; i++) {
+			// AlbumBimpUtil.tempSelectBitmap.remove(AlbumBimpUtil.tempSelectBitmap.size()-1);
+			// }
+			GalleryActivity.this.finish();
+			setResult(RESULT_OK);
+		}
+	}
+
 	// 删除按钮添加的监听器
 	private class DelListener implements OnClickListener {
 
 		public void onClick(View v) {
-			if (listViews.size() == 1) {
-				AlbumBimpUtil.tempSelectBitmap.clear();
-				AlbumBimpUtil.max = 0;
-				send_bt.setText("完成" + "("
-						+ AlbumBimpUtil.tempSelectBitmap.size() + "/"
-						+ AlbumBimpUtil.num + ")");
-				Intent intent = new Intent("data.broadcast.action");
-				sendBroadcast(intent);
-				AlbumBimpUtil.finshActivities(GalleryActivity.this);
-				finish();
+			if (iamge.equals("2")) {
+				if (listViews.size() == 1) {
+					AlbumBimpUtil.tempSelectBitmap.clear();
+					AlbumBimpUtil.max = 0;
+					send_bt.setText("完成" + "("
+							+ AlbumBimpUtil.tempSelectBitmap.size() + "/"
+							+ AlbumBimpUtil.num + ")");
+					Intent intent = new Intent("data.broadcast.action");
+					sendBroadcast(intent);
+					AlbumBimpUtil.finshActivities(GalleryActivity.this);
+					setResult(RESULT_OK);
+					finish();
+				} else {
+					AlbumBimpUtil.tempSelectBitmap.remove(location);
+					AlbumBimpUtil.max--;
+					pager.removeAllViews();
+					listViews.remove(location);
+					adapter.setListViews(listViews);
+					send_bt.setText("完成" + "("
+							+ AlbumBimpUtil.tempSelectBitmap.size() + "/"
+							+ AlbumBimpUtil.num + ")");
+					adapter.notifyDataSetChanged();
+					gallery_num.setText((location + 1) + "/"
+							+ AlbumBimpUtil.tempSelectBitmap.size());
+				}
 			} else {
-				AlbumBimpUtil.tempSelectBitmap.remove(location);
-				AlbumBimpUtil.max--;
-				pager.removeAllViews();
-				listViews.remove(location);
-				adapter.setListViews(listViews);
-				send_bt.setText("完成" + "("
-						+ AlbumBimpUtil.tempSelectBitmap.size() + "/"
-						+ AlbumBimpUtil.num + ")");
-				adapter.notifyDataSetChanged();
+				if (listViews.size() == 1) {
+					UploadImageActivity.list = new ArrayList<String>();
+					AlbumBimpUtil.max = 0;
+					send_bt.setText("完成" + "("
+							+ AlbumBimpUtil.tempSelectBitmap.size() + "/"
+							+ AlbumBimpUtil.num + ")");
+					Intent intent = new Intent("data.broadcast.action");
+					sendBroadcast(intent);
+					AlbumBimpUtil.finshActivities(GalleryActivity.this);
+					// prefUtil.setUpload("");
+					setResult(RESULT_OK);
+					finish();
+				} else {
+					UploadImageActivity.list.remove(location);
+
+					// prefUtil.setUpload("");
+					// UploadImageActivity.images.AlbumBimpUtil.max--;
+					pager.removeAllViews();
+					listViews.remove(location);
+					adapter.setListViews(listViews);
+					send_bt.setText("完成" + "("
+							+ AlbumBimpUtil.tempSelectBitmap.size() + "/"
+							+ AlbumBimpUtil.num + ")");
+					adapter.notifyDataSetChanged();
+					gallery_num.setText((location + 1) + "/"
+							+ UploadImageActivity.list.size());
+				}
 			}
+
 		}
 	}
 
@@ -190,9 +267,10 @@ public class GalleryActivity extends Activity {
 
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			if (position == 1) {
+				setResult(RESULT_OK);
 				this.finish();
-				intent.setClass(GalleryActivity.this, AlbumActivity.class);
-				startActivity(intent);
+				// intent.setClass(GalleryActivity.this, AlbumActivity.class);
+				// startActivity(intent);
 			} else if (position == 2) {
 				this.finish();
 				intent.setClass(GalleryActivity.this,
@@ -206,8 +284,6 @@ public class GalleryActivity extends Activity {
 	class MyPageAdapter extends PagerAdapter {
 
 		private ArrayList<View> listViews;
-
-		private int size;
 
 		public MyPageAdapter(ArrayList<View> listViews) {
 			this.listViews = listViews;
@@ -235,6 +311,8 @@ public class GalleryActivity extends Activity {
 		}
 
 		public Object instantiateItem(View arg0, int arg1) {
+			// System.out.println("arg1:" + arg1 + "br/" + "arg1 % size:" + arg1
+			// % size);
 			try {
 				((ViewPagerFixed) arg0).addView(listViews.get(arg1 % size), 0);
 

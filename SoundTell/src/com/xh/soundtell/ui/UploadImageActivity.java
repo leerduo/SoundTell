@@ -14,6 +14,9 @@
 
 package com.xh.soundtell.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -43,6 +46,10 @@ import com.xh.soundtell.ios.view.SheetDialog.SheetItemColor;
 import com.xh.soundtell.ui.pickphoto.AlbumActivity;
 import com.xh.soundtell.ui.pickphoto.AlbumBimpUtil;
 import com.xh.soundtell.ui.pickphoto.GalleryActivity;
+import com.xh.soundtell.ui.pickphoto.ImageItem;
+import com.xh.soundtell.util.ImageHelper;
+import com.xh.soundtell.util.PrefUtil;
+import com.xh.soundtell.util.ToastUtil;
 import com.xh.soundtell.view.GridViewForScrollView;
 
 /**
@@ -59,11 +66,64 @@ public class UploadImageActivity extends Activity implements OnClickListener {
 
 	public static Bitmap bimap;
 
+	private PrefUtil prefUtil;
+	// public static StringBuffer image = new StringBuffer();
+	public static String[] images = null;
+
+	public static ArrayList<String> list = null;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_uploadimage);
+		prefUtil = PrefUtil.getInstance();
+		list = new ArrayList<String>();
 		findView();
+
+		setData();
+		System.out.println(prefUtil.getUpload() + ":prefUtil.getUpload()");
+
+		// for (int i = 0; i < list.size(); i++) {
+		// System.out.println("list.size()" + i + "i" + list.size());
+		// }
+
+	}
+
+	private void setData() {
+		if (prefUtil.getUpload() != null && !prefUtil.getUpload().equals("0")) {
+			System.out.println("prefUtil.getUpload:" + prefUtil.getUpload());
+			images = prefUtil.getUpload().split(";");
+			for (int i = 0; i < images.length; i++) {
+				list.add(images[i]);
+				System.out.println("i" + i);
+			}
+			System.out.println("images.length:" + images.length + "/n"
+					+ "list:" + list.size());
+		}
+
+		if (list != null && list.size() > 0) {
+			uploadimage_iv.setVisibility(View.GONE);
+		}
+
+		adapter = new GridAdapter(this);
+		if (list != null) {
+			gridImageAdapter = new GridImageAdapter(this);
+			// adapter.update();
+			// adapter.update();
+			uploadimage_gv.setAdapter(gridImageAdapter);
+		}
+		uploadimage_gv.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				Intent intent = new Intent(UploadImageActivity.this,
+						GalleryActivity.class);
+				intent.putExtra("position", "1");
+				intent.putExtra("iamge", "1");
+				intent.putExtra("ID", arg2);
+				startActivityForResult(intent, 102);
+			}
+		});
+
 	}
 
 	private void findView() {
@@ -78,27 +138,15 @@ public class UploadImageActivity extends Activity implements OnClickListener {
 
 		head_rightimage = (ImageView) findViewById(R.id.head_rightimage);
 		head_rightimage.setVisibility(View.VISIBLE);
-		head_rightimage.setImageResource(R.drawable.chat_carmer);
+		head_rightimage.setImageResource(R.drawable.uploadimage);
 		head_rightimage.setOnClickListener(this);
 
 		uploadimage_iv = (ImageView) findViewById(R.id.uploadimage_iv);
-		if (AlbumBimpUtil.tempSelectBitmap.size() > 0) {
-			uploadimage_iv.setVisibility(View.GONE);
-		}
+
 		uploadimage_gv = (GridViewForScrollView) findViewById(R.id.uploadimage_gv);
 
 		// uploadimage_gv.setSelector(new ColorDrawable(Color.TRANSPARENT));
-		adapter = new GridAdapter(this);
-		gridImageAdapter = new GridImageAdapter(this);
-		// adapter.update();
-		// adapter.update();
-		uploadimage_gv.setAdapter(gridImageAdapter);
-		uploadimage_gv.setOnItemClickListener(new OnItemClickListener() {
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				System.out.println("arg2:" + arg2);
-			}
-		});
+
 	}
 
 	@Override
@@ -114,36 +162,41 @@ public class UploadImageActivity extends Activity implements OnClickListener {
 			// intent.putExtra("upimage", "1");
 			// intent.putExtra("ID", 0);
 			// startActivity(intent);
-			new SheetDialog(UploadImageActivity.this)
-					.builder()
-					.setCancelable(true)
-					.setCanceledOnTouchOutside(true)
-					.addSheetItem("拍照", SheetItemColor.Blue,
-							new OnSheetItemClickListener() {
-								@Override
-								public void onClick(int which) {
-									// Intent intent1 = new Intent(
-									// UploadImageActivity.this,
-									// AlbumActivity.class);
-									// intent1.putExtra("position", "1");
-									// intent1.putExtra("upimage", "1");
-									// intent1.putExtra("ID", 0);
-									// startActivityForResult(intent1, 102);
-								}
-							})
-					.addSheetItem("从相册选取照片", SheetItemColor.Blue,
-							new OnSheetItemClickListener() {
-								@Override
-								public void onClick(int which) {
-									Intent intent1 = new Intent(
-											UploadImageActivity.this,
-											AlbumActivity.class);
-									intent1.putExtra("position", "1");
-									intent1.putExtra("upimage", "1");
-									intent1.putExtra("ID", 0);
-									startActivityForResult(intent1, 102);
-								}
-							}).show();
+			if (list.size() < 12) {
+				new SheetDialog(UploadImageActivity.this)
+						.builder()
+						.setCancelable(true)
+						.setCanceledOnTouchOutside(true)
+						.addSheetItem("拍照", SheetItemColor.Blue,
+								new OnSheetItemClickListener() {
+									@Override
+									public void onClick(int which) {
+										Intent intent1 = new Intent(
+												UploadImageActivity.this,
+												UploadPhotoActivity.class);
+										intent1.putExtra("service",
+												"UploadImage");
+										intent1.putExtra("theme", 1);
+										startActivityForResult(intent1, 102);
+									}
+								})
+						.addSheetItem("从相册选取照片", SheetItemColor.Blue,
+								new OnSheetItemClickListener() {
+									@Override
+									public void onClick(int which) {
+										Intent intent1 = new Intent(
+												UploadImageActivity.this,
+												AlbumActivity.class);
+										intent1.putExtra("position", "1");
+										intent1.putExtra("upimage", "1");
+										intent1.putExtra("ID", 0);
+										startActivityForResult(intent1, 102);
+									}
+								}).show();
+			} else {
+				ToastUtil.makeToast(this, R.string.only_choose_num);
+			}
+
 			break;
 		default:
 			break;
@@ -152,11 +205,49 @@ public class UploadImageActivity extends Activity implements OnClickListener {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		System.out.println("UploadImageActivity onActivityResult" + resultCode
+				+ ":" + requestCode);
 		if (resultCode != RESULT_OK) {
 			return;
 		}
 		if (requestCode == 102) {
-			System.out.println("102jiushimouge dongxi");
+			// list = new ArrayList<String>();
+			// if (prefUtil.getUpload() != null
+			// && !prefUtil.getUpload().equals("0")) {
+			// System.out.println("服prefUtil.getUpload："
+			// + prefUtil.getUpload());
+			// images = prefUtil.getUpload().split(";");
+			// for (int i = 0; i < images.length; i++) {
+			// list.add(images[i]);
+			// }
+			// }
+			System.out.println("00000000000000000");
+
+			StringBuffer buffer = new StringBuffer();
+
+			for (int i = 0; i < UploadImageActivity.list.size(); i++) {
+				buffer.append(UploadImageActivity.list.get(i) + ";");
+				System.out.println("服list.size()" + i + "：" + list.get(i));
+			}
+
+			if (buffer.length() > 0) {
+				String upload = buffer.subSequence(0, buffer.length() - 1)
+						.toString();
+				System.out.println("upload:" + upload);
+				prefUtil.setUpload(upload);
+			} else {
+				prefUtil.setUpload("0");
+			}
+
+			if (list != null && list.size() > 0) {
+				uploadimage_iv.setVisibility(View.GONE);
+			}
+			if (list != null) {
+				gridImageAdapter = new GridImageAdapter(this);
+				// adapter.update();
+				// adapter.update();
+				uploadimage_gv.setAdapter(gridImageAdapter);
+			}
 		}
 	}
 
@@ -169,14 +260,12 @@ public class UploadImageActivity extends Activity implements OnClickListener {
 
 		@Override
 		public int getCount() {
-			System.out.println(AlbumBimpUtil.tempSelectBitmap.size()
-					+ "AlbumBimpUtil.tempSelectBitmap.size()");
-			return AlbumBimpUtil.tempSelectBitmap.size();
+			return list.size();
 		}
 
 		@Override
 		public Object getItem(int position) {
-			return AlbumBimpUtil.tempSelectBitmap.get(position);
+			return list.get(position);
 		}
 
 		@Override
@@ -196,8 +285,8 @@ public class UploadImageActivity extends Activity implements OnClickListener {
 				convertView.setTag(holder);
 			}
 			holder = (ViewHolder) convertView.getTag();
-			holder.image.setImageBitmap(AlbumBimpUtil.tempSelectBitmap.get(
-					position).getBitmap());
+			holder.image.setImageBitmap(ImageHelper.getBitmapCompressed(list
+					.get(position)));
 			return convertView;
 		}
 

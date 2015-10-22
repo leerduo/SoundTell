@@ -18,6 +18,9 @@ import android.provider.MediaStore;
 import android.provider.Telephony.Mms.Part;
 
 import com.xh.soundtell.R;
+import com.xh.soundtell.ui.pickphoto.AlbumActivity;
+import com.xh.soundtell.ui.pickphoto.AlbumBimpUtil;
+import com.xh.soundtell.ui.pickphoto.ImageItem;
 import com.xh.soundtell.util.ImageHelper;
 import com.xh.soundtell.util.ToastUtil;
 import com.xh.soundtell.util.UriUtil;
@@ -110,6 +113,8 @@ public class UploadPhotoActivity extends Activity implements
 			// startPhotoZoom(uri);
 			imagePathList.add(lastImageFilePath);
 
+			// sys
+
 			Bitmap bitmap = ImageHelper.getBitmap(lastImageFilePath);
 			if (bitmap.getWidth() < 699) {
 				System.out.println("进入页面是否已经输小了");
@@ -182,6 +187,19 @@ public class UploadPhotoActivity extends Activity implements
 	}
 
 	protected void postHandlePicture() {
+		if (service.equals("UploadImage")) {
+			setResult(RESULT_OK);
+			ImageItem item = new ImageItem();
+			item.setImagePath(imagePathList.get(imagePathList.size() - 1));
+			AlbumBimpUtil.tempSelectBitmap.add(item);
+			Intent intent = new Intent(UploadPhotoActivity.this,
+					ConfirmImageActivity.class);
+			startActivityForResult(intent, 106);
+			setResult(RESULT_OK);
+			this.finish();
+			return;
+		}
+
 		if (!service.equals("service")) {
 			i = 3;
 			setResult(RESULT_OK);

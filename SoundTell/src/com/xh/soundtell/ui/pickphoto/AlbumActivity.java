@@ -24,6 +24,8 @@ import android.widget.ToggleButton;
 
 import com.xh.soundtell.R;
 import com.xh.soundtell.adapter.AlbumGridViewAdapter;
+import com.xh.soundtell.ui.ConfirmImageActivity;
+import com.xh.soundtell.ui.UploadImageActivity;
 import com.xh.soundtell.util.AlbumHelper;
 import com.xh.soundtell.util.ImageBucket;
 
@@ -110,12 +112,16 @@ public class AlbumActivity extends Activity {
 			overridePendingTransition(R.anim.activity_translate_in,
 					R.anim.activity_translate_out);
 			AlbumBimpUtil.finshActivities(AlbumActivity.this);
+			Intent intent = new Intent(AlbumActivity.this,
+					ConfirmImageActivity.class);
+			startActivityForResult(intent, 103);
+			setResult(RESULT_OK);
 			finish();
-		}
 
+		}
 	}
 
-	// 返回按钮监听
+	// 返回按钮监听 去相册
 	private class BackListener implements OnClickListener {
 		public void onClick(View v) {
 			intent.setClass(AlbumActivity.this, ImageFileActivity.class);
@@ -194,16 +200,18 @@ public class AlbumActivity extends Activity {
 					public void onItemClick(final ToggleButton toggleButton,
 							int position, boolean isChecked, Button chooseBt) {
 						// 现在不用超过张数了
-						// if (AlbumBimpUtil.tempSelectBitmap.size() >=
-						// AlbumBimpUtil.num) {
-						// toggleButton.setChecked(false);
-						// chooseBt.setVisibility(View.GONE);
-						// if (!removeOneData(dataList.get(position))) {
-						// Toast.makeText(AlbumActivity.this,
-						// R.string.only_choose_num, 200).show();
-						// }
-						// return;
-						// }
+						if ((UploadImageActivity.list.size() + AlbumBimpUtil.tempSelectBitmap
+								.size()) >= AlbumBimpUtil.num) {
+							toggleButton.setChecked(false);
+							chooseBt.setVisibility(View.GONE);
+							if (!removeOneData(dataList.get(position))) {
+								Toast.makeText(AlbumActivity.this,
+										R.string.only_choose_num, 200).show();
+							}
+							return;
+						}
+						// System.out.println("UploadImageActivity.list.size()"
+						// + UploadImageActivity.list.size());
 						if (isChecked) {
 							++check;
 							chooseBt.setVisibility(View.VISIBLE);

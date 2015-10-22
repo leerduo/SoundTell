@@ -33,6 +33,7 @@
                 android:layout_margin="10dp"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/fj"
+                android:background="@drawable/persion_headbg"
                 app:border_color="@color/white"
                 app:border_width="2dp" />
 
