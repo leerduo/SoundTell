@@ -11,94 +11,82 @@
         android:contentDescription="@string/app_name"
         android:src="@drawable/account_banner" />
 
-    <TextView 
-        android:text="音诉账号登录"
+    <TextView
         android:layout_width="180dp"
         android:layout_height="30dp"
-        android:drawableLeft="@drawable/hh_login_icon"
-        android:textSize="20sp"
-    	 android:layout_gravity="center_horizontal"
-    	 android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
         android:gravity="center"
-        />
-    
-     <ImageView
-        android:layout_width="180dp"
+        android:src="@drawable/loginyinshu"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/loginarray_login"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:layout_height="0.5dp"
-        android:contentDescription="@string/app_name" android:layout_gravity="center_horizontal"
-        android:background="@color/app_split_line" />
-     
-     
-     <TextView 
-        android:text="微信账号登录"
+        android:background="@drawable/loginyinshu"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
         android:layout_width="180dp"
         android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/weixin_login_icon"
-        android:textSize="20sp"
-    	 android:layout_gravity="center_horizontal"
-    	 android:layout_marginTop="10dp"
         android:gravity="center"
-        />
-    
-     <ImageView
+        android:text="微信账号登录"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <ImageView
         android:layout_width="180dp"
-        android:layout_marginTop="10dp"
         android:layout_height="0.5dp"
-        android:contentDescription="@string/app_name" android:layout_gravity="center_horizontal"
-        android:background="@color/app_split_line" />
-    
-     <TextView 
-        android:text="微博账号登录"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@color/app_split_line"
+        android:contentDescription="@string/app_name"
+        android:visibility="gone" />
+
+    <TextView
         android:layout_width="180dp"
         android:layout_height="30dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/sina_login_icon"
-        android:textSize="20sp"
-    	 android:layout_gravity="center_horizontal"
-    	 android:layout_marginTop="10dp"
         android:gravity="center"
-        />
-     
-     <LinearLayout 
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:paddingLeft="30dp"
-         android:paddingRight="30dp"
-         android:orientation="horizontal"
-         
-         >
-         
-            <TextView 
-                android:id="@+id/loginarray_return"
-        android:text="返回"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_weight="1"
-        android:textSize="17sp"
-    	 android:layout_gravity="bottom"
-    	 android:layout_marginBottom="10dp"
-       
-        />
-            
-              <TextView 
-        android:text="注册账号"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
-        android:layout_weight="1"
-        android:textSize="17sp"
-    	 android:layout_gravity="bottom"
-    	 android:gravity="right"
-    	 android:layout_marginBottom="10dp"
-       
-        />
-         
-         
-         
-         
-     </LinearLayout>
-     
-     
-     
-    
-    
+        android:text="微博账号登录"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp" >
+
+        <TextView
+            android:id="@+id/loginarray_return"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:text="返回"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="注册账号"
+            android:textSize="17sp" />
+    </LinearLayout>
+
 </LinearLayout>

@@ -25,14 +25,15 @@
            android:layout_centerInParent="true"
             />
     </RelativeLayout>
-   <ImageView 
-       android:layout_height="wrap_content"
+
+   <ImageView
        android:layout_width="match_parent"
-       android:src="@drawable/demo001"
+       android:layout_height="wrap_content"
        android:layout_marginLeft="10dp"
        android:layout_marginRight="10dp"
        android:scaleType="centerInside"
-       />  
+       android:src="@drawable/demo100" />
+  
      <ListView 
      android:id="@+id/newci_lv"
      android:layout_height="match_parent"
