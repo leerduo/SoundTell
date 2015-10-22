@@ -86,7 +86,7 @@ public class SetActivity extends Activity implements OnClickListener {
 			ToastUtil.makeToast(SetActivity.this, "当前版本是最新版本");
 			break;
 		case R.id.set_cache:
-			ToastUtil.makeToast(SetActivity.this, "清楚缓存成功");
+			ToastUtil.makeToast(SetActivity.this, "清除缓存成功");
 			break;
 		case R.id.set_about:
 			intent = new Intent(SetActivity.this, AboutActivity.class);
