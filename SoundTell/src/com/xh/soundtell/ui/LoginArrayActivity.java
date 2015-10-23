@@ -13,15 +13,15 @@ public class LoginArrayActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_loginarray);
-		findViewById(R.id.loginarray_return).setOnClickListener(
-				new OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						LoginArrayActivity.this.finish();
-
-					};
-				});
+//		findViewById(R.id.loginarray_return).setOnClickListener(
+//				new OnClickListener() {
+//
+//					@Override
+//					public void onClick(View v) {
+//						LoginArrayActivity.this.finish();
+//
+//					};
+//				});
 		findViewById(R.id.loginarray_login).setOnClickListener(
 				new OnClickListener() {
 

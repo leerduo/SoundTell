@@ -46,15 +46,18 @@ public class WorksAdapter extends BaseAdapter {
 			viewHolder = new ViewHolder();
 			viewHolder.list_item_works_name = (TextView) convertView
 					.findViewById(R.id.list_item_works_name);
+			viewHolder.list_item_works_time = (TextView) convertView
+					.findViewById(R.id.list_item_works_time);
 			convertView.setTag(viewHolder);
 		}
 		viewHolder = (ViewHolder) convertView.getTag();
 		MusicInfomation mi = (MusicInfomation) getItem(position);
 		viewHolder.list_item_works_name.setText(mi.getMusicName());
+		viewHolder.list_item_works_time.setText(mi.getMusicAlbum());
 		return convertView;
 	}
 
 	class ViewHolder {
-		private TextView list_item_works_name;
+		private TextView list_item_works_name, list_item_works_time;
 	}
 }

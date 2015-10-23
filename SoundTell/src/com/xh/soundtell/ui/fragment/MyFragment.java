@@ -2,10 +2,13 @@ package com.xh.soundtell.ui.fragment;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -40,6 +43,7 @@ import com.xh.soundtell.ui.TestActivity;
 import com.xh.soundtell.ui.UserInfoActivity;
 import com.xh.soundtell.util.ImageHelper;
 import com.xh.soundtell.util.PrefUtil;
+import com.xh.soundtell.util.ToastUtil;
 
 public class MyFragment extends Fragment implements OnClickListener,
 		IXListViewListener {
@@ -69,6 +73,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 	private List<MusicInfomation> mis;
 	private MusicInfomation mi;
 	private boolean isLongClick;
+	private String date;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -171,31 +176,31 @@ public class MyFragment extends Fragment implements OnClickListener,
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				if(!isLongClick){
-				System.out.println("position" + position + "<br/>"
-						+ "mis.size()" + mis.size());
-				if (position <= mis.size()) {
-					System.out.println("position" + position);
-					MusicInfomation musicInfomation = (MusicInfomation) parent
-							.getAdapter().getItem(position);
-					Intent intent = new Intent(activity,
-							PlayMusicActivity.class);
-					intent.putExtra("musicInfomation", musicInfomation);
-					startActivity(intent);
+				if (!isLongClick) {
+					System.out.println("position" + position + "<br/>"
+							+ "mis.size()" + mis.size());
+					if (position <= mis.size()) {
+						System.out.println("position" + position);
+						MusicInfomation musicInfomation = (MusicInfomation) parent
+								.getAdapter().getItem(position);
+						Intent intent = new Intent(activity,
+								PlayMusicActivity.class);
+						intent.putExtra("musicInfomation", musicInfomation);
+						startActivity(intent);
+					} else {
+						onLoadMore();
+					}
 				} else {
-					onLoadMore();
+					isLongClick = false;
 				}
-			}else{
-				isLongClick=false;
 			}
-				}
 		});
 
 		xListView.setOnItemLongClickListener(new OnItemLongClickListener() {
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				 isLongClick=true;
+				isLongClick = true;
 				if (position <= mis.size()) {
 					System.out.println("position" + position);
 					MusicInfomation musicInfomation = (MusicInfomation) parent
@@ -228,10 +233,10 @@ public class MyFragment extends Fragment implements OnClickListener,
 
 	@Override
 	public void onResume() {
-		isLongClick=false;
+		isLongClick = false;
 		super.onResume();
 	}
-	
+
 	private void getItem() {
 
 	}
@@ -406,12 +411,12 @@ public class MyFragment extends Fragment implements OnClickListener,
 				Environment.MEDIA_MOUNTED)) {
 			File path = Environment.getExternalStorageDirectory();// 获得SD卡路径
 			File Stringpath = new File(path, "/音诉音乐");
-			System.out.println();
 			File[] files = Stringpath.listFiles();// 读取
 			getFileName(files);
 		}
 	}
 
+	@SuppressLint("SimpleDateFormat")
 	private void getFileName(File[] files) {
 		if (files != null) {// 先判断目录是否为空，否则会报空指针
 			for (File file : files) {
@@ -432,6 +437,20 @@ public class MyFragment extends Fragment implements OnClickListener,
 						MusicInfomation infomation = new MusicInfomation();
 						infomation.setMusicName(s);
 						infomation.setMusicPath(file.getAbsolutePath());
+
+						try {
+							String time = (String) s.subSequence(
+									s.length() - 13, s.length());
+							SimpleDateFormat sdf = new SimpleDateFormat(
+									"yyyy-MM-dd");
+							date = sdf.format(new Date(Long.valueOf(time)));
+
+						} catch (Exception e) {
+							ToastUtil.makeToast(activity, "文件夹内有非法文件");
+						}
+						infomation.setMusicAlbum(date);
+						System.out.println("date:" + date + "n/" + "s" + s);
+
 						mis.add(infomation);
 					}
 				}
@@ -443,6 +462,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 	 * 显示MP3信息,其中_ids保存了所有音乐文件的_ID，用来确定到底要播放哪一首歌曲，_titles存放音乐名，用来显示在播放界面，
 	 * 而_path存放音乐文件的路径（删除文件时会用到）。
 	 */
+	@SuppressLint("SimpleDateFormat")
 	private void ShowMp3List() {
 		mis = new ArrayList<MusicInfomation>();
 		// 用游标查找媒体详细信息
@@ -481,9 +501,21 @@ public class MyFragment extends Fragment implements OnClickListener,
 				// 过滤mp3文件
 				if (cursor.getString(5).endsWith(".wav")) {
 					mi = new MusicInfomation();
+					String name = cursor.getString(0);
+					try {
+						String time = (String) name.subSequence(
+								name.length() - 13, name.length());
+						SimpleDateFormat sdf = new SimpleDateFormat(
+								"yyyy-MM-dd");
+						date = sdf.format(new Date(Long.valueOf(time)));
+
+					} catch (Exception e) {
+						ToastUtil.makeToast(activity, "文件夹内有非法文件");
+					}
+					System.out.println("date:" + date + "n/" + "name" + name);
 					mi.setMusicName(cursor.getString(0));// 歌曲名称
 					mi.setMusicTime(cursor.getInt(1));// 歌曲时间长度
-					mi.setMusicAlbum(cursor.getString(2));// 专辑
+					mi.setMusicAlbum(date);// 专辑
 					mi.setMusicSinger(cursor.getString(3));// 歌手
 					mi.setMusicSize(cursor.getInt(4));// 大小
 					mi.setMusicPath(cursor.getString(5));// 路径

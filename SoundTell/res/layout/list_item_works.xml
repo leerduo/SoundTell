@@ -65,6 +65,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/list_item_works_time"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="right|center_vertical"
