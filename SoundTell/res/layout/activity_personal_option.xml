@@ -20,7 +20,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="因你而在"
+                    android:text="音诉音乐"
                     android:textColor="#ff0000"
                     android:textSize="16sp" />
 
@@ -91,7 +91,8 @@
     </LinearLayout> 
  </ScrollView>
      <ImageView 
+          android:id="@+id/personaloption_style_geci"
             android:layout_height="wrap_content"
             android:src="@drawable/demo13"
-            android:layout_width="match_parent"            />
+            android:layout_width="match_parent"  />
 </LinearLayout>

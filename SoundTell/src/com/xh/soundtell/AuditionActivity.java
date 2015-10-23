@@ -24,6 +24,12 @@ public class AuditionActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_audition);
 		
+		
+		
+		TextView textView1=(TextView) findViewById(R.id.audition_name1);
+		TextView textView2=(TextView) findViewById(R.id.audition_name2);
+		
+		
 		tvAudition1=(TextView) findViewById(R.id.audition_1);
 		tvAudition2=(TextView) findViewById(R.id.audition_2);
 		tvUse1=(TextView) findViewById(R.id.audition_use1);
@@ -33,21 +39,28 @@ public class AuditionActivity extends Activity implements OnClickListener{
 		tvUse1.setOnClickListener(this);
 		tvUse2.setOnClickListener(this);
 		findViewById(R.id.audition_back).setOnClickListener(this);
+		
+		if(getIntent().getIntExtra("style", -1)==1){
+			tvAudition1.setVisibility(View.GONE);	
+			tvAudition2.setVisibility(View.GONE);	
+			textView1.setText("沉默不语 ");
+			textView2.setText("why you");
+			
+			
+			
+		}
 	}
-
-	
 	String bgColor1="#EAE8E8";
 	String tvColor1="#898989";
 	
 	String bgColor2="#A4E6FE";
 	String tvColor2="#5499B2";
 	 boolean isPlay1,isPlay2;
-	
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.audition_back:
-			onBackPressed();
+			finish();
 			break;
 		case R.id.audition_1:
 			if(isPlay2){
@@ -80,6 +93,7 @@ public class AuditionActivity extends Activity implements OnClickListener{
 			}
 			break;
 		case R.id.audition_2:
+			
 			if(isPlay1){
 				isPlay2=true;
 				
@@ -108,6 +122,9 @@ public class AuditionActivity extends Activity implements OnClickListener{
 				tvAudition2.setText("取消试听");
 			    MusicHelper.startMusic(this, R.raw.exist_for_you_song, false);
 			}
+			
+			
+			
 			
 			break;
 		case R.id.audition_use1:

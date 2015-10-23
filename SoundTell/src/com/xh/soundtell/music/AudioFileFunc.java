@@ -52,11 +52,11 @@ public class AudioFileFunc {
         if(isSdcardExit()){
         	
             String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath();
-            File file=new File(fileBasePath+"/音诉音乐/");
+            File file=new File(fileBasePath+"/音诉音乐Cache/");
             if(!file.exists()){
-            	file.mkdir();
+            	file.mkdirs();
             }
-            mAudioWavPath = fileBasePath+"/音诉音乐/"+musicFileName+AUDIO_WAV_FILENAME;//.wav
+            mAudioWavPath = fileBasePath+"/音诉音乐Cache/"+musicFileName+AUDIO_WAV_FILENAME;//.wav
         }
         return mAudioWavPath;
     }

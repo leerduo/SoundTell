@@ -20,7 +20,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="主题选择"
+                    android:text="音诉音乐"
                     android:textColor="#ff0000"
                     android:textSize="16sp" />
             </RelativeLayout>
@@ -33,6 +33,7 @@
     android:layout_marginLeft="20dp"
     android:background="#F5F5F6" > 
     <TextView
+        android:id="@+id/audition_name1"
         android:layout_height="match_parent"
         android:layout_width="0dp"
         android:text="因你而在-2-120-C（正常音质）"
@@ -82,6 +83,7 @@
     android:layout_marginTop="5dp"
     android:background="#F5F5F6" > 
     <TextView
+          android:id="@+id/audition_name2"
         android:layout_height="match_parent"
         android:layout_width="0dp"
         android:text="因你而在-1-150-g（普通音质）"

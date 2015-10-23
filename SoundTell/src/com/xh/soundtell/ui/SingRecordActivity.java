@@ -1,6 +1,9 @@
 package com.xh.soundtell.ui;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import com.xh.soundtell.R;
@@ -20,6 +23,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -88,6 +92,7 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sing_record);
+		deleteAllFiles(new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/音诉音乐Cache/"));
 		musicRecordModels=new ArrayList<MusicRecordModel>();
 		initMusicModel();
 		musicRecordModels.add(model1);
@@ -199,6 +204,11 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 		case R.id.singrecord_choose:
 			 if (View.GONE==tvChoose.getVisibility()) {
 				 getRecordPopwindow();
+				 isPlaying=false;
+	              ivPrepare.setImageResource(R.drawable.record_save_ib);
+	              handler.sendEmptyMessageDelayed(1, 0);
+	              MusicHelper.stopMusic();
+	              stop();
 			}else{
 				Intent intent=new Intent(this,PersonalOptionActivity.class);
 				startActivity(intent);
@@ -206,12 +216,14 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.popupalter_cancel:
 			showDisRecordPopwindow();
+			delRecordSong();
+			finish();
 			break;
 		case R.id.popupalter_again:
 			showDisRecordPopwindow();
 //			MusicHelper.startMusic(this,musicRecordModels.get(position).getMusicId(), false);
 //	        record(FLAG_WAV);
-	        
+			 delRecordSong();
 	         isPlaying=true;
 			 ivPrepare.setImageResource(R.drawable.record_done_ib);
 			 MusicHelper.startMusic(this,musicRecordModels.get(quPosition).getMusicId(),false);
@@ -219,16 +231,17 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	         handler.sendEmptyMessageDelayed(0, 1000);
 			break;
 		case R.id.popupalter_getup:
+			delRecordSong();
 			showDisRecordPopwindow();
-			onBackPressed();
 			break;
 		case R.id.popupalter_ok:
-			showDisRecordPopwindow();
-    	    isPlaying=false;
-            ivPlay.setImageResource(R.drawable.record_play);
-        	handler.sendEmptyMessageDelayed(1, 0);
-            MusicHelper.stopMusic();
-            stop();
+			 showDisRecordPopwindow();
+			 String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/音诉音乐/";
+			 String fileBasePath1 = Environment.getExternalStorageDirectory().getAbsolutePath()+"/音诉音乐Cache/";
+			 String newRecordNamePath=fileBasePath+recordName+".wav";
+			 String oldRecordNamePath=fileBasePath1+recordName+".wav";
+			 
+			copyFile(oldRecordNamePath, newRecordNamePath);
             bar.setMax(210);//初始值在10上面 才能显示拖动的图标
     	    bar.setProgress(10);
     	    tvTimeShow.setText("00:00");
@@ -241,6 +254,8 @@ public class SingRecordActivity extends Activity implements OnClickListener{
      * 开始录音
      * @param mFlag，0：录制wav格式，1：录音amr格式
      */
+	
+	private String recordName;
     private void record(int mFlag){
         if(mState != -1){
             Message msg = new Message();
@@ -248,14 +263,14 @@ public class SingRecordActivity extends Activity implements OnClickListener{
             b.putInt("cmd",CMD_RECORDFAIL);
             b.putInt("msg", ErrorCode.E_STATE_RECODING);
             msg.setData(b); 
- 
             return;
         } 
         int mResult = -1;
         switch(mFlag){        
         case FLAG_WAV:
             AudioRecordFunc mRecord_1 = AudioRecordFunc.getInstance();
-            mResult = mRecord_1.startRecordAndFile("录制-"+musicRecordModels.get(quPosition).getMusicTitle()+System.currentTimeMillis()); 
+            recordName="录制-"+musicRecordModels.get(quPosition).getMusicTitle()+System.currentTimeMillis();
+            mResult = mRecord_1.startRecordAndFile(recordName); 
             break;
         }
         if(mResult == ErrorCode.SUCCESS){
@@ -294,10 +309,25 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 		if(isPlaying){
 			  MusicHelper.stopMusic();
 	          stop();
-	          String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath()+"";
-	          deleteAllFiles(new File(fileBasePath+"录制-"+musicRecordModels.get(quPosition).getMusicTitle()+".wav"));
+	          if(!TextUtils.isEmpty(recordName)){
+	        	  new Handler().postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						deleteAllFiles(new File( Environment.getExternalStorageDirectory().getAbsolutePath()+"/音诉音乐Cache/"+recordName+".wav"));
+					}
+				}, 1000);
+	          if(TextUtils.isEmpty(recordName)){recordName=null;}  
+	          }
 		}
 		super.onDestroy();
+	}
+	
+	
+	private void delRecordSong(){
+		 if(!TextUtils.isEmpty(recordName)){
+         	deleteAllFiles(new File( Environment.getExternalStorageDirectory().getAbsolutePath()+"/音诉音乐Cache/"+recordName+".wav"));
+         	recordName=null;
+		 }
 	}
 	private void deleteAllFiles(File root) {
 		File files[] = root.listFiles();
@@ -478,5 +508,36 @@ private String[] strBgMusicsStrs;
 		model3=new MusicRecordModel(R.raw.w_nightdj, "午夜DJ", "", "王绎龙", getString(R.string.w_nightdj), "摇滚-2-84-G(正常品质)");
 	}
 	
-	
+	/** 
+	* 复制单个文件 
+	* @param oldPath String 原文件路径 如：c:/fqf.txt 
+	* @param newPath String 复制后路径 如：f:/fqf.txt 
+	* @return boolean 
+	*/ 
+	public void copyFile(String oldPath, String newPath) { 
+	try { 
+	int bytesum = 0; 
+	int byteread = 0; 
+	File oldfile = new File(oldPath); 
+	File newfile = new File(newPath); 
+	if (oldfile.exists()) { //文件存在时 
+	InputStream inStream = new FileInputStream(oldPath); //读入原文件 
+	FileOutputStream fs = new FileOutputStream(newPath); 
+	byte[] buffer = new byte[1444]; 
+	int length; 
+	while ( (byteread = inStream.read(buffer)) != -1) { 
+	bytesum += byteread; //字节数 文件大小 
+	System.out.println(bytesum); 
+	fs.write(buffer, 0, byteread); 
+	} 
+	inStream.close(); 
+	} 
+	} 
+	catch (Exception e) { 
+	Toast.makeText(this, "保存录音文件出错", 0).show();
+	e.printStackTrace(); 
+
+	} 
+
+	} 
 	}

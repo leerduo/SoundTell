@@ -30,6 +30,7 @@ public class PersonalOptionActivity extends Activity implements OnClickListener{
       scrollView = (ScrollView) findViewById(R.id.personaloption_sv);
 	  findViewById(R.id.peraloption_back).setOnClickListener(this);
 	  findViewById(R.id.personaloption_zhuti).setOnClickListener(this);
+	  findViewById(R.id.personaloption_style_geci).setOnClickListener(this);
 	  findViewById(R.id.personaloption_search).setOnClickListener(this);
 	}
 	private boolean isBuZou;
@@ -44,10 +45,14 @@ public class PersonalOptionActivity extends Activity implements OnClickListener{
 		case R.id.personaloption_search:
 			intent=new Intent(this,SongStyleSearch.class);
 			break;
-		case R.id.personaloption_zhuti:
+		case R.id.personaloption_zhuti: 
           intent=new Intent(this,AuditionActivity.class);
-		startActivity(intent);	
+          intent.putExtra("style", 0);
          break;
+		case R.id.personaloption_style_geci:
+			intent=new Intent(this,AuditionActivity.class);
+			intent.putExtra("style", 1);
+			break;
 		case R.id.personaloption_banzou:
 			if(!isBuZou){
 				isBuZou=true;
