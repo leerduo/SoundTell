@@ -107,7 +107,6 @@ public class ActivityFragment extends Fragment {
 			}
 		});
 	}
-
 	public void getItem() {
 		FActivity fActivity2 = new FActivity("2", R.drawable.activity_2,
 				"两小无猜", "正在进行");
