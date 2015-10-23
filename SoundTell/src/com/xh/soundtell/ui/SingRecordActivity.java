@@ -255,8 +255,7 @@ public class SingRecordActivity extends Activity implements OnClickListener{
         switch(mFlag){        
         case FLAG_WAV:
             AudioRecordFunc mRecord_1 = AudioRecordFunc.getInstance();
-            mResult = mRecord_1.startRecordAndFile("录制-"+musicRecordModels.get(quPosition).getMusicTitle()); 
-            		           
+            mResult = mRecord_1.startRecordAndFile("录制-"+musicRecordModels.get(quPosition).getMusicTitle()+System.currentTimeMillis()); 
             break;
         }
         if(mResult == ErrorCode.SUCCESS){
