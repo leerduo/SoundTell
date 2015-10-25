@@ -68,7 +68,7 @@ public class SetActivity extends Activity implements OnClickListener {
 		Intent intent = null;
 		switch (v.getId()) {
 		case R.id.head_leftimage:
-			SetActivity.this.finish();
+			onBackPressed();
 			break;
 		case R.id.set_data:
 			intent = new Intent(SetActivity.this, UserInfoActivity.class);
@@ -101,5 +101,11 @@ public class SetActivity extends Activity implements OnClickListener {
 		if (intent != null) {
 			startActivity(intent);
 		}
+	}
+	
+	@Override
+	public void onBackPressed() {
+		setResult(RESULT_OK);
+		super.onBackPressed();
 	}
 }
