@@ -24,7 +24,10 @@
         </activity>
         <activity
             android:name=".ui.MainActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait" 
+            android:launchMode="singleTask"
+            
+            >
         </activity>
         <activity
             android:name=".ui.UserInfoActivity"
@@ -177,12 +180,16 @@
             android:label="@string/title_activity_songer_main" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.ConfirmImageActivity"
+            android:name=".ui.ConfirmImageActivity"
             android:label="@string/title_activity_songer_main" >
         </activity>
         <activity
-            android:name="com.xh.soundtell.ui.LoginActivity"
+            android:name=".ui.LoginActivity"
             android:label="@string/title_activity_songer_main" >
+        </activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:label="@string/title_activity_register" >
         </activity>
     </application>
     <!-- 网络权限 -->

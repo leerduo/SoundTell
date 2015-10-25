@@ -1,0 +1,90 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+android:background="#fff"    
+ android:orientation="vertical"
+>
+
+    <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp" >
+
+                <ImageView
+                    android:id="@+id/register_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/back_black" />
+
+                <TextView
+                    android:id="@+id/singrecord_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="手机号注册"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+            </RelativeLayout>
+<EditText 
+    android:id="@+id/register_phone"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="30dp"
+    android:layout_marginTop="30dp"
+    android:layout_marginRight="30dp"
+    android:hint="输入手机号"
+    android:phoneNumber="true"
+    android:textSize="16sp"
+    android:textColor="#000000"
+    />
+<EditText 
+    android:id="@+id/register_name"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="30dp"
+    android:layout_marginTop="30dp"
+    android:layout_marginRight="30dp"
+    android:hint="昵称"
+    android:textSize="16sp"
+    android:textColor="#000000"
+    />
+<EditText 
+    android:id="@+id/register_pwd"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="30dp"
+    android:layout_marginTop="30dp"
+    android:layout_marginRight="30dp"
+    android:hint="密码"
+    android:password="true"
+    android:textSize="16sp"
+    android:textColor="#000000"
+    />
+<EditText 
+    android:id="@+id/register_pwdagain"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="30dp"
+    android:layout_marginTop="30dp"
+    android:layout_marginRight="30dp"
+    android:hint="确认密码"
+    android:password="true"
+    android:textSize="16sp"
+    android:textColor="#000000"
+    />
+<TextView 
+    android:id="@+id/register_suc"
+    android:layout_height="40dp"
+    android:layout_width="match_parent"
+    android:layout_marginLeft="30dp"
+    android:layout_marginTop="40dp"
+    android:layout_marginRight="30dp"
+    android:text="完成注册"
+    android:textSize="16sp"
+    android:gravity="center"
+    android:background="#D43C33"
+    android:textColor="#ffffff"
+    />
+</LinearLayout>
