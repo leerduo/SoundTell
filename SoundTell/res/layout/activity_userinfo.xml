@@ -25,7 +25,7 @@
                 android:layout_height="70dp"
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/fj" />
+                android:src="@drawable/ic_launcher" />
 
             <TextView
                 android:id="@+id/userinfo_logo_tv"
@@ -51,7 +51,7 @@
                 android:id="@+id/userinfo_name"
                 style="@style/my_black"
                 android:layout_alignParentRight="true"
-                android:text="天空一片蓝" />
+                android:text="音诉" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -102,7 +102,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/userinfo_collect_title"
-                android:text="兰兰的天空、我的家、我的家我的家兰兰的天空、我的家、我的家我的家兰兰的天空、我的家、我的家我的家兰兰的天空、我的家、我的家我的家" />
+                android:text="音诉" />
         </RelativeLayout>
     </LinearLayout>
 

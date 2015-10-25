@@ -16,8 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ll" />
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher" />
 
         <RelativeLayout
             android:id="@+id/my_r"
@@ -32,8 +32,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_margin="10dp"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/fj"
-                android:background="@drawable/persion_headbg"
+                android:src="@drawable/ic_launcher"
                 app:border_color="@color/white"
                 app:border_width="2dp" />
 
@@ -52,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/my_userlogo"
                 android:gravity="center_horizontal"
-                android:text="天空一片蓝"
+                android:text="音诉"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -65,7 +64,7 @@
                 android:gravity="center_horizontal"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="兰兰的天空、我的家、我的家我的家兰兰的天空、我的家、我的家我的家兰兰的天空、我的家、我的家我的家兰兰的天空、我的家、我的家我的家"
+                android:text="音诉"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
         </RelativeLayout>
