@@ -100,7 +100,6 @@ public class HotFragment extends Fragment implements OnClickListener {
 				container.removeView((View) object);
 				object = null;
 			}
-
 			/**
 			 * 获得相应位置上的view container view的容器，其实就是viewpager自身 position 相应的位置
 			 */
@@ -143,11 +142,16 @@ public class HotFragment extends Fragment implements OnClickListener {
 			}
 		});
 
+		view.findViewById(R.id.fraghot_hot11).setOnClickListener(this);
 		view.findViewById(R.id.fraghot_hot1).setOnClickListener(this);
+		view.findViewById(R.id.fraghot_hot22).setOnClickListener(this);
 		view.findViewById(R.id.fraghot_hot2).setOnClickListener(this);
+		view.findViewById(R.id.fraghot_hot33).setOnClickListener(this);
 		view.findViewById(R.id.fraghot_hot3).setOnClickListener(this);
 		view.findViewById(R.id.fraghot_hotmore).setOnClickListener(this);
+		view.findViewById(R.id.fraghot_hotmore_new).setOnClickListener(this);
 		view.findViewById(R.id.fraghot_newci).setOnClickListener(this);
+		view.findViewById(R.id.fraghot_newhot).setOnClickListener(this);
 		view.findViewById(R.id.fraghot_teacher).setOnClickListener(this);
 		view.findViewById(R.id.fraghot_renqi).setOnClickListener(this);
 	}
@@ -156,6 +160,7 @@ public class HotFragment extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		Intent intent = null;
 		switch (v.getId()) {
+		case R.id.fraghot_hot11:// 热歌
 		case R.id.fraghot_hot1:// 热歌
 			intent = new Intent(act, PlayMusicActivity.class);
 			intent.putExtra("hotfragment", "hotfragment");
@@ -163,6 +168,7 @@ public class HotFragment extends Fragment implements OnClickListener {
             intent.putExtra("songName", "因你而在");
             intent.putExtra("songBody", getResources().getString(R.string.exist_for_you));
             break;
+		case R.id.fraghot_hot22:// 热歌
 		case R.id.fraghot_hot2:// 热歌
 			intent = new Intent(act, PlayMusicActivity.class);
 			intent.putExtra("hotfragment", "hotfragment");
@@ -171,6 +177,7 @@ public class HotFragment extends Fragment implements OnClickListener {
 	            intent.putExtra("songBody", getResources().getString(R.string.li_byebye));
 	            break;
 			
+		case R.id.fraghot_hot33:// 热歌
 		case R.id.fraghot_hot3:// 热歌
 			intent = new Intent(act, PlayMusicActivity.class);
 			intent.putExtra("hotfragment", "hotfragment");
@@ -179,9 +186,11 @@ public class HotFragment extends Fragment implements OnClickListener {
 	            intent.putExtra("songBody", getResources().getString(R.string.w_nightdj));
 			break;
 		case R.id.fraghot_hotmore:// 更多
+		case R.id.fraghot_hotmore_new:// 更多
 			intent = new Intent(act, HotActivity.class);
 			break;
 		case R.id.fraghot_newci:// 新词
+		case R.id.fraghot_newhot:// 新词
 			intent = new Intent(act, NewCiActivity.class);
 			break;
 		case R.id.fraghot_teacher:// 导师
