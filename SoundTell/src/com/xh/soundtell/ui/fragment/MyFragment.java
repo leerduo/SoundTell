@@ -235,6 +235,17 @@ public class MyFragment extends Fragment implements OnClickListener,
 	@Override
 	public void onResume() {
 		isLongClick = false;
+		WavList();
+
+		xListView = (XListView) parent.findViewById(R.id.xListView);
+		xListView.setPullRefreshEnable(true);
+		if (mis != null) {
+			System.out.println("111111111111111111");
+			worksAdapter = new WorksAdapter(activity, mis);
+			xListView.setAdapter(worksAdapter);
+		}
+		xListView.setXListViewListener(this);
+
 		super.onResume();
 	}
 
@@ -451,7 +462,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 		if (Environment.getExternalStorageState().equals(
 				Environment.MEDIA_MOUNTED)) {
 			File path = Environment.getExternalStorageDirectory();// 获得SD卡路径
-			File Stringpath = new File(path, "/音诉音乐");
+			File Stringpath = new File(path, "/音诉音乐Cache");
 			File[] files = Stringpath.listFiles();// 读取
 			getFileName(files);
 		}

@@ -113,7 +113,12 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			break;
 		case R.id.iv1:
 			// show popupwindow
-			getPopwindow();
+			if (SettingHelper.getInstance().getUserInfo() == null) {
+				startActivity(new Intent(MainActivity.this,
+						LoginArrayActivity.class));
+			} else {
+				getPopwindow();
+			}
 			break;
 
 		/******* popupWindow ******/
