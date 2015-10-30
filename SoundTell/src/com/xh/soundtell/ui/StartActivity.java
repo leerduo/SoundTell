@@ -26,6 +26,7 @@ import android.view.animation.Animation.AnimationListener;
 import com.xh.soundtell.R;
 import com.xh.soundtell.setting.SettingHelper;
 import com.xh.soundtell.util.PrefUtil;
+import com.xh.soundtell.util.UserData;
 
 /**
  * 文件名称：StartActivity.java
@@ -33,11 +34,13 @@ import com.xh.soundtell.util.PrefUtil;
 public class StartActivity extends Activity implements AnimationListener {
 	private PrefUtil prefUtil;
 	private String first;
+	private UserData mUserData;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
+		mUserData = new UserData(this);
 		SettingHelper.getInstance().setCurrentActivity(this);
 		SettingHelper.getInstance().setApplicationContext(this);
 		prefUtil = PrefUtil.getInstance();

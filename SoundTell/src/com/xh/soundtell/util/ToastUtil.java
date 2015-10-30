@@ -24,10 +24,11 @@ public class ToastUtil {
 			android.widget.Toast.makeText(context, rid,
 					android.widget.Toast.LENGTH_SHORT).show();
 		}
-	}	public static void makeToast(Context context, int rid,int time) {
+	}
+
+	public static void makeToast(Context context, int rid, int time) {
 		if (context != null) {
-			android.widget.Toast.makeText(context, rid,
-					time).show();
+			android.widget.Toast.makeText(context, rid, time).show();
 		}
 	}
 }

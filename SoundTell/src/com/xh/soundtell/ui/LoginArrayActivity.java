@@ -22,6 +22,10 @@ public class LoginArrayActivity extends Activity implements OnClickListener {
 						startActivity(new Intent(LoginArrayActivity.this,
 								LoginActivity.class));
 						LoginArrayActivity.this.finish();
+//						Intent intent = new Intent(LoginArrayActivity.this,
+//								RegisterActivity.class);
+//						startActivityForResult(intent, 103);
+
 					};
 				});
 		findViewById(R.id.login_back).setOnClickListener(this);
@@ -35,9 +39,23 @@ public class LoginArrayActivity extends Activity implements OnClickListener {
 			onBackPressed();
 			break;
 		case R.id.login_register:
-			Intent intent = new Intent(this, RegisterActivity.class);
-			startActivity(intent);
+			Intent intent = new Intent(LoginArrayActivity.this,
+					RegisterActivity.class);
+			startActivityForResult(intent, 103);
+			finish();
 			break;
 		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode != 103) {
+			return;
+		}
+		if (resultCode == RESULT_OK) {
+			finish();
+		}
+
 	}
 }

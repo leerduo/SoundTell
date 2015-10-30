@@ -1,6 +1,7 @@
 package com.xh.soundtell.ui;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,6 +25,7 @@ import com.xh.soundtell.ui.fragment.FriendsFragment;
 import com.xh.soundtell.ui.fragment.HotFragment;
 import com.xh.soundtell.ui.fragment.MyFragment;
 import com.xh.soundtell.util.DensityUtil;
+import com.xh.soundtell.util.UserData;
 
 public class MainActivity extends FragmentActivity implements OnClickListener {
 
@@ -37,11 +39,17 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	private Handler mHandler = new Handler();
 	private boolean isExit;
 
+	private UserData mUserData;
+	private Cursor mCursor;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		findView();
+
+		mUserData = new UserData(this);
+		mCursor = mUserData.select();
 	}
 
 	private void findView() {
@@ -57,7 +65,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		tv4.setOnClickListener(this);
 		iv1.setOnClickListener(this);
 
-		tv1.performClick();
+		tv2.performClick();
 	}
 
 	@Override
@@ -70,10 +78,15 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		FragmentTransaction ft = fm.beginTransaction();
 		switch (v.getId()) {
 		case R.id.tv1:
-			MyFragment myFragment = new MyFragment();
-			ft.replace(R.id.frame_layout, myFragment);
-			ft.commit();
-			setButton(v);
+			if (SettingHelper.getInstance().getUserInfo() == null) {
+				startActivity(new Intent(MainActivity.this,
+						LoginArrayActivity.class));
+			} else {
+				MyFragment myFragment = new MyFragment();
+				ft.replace(R.id.frame_layout, myFragment);
+				ft.commit();
+				setButton(v);
+			}
 			break;
 		case R.id.tv2:
 			HotFragment hotFragment = new HotFragment();
@@ -88,10 +101,15 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 			setButton(v);
 			break;
 		case R.id.tv4:
-			FriendsFragment friendsFragment = new FriendsFragment();
-			ft.replace(R.id.frame_layout, friendsFragment);
-			ft.commit();
-			setButton(v);
+			if (SettingHelper.getInstance().getUserInfo() == null) {
+				startActivity(new Intent(MainActivity.this,
+						LoginArrayActivity.class));
+			} else {
+				FriendsFragment friendsFragment = new FriendsFragment();
+				ft.replace(R.id.frame_layout, friendsFragment);
+				ft.commit();
+				setButton(v);
+			}
 			break;
 		case R.id.iv1:
 			// show popupwindow

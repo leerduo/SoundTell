@@ -30,6 +30,7 @@ public class UserData extends SQLiteOpenHelper {
 	private final static String TABLE_NAME = "user_table";
 	public final static String USER_ID = "user_id";
 	public final static String USER_NAME = "user_name";
+	public final static String USER_NICKNAME = "user_nickname";
 	public final static String USER_PASSWORD = "user_password";
 
 	public UserData(Context context) {
@@ -42,7 +43,8 @@ public class UserData extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		String sql = "CREATE TABLE " + TABLE_NAME + " (" + USER_ID
 				+ " INTEGER primary key autoincrement, " + USER_NAME
-				+ " text, " + USER_PASSWORD + " text);";
+				+ " text, " + USER_NICKNAME + " text, " + USER_PASSWORD
+				+ " text);";
 		db.execSQL(sql);
 	}
 
@@ -61,12 +63,13 @@ public class UserData extends SQLiteOpenHelper {
 	}
 
 	// 增加操作
-	public long insert(String USERname, String author) {
+	public long insert(String name, String nickname, String password) {
 		SQLiteDatabase db = this.getWritableDatabase();
 		/* ContentValues */
 		ContentValues cv = new ContentValues();
-		cv.put(USER_NAME, USERname);
-		cv.put(USER_PASSWORD, author);
+		cv.put(USER_NAME, name);
+		cv.put(USER_NICKNAME, nickname);
+		cv.put(USER_PASSWORD, password);
 		long row = db.insert(TABLE_NAME, null, cv);
 		return row;
 	}

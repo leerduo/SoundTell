@@ -81,7 +81,7 @@ public class DataActivity extends Activity implements OnItemClickListener {
 		if (bookname.equals("") || author.equals("")) {
 			return;
 		}
-		mBooksDB.insert(bookname, author);
+		mBooksDB.insert(bookname, "123", author);
 		mCursor.requery();
 		BooksList.invalidateViews();
 		BookName.setText("");

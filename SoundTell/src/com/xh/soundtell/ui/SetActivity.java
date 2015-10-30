@@ -1,6 +1,7 @@
 package com.xh.soundtell.ui;
 
 import com.xh.soundtell.R;
+import com.xh.soundtell.setting.SettingHelper;
 import com.xh.soundtell.util.ToastUtil;
 
 import android.app.Activity;
@@ -92,7 +93,11 @@ public class SetActivity extends Activity implements OnClickListener {
 			intent = new Intent(SetActivity.this, AboutActivity.class);
 			break;
 		case R.id.set_exit:
-			intent = new Intent(SetActivity.this, LoginArrayActivity.class);
+			// intent = new Intent(SetActivity.this, LoginArrayActivity.class);
+			SettingHelper.getInstance().setUserInfo(null);
+//			startActivity(new Intent(SetActivity.this, MainActivity.class));
+			setResult(RESULT_CANCELED);
+			finish();
 			break;
 
 		default:
@@ -102,7 +107,7 @@ public class SetActivity extends Activity implements OnClickListener {
 			startActivity(intent);
 		}
 	}
-	
+
 	@Override
 	public void onBackPressed() {
 		setResult(RESULT_OK);

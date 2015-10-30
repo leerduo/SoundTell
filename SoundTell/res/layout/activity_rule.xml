@@ -57,7 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="打开手机“哼哼APP”，登录活动页面，点击”马上参加 “按钮 报名参加活动，进入自选伴奏库主题“小清新”主题页面，以小清新为主题，不限曲风、不限表达方式，可以是歌曲可以是歌词。"
+                    android:text="打开手机“音诉APP”，登录活动页面，点击”马上参加 “按钮 报名参加活动，进入自选伴奏库主题“小清新”主题页面，以小清新为主题，不限曲风、不限表达方式，可以是歌曲可以是歌词。"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -77,7 +77,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="参赛作品必须是原创和原唱作品，保证未侵犯他人著作权利益，由此带来的一切版权后果与哼哼无关。"
+                    android:text="参赛作品必须是原创和原唱作品，保证未侵犯他人著作权利益，由此带来的一切版权后果与音诉无关。"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -209,7 +209,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
-                android:text="   活动最终解释权归哼哼音乐所有。"
+                android:text="   活动最终解释权归音诉音乐所有。"
                 android:textColor="@color/app_red"
                 android:textSize="12sp" />
         </LinearLayout>

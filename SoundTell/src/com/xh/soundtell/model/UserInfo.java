@@ -29,6 +29,7 @@ public class UserInfo implements Serializable {
 
 	private String id;
 	private String name;
+	private String nickname;
 	private String password;
 
 	public String getId() {
@@ -47,6 +48,14 @@ public class UserInfo implements Serializable {
 		this.name = name;
 	}
 
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -54,4 +63,17 @@ public class UserInfo implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public UserInfo() {
+		super();
+	}
+
+	public UserInfo(String id, String name, String password, String nickname) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.nickname = nickname;
+		this.password = password;
+	}
+
 }

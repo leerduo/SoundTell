@@ -37,6 +37,7 @@ import com.xh.soundtell.listview.XListView;
 import com.xh.soundtell.listview.XListView.IXListViewListener;
 import com.xh.soundtell.model.MusicInfomation;
 import com.xh.soundtell.model.Works;
+import com.xh.soundtell.ui.MainActivity;
 import com.xh.soundtell.ui.PlayMusicActivity;
 import com.xh.soundtell.ui.SetActivity;
 import com.xh.soundtell.ui.TestActivity;
@@ -284,6 +285,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 		case R.id.my_set:
 			Intent intent1 = new Intent(activity, SetActivity.class);
 			startActivityForResult(intent1, 100);
+
 			break;
 		case R.id.my_works_r:
 			WavList();
@@ -325,6 +327,10 @@ public class MyFragment extends Fragment implements OnClickListener,
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		System.out.println("requestCode" + requestCode + "resultCode:"
 				+ resultCode);
+		if (resultCode == activity.RESULT_CANCELED) {
+			// startActivity(new Intent(activity, MainActivity.class));
+			// activity.finish();
+		}
 		if (resultCode != activity.RESULT_OK) {
 			return;
 		}
@@ -497,103 +503,103 @@ public class MyFragment extends Fragment implements OnClickListener,
 	 * 显示MP3信息,其中_ids保存了所有音乐文件的_ID，用来确定到底要播放哪一首歌曲，_titles存放音乐名，用来显示在播放界面，
 	 * 而_path存放音乐文件的路径（删除文件时会用到）。
 	 */
-	@SuppressLint("SimpleDateFormat")
-	private void ShowMp3List() {
-		mis = new ArrayList<MusicInfomation>();
-		// 用游标查找媒体详细信息
-		Cursor cursor = activity.getContentResolver().query(
-				MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-				new String[] { MediaStore.Audio.Media.TITLE,// 标题，游标从0读取
-						MediaStore.Audio.Media.DURATION,// 持续时间,1
-						MediaStore.Audio.Media.ARTIST,// 艺术家,2
-						MediaStore.Audio.Media._ID,// id,3
-						MediaStore.Audio.Media.DISPLAY_NAME,// 显示名称,4
-						MediaStore.Audio.Media.DATA,// 数据，5
-						MediaStore.Audio.Media.ALBUM_ID,// 专辑名称ID,6
-						MediaStore.Audio.Media.ALBUM,// 专辑,7
-						MediaStore.Audio.Media.SIZE }, null, null,
-				MediaStore.Audio.Media.ARTIST);// 大小,8
-		/**
-		 * 判断游标是否为空，有些地方即使没有音乐也会报异常。而且游标不稳定。稍有不慎就出错了,其次，如果用户没有音乐的话，
-		 * 不妨可以告知用户没有音乐让用户添加进去
-		 */
-		if (cursor != null && cursor.getCount() == 0) {
-			Toast.makeText(activity, "没有录制歌曲", Toast.LENGTH_LONG).show();
-			return;
-		}
-		System.out.println(" cursor size " + cursor.getCount());
-		// music_info = new Music_infoAdapter(this, cursor);
-		// new MusicListView().disPlayList(musicListView, this, cursor);
-
-		System.out.println("111111111111");
-		/** 将游标移到第一位 **/
-		cursor.moveToFirst();
-		if (cursor != null) {
-			// 移动到第一个
-			cursor.moveToFirst();
-			// 获得歌曲的各种属性
-			for (int i = 0; i < cursor.getCount(); i++) {
-				// 过滤mp3文件
-				if (cursor.getString(5).endsWith(".wav")) {
-					mi = new MusicInfomation();
-					String name = cursor.getString(0);
-					try {
-						String time = (String) name.subSequence(
-								name.length() - 13, name.length());
-						SimpleDateFormat sdf = new SimpleDateFormat(
-								"yyyy-MM-dd");
-						date = sdf.format(new Date(Long.valueOf(time)));
-
-					} catch (Exception e) {
-						ToastUtil.makeToast(activity, "文件夹内有非法文件");
-					}
-					System.out.println("date:" + date + "n/" + "name" + name);
-					mi.setMusicName(cursor.getString(0));// 歌曲名称
-					mi.setMusicTime(cursor.getInt(1));// 歌曲时间长度
-					mi.setMusicAlbum(date);// 专辑
-					mi.setMusicSinger(cursor.getString(3));// 歌手
-					mi.setMusicSize(cursor.getInt(4));// 大小
-					mi.setMusicPath(cursor.getString(5));// 路径
-					mi.set_id(cursor.getInt(6));// 歌曲id
-
-					System.out.println("歌名：" + cursor.getString(0) + "<br/>"
-							+ "长度：" + cursor.getInt(1) + "<br/>" + "专辑："
-							+ cursor.getString(2) + "<br/>" + "歌手："
-							+ cursor.getString(3) + "<br/>" + "大小："
-							+ cursor.getInt(4) + "<br/>" + "路径："
-							+ cursor.getString(5) + "<br/>" + "歌曲id："
-							+ cursor.getInt(6));
-
-					// System.out.println("-----------------------");
-					// Nothing In The World
-					// 238971
-					// Atomic Kitten
-					// 849
-					// Atomic Kitten - Nothing In The World.mp3
-					// /storage/emulated/0/kgmusic/download/Atomic Kitten -
-					// Nothing In The World.mp3
-					// 6
-					// com.android.cwd.Music_infoAdapter$MusicInfomation@42dcae18
-					// System.out.println(" "+ mCursor.getString(0));
-					// System.out.println(" "+ mCursor.getString(1));
-					// System.out.println(" "+ mCursor.getString(2));
-					// System.out.println(" "+ mCursor.getString(3));
-					// System.out.println(" "+ mCursor.getString(4));
-					// System.out.println(" "+ mCursor.getString(5));
-					// System.out.println(" "+ mCursor.getString(6));
-					// System.out.println(" "+ mi);
-					// System.out.println("-----------------------");
-					// 装载到列表中
-					mis.add(mi);
-				}
-				// 移动到下一个
-				cursor.moveToNext();
-			}
-			for (int i = 0; i < mis.size(); i++) {
-				System.out.println("musicList size " + mis.size()
-						+ mis.get(i).getMusicName());
-			}
-
-		}
-	}
+	// @SuppressLint("SimpleDateFormat")
+	// private void ShowMp3List() {
+	// mis = new ArrayList<MusicInfomation>();
+	// // 用游标查找媒体详细信息
+	// Cursor cursor = activity.getContentResolver().query(
+	// MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+	// new String[] { MediaStore.Audio.Media.TITLE,// 标题，游标从0读取
+	// MediaStore.Audio.Media.DURATION,// 持续时间,1
+	// MediaStore.Audio.Media.ARTIST,// 艺术家,2
+	// MediaStore.Audio.Media._ID,// id,3
+	// MediaStore.Audio.Media.DISPLAY_NAME,// 显示名称,4
+	// MediaStore.Audio.Media.DATA,// 数据，5
+	// MediaStore.Audio.Media.ALBUM_ID,// 专辑名称ID,6
+	// MediaStore.Audio.Media.ALBUM,// 专辑,7
+	// MediaStore.Audio.Media.SIZE }, null, null,
+	// MediaStore.Audio.Media.ARTIST);// 大小,8
+	// /**
+	// * 判断游标是否为空，有些地方即使没有音乐也会报异常。而且游标不稳定。稍有不慎就出错了,其次，如果用户没有音乐的话，
+	// * 不妨可以告知用户没有音乐让用户添加进去
+	// */
+	// if (cursor != null && cursor.getCount() == 0) {
+	// Toast.makeText(activity, "没有录制歌曲", Toast.LENGTH_LONG).show();
+	// return;
+	// }
+	// System.out.println(" cursor size " + cursor.getCount());
+	// // music_info = new Music_infoAdapter(this, cursor);
+	// // new MusicListView().disPlayList(musicListView, this, cursor);
+	//
+	// System.out.println("111111111111");
+	// /** 将游标移到第一位 **/
+	// cursor.moveToFirst();
+	// if (cursor != null) {
+	// // 移动到第一个
+	// cursor.moveToFirst();
+	// // 获得歌曲的各种属性
+	// for (int i = 0; i < cursor.getCount(); i++) {
+	// // 过滤mp3文件
+	// if (cursor.getString(5).endsWith(".wav")) {
+	// mi = new MusicInfomation();
+	// String name = cursor.getString(0);
+	// try {
+	// String time = (String) name.subSequence(
+	// name.length() - 13, name.length());
+	// SimpleDateFormat sdf = new SimpleDateFormat(
+	// "yyyy-MM-dd");
+	// date = sdf.format(new Date(Long.valueOf(time)));
+	//
+	// } catch (Exception e) {
+	// ToastUtil.makeToast(activity, "文件夹内有非法文件");
+	// }
+	// System.out.println("date:" + date + "n/" + "name" + name);
+	// mi.setMusicName(cursor.getString(0));// 歌曲名称
+	// mi.setMusicTime(cursor.getInt(1));// 歌曲时间长度
+	// mi.setMusicAlbum(date);// 专辑
+	// mi.setMusicSinger(cursor.getString(3));// 歌手
+	// mi.setMusicSize(cursor.getInt(4));// 大小
+	// mi.setMusicPath(cursor.getString(5));// 路径
+	// mi.set_id(cursor.getInt(6));// 歌曲id
+	//
+	// System.out.println("歌名：" + cursor.getString(0) + "<br/>"
+	// + "长度：" + cursor.getInt(1) + "<br/>" + "专辑："
+	// + cursor.getString(2) + "<br/>" + "歌手："
+	// + cursor.getString(3) + "<br/>" + "大小："
+	// + cursor.getInt(4) + "<br/>" + "路径："
+	// + cursor.getString(5) + "<br/>" + "歌曲id："
+	// + cursor.getInt(6));
+	//
+	// // System.out.println("-----------------------");
+	// // Nothing In The World
+	// // 238971
+	// // Atomic Kitten
+	// // 849
+	// // Atomic Kitten - Nothing In The World.mp3
+	// // /storage/emulated/0/kgmusic/download/Atomic Kitten -
+	// // Nothing In The World.mp3
+	// // 6
+	// // com.android.cwd.Music_infoAdapter$MusicInfomation@42dcae18
+	// // System.out.println(" "+ mCursor.getString(0));
+	// // System.out.println(" "+ mCursor.getString(1));
+	// // System.out.println(" "+ mCursor.getString(2));
+	// // System.out.println(" "+ mCursor.getString(3));
+	// // System.out.println(" "+ mCursor.getString(4));
+	// // System.out.println(" "+ mCursor.getString(5));
+	// // System.out.println(" "+ mCursor.getString(6));
+	// // System.out.println(" "+ mi);
+	// // System.out.println("-----------------------");
+	// // 装载到列表中
+	// mis.add(mi);
+	// }
+	// // 移动到下一个
+	// cursor.moveToNext();
+	// }
+	// for (int i = 0; i < mis.size(); i++) {
+	// System.out.println("musicList size " + mis.size()
+	// + mis.get(i).getMusicName());
+	// }
+	//
+	// }
+	// }
 }
