@@ -53,8 +53,8 @@ public class HotFragment extends Fragment implements OnClickListener {
 
 	ArrayList<ImageView> imageList;
 	int lastPagePosition = 0;
-	int[] vpImgIds = { R.drawable.hot_guanggao1, R.drawable.hot_guanggao2,
-			R.drawable.hot_guanggao3 };
+	int[] vpImgIds = { R.drawable.activity_2 ,R.drawable.hot_guanggao1, R.drawable.hot_guanggao2
+			};
 
 	private void init() {
 		pager = (ViewPager) view.findViewById(R.id.fraghot_vp);
@@ -166,13 +166,17 @@ public class HotFragment extends Fragment implements OnClickListener {
 			intent.putExtra("hotfragment", "hotfragment");
             intent.putExtra("songId", R.raw.exist_for_you_song);
             intent.putExtra("songName", "因你而在");
+            intent.putExtra("songSonger", "林肯公园里的钟声");
+            intent.putExtra("songImg", R.drawable.demof0);
             intent.putExtra("songBody", getResources().getString(R.string.exist_for_you));
             break;
 		case R.id.fraghot_hot22:// 热歌
 		case R.id.fraghot_hot2:// 热歌
 			intent = new Intent(act, PlayMusicActivity.class);
 			intent.putExtra("hotfragment", "hotfragment");
+			intent.putExtra("songImg", R.drawable.demof1);
 			intent.putExtra("songId", R.raw.li_byebye_song);
+			intent.putExtra("songSonger", "奋斗的刚子");
 			  intent.putExtra("songName", "再见 再见");
 	            intent.putExtra("songBody", getResources().getString(R.string.li_byebye));
 	            break;
@@ -181,6 +185,8 @@ public class HotFragment extends Fragment implements OnClickListener {
 		case R.id.fraghot_hot3:// 热歌
 			intent = new Intent(act, PlayMusicActivity.class);
 			intent.putExtra("hotfragment", "hotfragment");
+			intent.putExtra("songImg", R.drawable.demof2);
+			intent.putExtra("songSonger", "啊·原来是小佟");
 			intent.putExtra("songId", R.raw.w_nightdj_song);
 			  intent.putExtra("songName", "午夜DJ");
 	            intent.putExtra("songBody", getResources().getString(R.string.w_nightdj));

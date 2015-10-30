@@ -503,9 +503,9 @@ private String[] strBgMusicsStrs;
 	        }
 	    }
 	private void initMusicModel(){
-		model1=new MusicRecordModel(R.raw.exist_for_you, "因你而在", "", "林俊杰", getString(R.string.exist_for_you), "激昂-2-130-F(正常品质)");
-		model2=new MusicRecordModel(R.raw.li_byebye, "再见再见", "", "李易峰", getString(R.string.li_byebye), "伤心-1-78-E(正常品质)");
-		model3=new MusicRecordModel(R.raw.w_nightdj, "午夜DJ", "", "王绎龙", getString(R.string.w_nightdj), "摇滚-2-84-G(正常品质)");
+		model1=new MusicRecordModel(R.raw.exist_for_you, "因你而在", "", "林肯公园里的钟声", getString(R.string.exist_for_you), "激昂-2-130-F(正常品质)");
+		model2=new MusicRecordModel(R.raw.li_byebye, "再见再见", "", "奋斗的刚子", getString(R.string.li_byebye), "伤心-1-78-E(正常品质)");
+		model3=new MusicRecordModel(R.raw.w_nightdj, "午夜DJ", "", "啊·原来是小佟", getString(R.string.w_nightdj), "摇滚-2-84-G(正常品质)");
 	}
 	
 	/** 

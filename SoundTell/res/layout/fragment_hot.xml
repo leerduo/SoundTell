@@ -173,14 +173,14 @@
                <TextView 
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="1 向日葵 - "
+                   android:text="1 因你而在 - "
                    android:textSize="13sp"
                    android:textColor="#000"
                    /> 
                 <TextView 
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="前夏"
+                   android:text="林肯公园里的钟声"
                    android:textColor="#777777"
                    android:textSize="13sp"
                    /> 
@@ -197,14 +197,14 @@
                <TextView 
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="2 两小无猜- "
+                   android:text="2 再见再见- "
                    android:textSize="13sp"
                    android:textColor="#000"
                    /> 
                 <TextView 
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="萧然萧冉"
+                   android:text="奋斗的刚子"
                    android:textColor="#777777"
                    android:textSize="13sp"
                    /> 
@@ -220,14 +220,14 @@
                <TextView 
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="3 西瓜 - "
+                   android:text="3 午夜DJ - "
                    android:textSize="13sp"
                    android:textColor="#000"
                    /> 
                 <TextView 
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="作为一个小号"
+                   android:text="啊·原来是小佟"
                    android:textColor="#777777"
                    android:textSize="13sp"
                    /> 
@@ -380,14 +380,14 @@
                <TextView 
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="1 向日葵 - "
+                   android:text="1 因你而在 - "
                    android:textSize="13sp"
                    android:textColor="#000"
                    /> 
                 <TextView 
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="前夏"
+                   android:text="林肯公园里的钟声"
                    android:textColor="#777777"
                    android:textSize="13sp"
                    /> 
@@ -404,14 +404,14 @@
                <TextView 
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="2 两小无猜- "
+                   android:text="2 再见再见- "
                    android:textSize="13sp"
                    android:textColor="#000"
                    /> 
                 <TextView 
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="萧然萧冉"
+                   android:text="奋斗的刚子"
                    android:textColor="#777777"
                    android:textSize="13sp"
                    /> 
@@ -427,18 +427,17 @@
                <TextView 
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="3 西瓜 - "
+                   android:text="3 午夜DJ - "
                    android:textSize="13sp"
                    android:textColor="#000"
                    /> 
                 <TextView 
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:text="作为一个小号"
+                   android:text="啊·原来是小佟"
                    android:textColor="#777777"
                    android:textSize="13sp"
                    /> 
-                
             </LinearLayout> 
              
          </LinearLayout>

@@ -56,11 +56,17 @@
             android:background="@drawable/record_bg"
             android:orientation="vertical" 
              android:id="@+id/playmusic_rl">
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                  >
+                 <ImageView 
+                     android:id="@+id/playmusic_songimg"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:layout_marginBottom="80dp"
+                     android:scaleType="fitXY"
+                     />
                    <LinearLayout
                     android:id="@+id/layout_point"
                     android:layout_width="match_parent"
@@ -89,6 +95,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
                     android:background="@drawable/ll"
+                    android:scaleType="fitXY"
                     android:contentDescription="@string/app_name" />
 
                 <LinearLayout

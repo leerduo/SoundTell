@@ -36,9 +36,9 @@ public class NewCiActivity extends Activity implements OnClickListener{
 		});
 		 ListView  lv=(ListView) findViewById(R.id.newci_lv);
 		 ArrayList<Ranking> ranks=new ArrayList<Ranking>();
-		 Ranking ranking1=new Ranking(R.drawable.hotrank_default, "千夏", "向日葵", "2015-10-17", 1);
-		 Ranking ranking2=new Ranking(R.drawable.hotrank_default, "两小无猜", "萧然萧冉", "2015-10-16", 2);
-		 Ranking ranking3=new Ranking(R.drawable.console_recording_room, "西瓜", "作为一个小号", "2015-10-19", 3);
+		 Ranking ranking1=new Ranking(R.drawable.hotrank_default, "因你而在", "林肯公园里的钟声", "2015-10-17", 1);
+		 Ranking ranking2=new Ranking(R.drawable.hotrank_default, "再见再见", "奋斗的刚子", "2015-10-16", 2);
+		 Ranking ranking3=new Ranking(R.drawable.console_recording_room, "午夜DJ", "啊·原来是小佟", "2015-10-19", 3);
 		 Ranking ranking4=new Ranking(R.drawable.console_bedroom, "孤单单的人请饱饱自己", "蒽蒽非勿勿", "2015-10-17", 4);
 		 Ranking ranking5=new Ranking(R.drawable.hotrank_default, "卡拉", "我们的Show", "2015-10-17", 5);
 		 Ranking ranking6=new Ranking(R.drawable.ic_launcher, "乎卡拉", "Show my", "2015-10-17", 6);
@@ -61,27 +61,33 @@ public class NewCiActivity extends Activity implements OnClickListener{
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 					Intent intent = null;
-					position=position%3;
+//					position=position%3;
 					switch (position) {
 					case 0:
 						intent = new Intent(NewCiActivity.this, PlayMusicActivity.class);
 						intent.putExtra("hotfragment", "hotfragment");
 			            intent.putExtra("songId", R.raw.exist_for_you_song);
 			            intent.putExtra("songName", "因你而在");
+			            intent.putExtra("songSonger", "林肯公园里的钟声");
+			            intent.putExtra("songImg", R.drawable.demof0);
 			            intent.putExtra("songBody", getResources().getString(R.string.exist_for_you));
 			            break;
 					case 1:
 						intent = new Intent(NewCiActivity.this, PlayMusicActivity.class);
 						intent.putExtra("hotfragment", "hotfragment");
+						intent.putExtra("songImg", R.drawable.demof1);
 						intent.putExtra("songId", R.raw.li_byebye_song);
 						  intent.putExtra("songName", "再见 再见");
-				            intent.putExtra("songBody", getResources().getString(R.string.li_byebye));
+						  intent.putExtra("songSonger", "奋斗的刚子");
+				         intent.putExtra("songBody", getResources().getString(R.string.li_byebye));
 				            break;
 					case 2:
 						intent = new Intent(NewCiActivity.this, PlayMusicActivity.class);
 						intent.putExtra("hotfragment", "hotfragment");
+						intent.putExtra("songImg", R.drawable.demof2);
 						intent.putExtra("songId", R.raw.w_nightdj_song);
 						  intent.putExtra("songName", "午夜DJ");
+						  intent.putExtra("songSonger", "啊·原来是小佟");
 				            intent.putExtra("songBody", getResources().getString(R.string.w_nightdj));
 						break;
 					}
@@ -90,8 +96,6 @@ public class NewCiActivity extends Activity implements OnClickListener{
 					}
 				}
 			});
-		 
-		 
 		 findViewById(R.id.newci_create).setOnClickListener(this);
 		 findViewById(R.id.newci_listen).setOnClickListener(this);
 	}

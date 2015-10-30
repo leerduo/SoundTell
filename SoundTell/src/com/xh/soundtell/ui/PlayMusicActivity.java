@@ -101,6 +101,9 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 	private int songId;
 	private String songName;
 	private String songBody;
+	private int songImg;
+	private String songSonger;
+	
 
 	private void getData() {
 		intent = getIntent();
@@ -109,6 +112,8 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 			songId=intent.getIntExtra("songId",0); //歌曲ID
 			songName=intent.getStringExtra("songName");//歌曲名
 			songBody=intent.getStringExtra("songBody");//歌曲歌词
+			songImg=intent.getIntExtra("songImg",0);
+			songSonger=intent.getStringExtra("songSonger");
 		} else {
 			musicInfomation = (MusicInfomation) intent
 					.getSerializableExtra("musicInfomation");
@@ -163,6 +168,8 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 		lin.setPadding(100, DensityUtil.dip2px(this, 50), 100, 0);
 		lin.setLayoutParams(params);
 
+		ImageView tvSongImg=(ImageView) findViewById(R.id.playmusic_songimg);
+		tvSongImg.setImageResource(songImg);
 		view3.addView(lin);
 
 		views.add(view1);
@@ -182,10 +189,12 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 		playmusic_right = (TextView) findViewById(R.id.playmusic_right);
 
 		playmusic_logo = (ImageView) findViewById(R.id.playmusic_logo);
-
+		playmusic_logo.setImageResource(songImg);
 		viewPager = (ViewPager) findViewById(R.id.playmusic_viewPager);
+		
 		LinearLayout pointLayout = (LinearLayout) findViewById(R.id.layout_point);
-
+		pointLayout.setVisibility(View.GONE);
+		
 		pointTextViews = new TextView[3];
 		for (int i = 0; i < 3; i++) {
 			TextView textView = (TextView) LayoutInflater.from(this).inflate(
@@ -201,6 +210,10 @@ public class PlayMusicActivity extends Activity implements OnClickListener,
 
 		playmusic_name = (TextView) findViewById(R.id.playmusic_name);
 		playmusic_username = (TextView) findViewById(R.id.playmusic_username);
+		
+		playmusic_username.setText(songSonger);
+		
+		
 		playmusic_start = (TextView) findViewById(R.id.playmusic_start);
 		playmusic_time = (TextView) findViewById(R.id.playmusic_time);
 
