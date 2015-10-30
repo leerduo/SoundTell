@@ -1,9 +1,16 @@
 package com.xh.soundtell.setting;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+
+import com.xh.soundtell.model.UserInfo;
 
 /**
  * Setting类
@@ -17,9 +24,8 @@ public class SettingHelper {
 	private static Activity mCurrentActivity;
 	// private ArrayList<GoodsCategory> goodsCategories;
 
-	private static final String USER_INFO_FILE = "com.ttuhui.ttyh.userInfo.dat";
-	private static final String GOODS_CATEGORY = "com.ttuhui.ttyh.goodscategory.dat";
-	private static final String USER_NAME_HIS = "com.ttuhui.ttyh.namehis.dat";
+	private UserInfo mUserInfo;
+	private static final String USER_INFO_FILE = "com.xh.soundtell.userInfo.dat";
 	// 用户名历史
 	private ArrayList<String> nameHis;
 
@@ -87,5 +93,59 @@ public class SettingHelper {
 	 */
 	public long getImageCacheTimeoutMillis() {
 		return 604800000;
+	}
+
+	/**
+	 * 获取登陆用户信息
+	 * 
+	 * @return
+	 */
+	public UserInfo getUserInfo() {
+		if (mUserInfo == null) {
+			try {
+				File file = getApplicationContext().getFileStreamPath(
+						USER_INFO_FILE);
+				if (file.exists()) {
+					FileInputStream fis = getApplicationContext()
+							.openFileInput(USER_INFO_FILE);
+					ObjectInputStream ois = new ObjectInputStream(fis);
+					Object object = ois.readObject();
+					if (object != null && object instanceof UserInfo) {
+						mUserInfo = (UserInfo) object;
+					}
+					ois.close();
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return mUserInfo;
+	}
+
+	/**
+	 * 保存登陆用户信息
+	 * 
+	 * @return
+	 */
+	public void setUserInfo(UserInfo userInfo) {
+		this.mUserInfo = userInfo;
+		if (userInfo == null) {
+			File file = getApplicationContext().getFileStreamPath(
+					USER_INFO_FILE);
+			if (file.exists()) {
+				file.delete();
+			}
+		} else {
+			try {
+				FileOutputStream fos = getApplicationContext().openFileOutput(
+						USER_INFO_FILE, Context.MODE_PRIVATE);
+				ObjectOutputStream oos = new ObjectOutputStream(fos);
+				oos.writeObject(userInfo);
+				oos.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
