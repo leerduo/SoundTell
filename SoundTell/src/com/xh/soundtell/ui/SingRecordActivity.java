@@ -237,6 +237,8 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 		case R.id.popupalter_ok:
 			 showDisRecordPopwindow();
 			 String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/音诉音乐/";
+			 File file=new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/音诉音乐");
+			 if(!file.exists())file.mkdirs();
 			 String fileBasePath1 = Environment.getExternalStorageDirectory().getAbsolutePath()+"/音诉音乐Cache/";
 			 String newRecordNamePath=fileBasePath+recordName+".wav";
 			 String oldRecordNamePath=fileBasePath1+recordName+".wav";
@@ -520,6 +522,7 @@ private String[] strBgMusicsStrs;
 	int byteread = 0; 
 	File oldfile = new File(oldPath); 
 	File newfile = new File(newPath); 
+	if(!newfile.exists())newfile.createNewFile();
 	if (oldfile.exists()) { //文件存在时 
 	InputStream inStream = new FileInputStream(oldPath); //读入原文件 
 	FileOutputStream fs = new FileOutputStream(newPath); 
