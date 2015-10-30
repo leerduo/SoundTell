@@ -222,5 +222,6 @@ Come on Together go to party!\n
     <string name="infoactivity7">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;炎炎夏日，没有音乐激情何处释放?在劲爆的摇滚乐下，尽情狂欢，挥汗如雨，这该是何等酣畅爽快!这个夏天，小哼约你一起high起来，让音乐带你放飞一整个夏天。 即日起至8月17日上午11点，参加#有一种声音叫做夏天#，小米手环，手机话费等你来拿哦~</string>
     <string name="title_activity_songer_main">SongerMainActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_data">DataActivity</string>
 
 </resources>
