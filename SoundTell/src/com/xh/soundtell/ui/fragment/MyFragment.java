@@ -450,6 +450,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 	}
 
 	private void WavList() {
+		System.out.println("WavList");
 		mis = new ArrayList<MusicInfomation>();
 		if (Environment.getExternalStorageState().equals(
 				Environment.MEDIA_MOUNTED)) {
@@ -462,7 +463,9 @@ public class MyFragment extends Fragment implements OnClickListener,
 
 	@SuppressLint("SimpleDateFormat")
 	private void getFileName(File[] files) {
+		System.out.println("getFileName");
 		if (files != null) {// 先判断目录是否为空，否则会报空指针
+			System.out.println("files");
 			for (File file : files) {
 				if (file.isDirectory()) {
 					// Log.i("zeng", "若是文件目录。继续读1" + file.getName().toString()
