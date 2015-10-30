@@ -1,23 +1,18 @@
 package com.xh.soundtell.ui.fragment;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,7 +23,6 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.xh.soundtell.R;
 import com.xh.soundtell.adapter.WorksAdapter;
@@ -37,10 +31,8 @@ import com.xh.soundtell.listview.XListView;
 import com.xh.soundtell.listview.XListView.IXListViewListener;
 import com.xh.soundtell.model.MusicInfomation;
 import com.xh.soundtell.model.Works;
-import com.xh.soundtell.ui.MainActivity;
 import com.xh.soundtell.ui.PlayMusicActivity;
 import com.xh.soundtell.ui.SetActivity;
-import com.xh.soundtell.ui.TestActivity;
 import com.xh.soundtell.ui.UserInfoActivity;
 import com.xh.soundtell.util.ImageHelper;
 import com.xh.soundtell.util.PrefUtil;
