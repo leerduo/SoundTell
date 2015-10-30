@@ -41,8 +41,6 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		SettingHelper.getInstance().setCurrentActivity(this);
-		SettingHelper.getInstance().setApplicationContext(this);
 		findView();
 	}
 

@@ -24,15 +24,24 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 
 import com.xh.soundtell.R;
+import com.xh.soundtell.setting.SettingHelper;
+import com.xh.soundtell.util.PrefUtil;
 
 /**
  * 文件名称：StartActivity.java
  */
 public class StartActivity extends Activity implements AnimationListener {
+	private PrefUtil prefUtil;
+	private String first;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_start);
+		SettingHelper.getInstance().setCurrentActivity(this);
+		SettingHelper.getInstance().setApplicationContext(this);
+		prefUtil = PrefUtil.getInstance();
+		first = prefUtil.getFirst();
 		View view = findViewById(R.id.splash);
 		AlphaAnimation anim = new AlphaAnimation(0.5f, 1.0f);
 		anim.setDuration(1000);
@@ -44,7 +53,11 @@ public class StartActivity extends Activity implements AnimationListener {
 
 	private void goNext() {
 		// UIHelper.show(this, R.layout.layout_login);
-		startActivity(new Intent(this, MainActivity.class));
+		if (first.equals("0")) {
+			startActivity(new Intent(this, AboutActivity1.class));
+		} else {
+			startActivity(new Intent(this, MainActivity.class));
+		}
 		this.finish();
 	}
 
@@ -60,5 +73,5 @@ public class StartActivity extends Activity implements AnimationListener {
 	@Override
 	public void onAnimationRepeat(Animation animation) {
 	}
-	
+
 }

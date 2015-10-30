@@ -35,6 +35,15 @@ public class PrefUtil {
 		return instance;
 	}
 
+	public String getFirst() {
+		return sharedPreferences.getString("First", "0");
+	}
+
+	public void setFirst(String First) {
+		editor.putString("First", First);
+		editor.commit();
+	}
+
 	public String getImageLogo() {
 		return sharedPreferences.getString("ImageLogo", "0");
 	}
