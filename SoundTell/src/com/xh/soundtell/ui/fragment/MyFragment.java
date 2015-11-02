@@ -78,6 +78,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		activity = getActivity();
+		
 		parent = getView();
 		// ShowMp3List();
 		WavList();
@@ -287,7 +288,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 			break;
 		case R.id.my_set:
 			Intent intent1 = new Intent(activity, SetActivity.class);
-			startActivityForResult(intent1, 100);
+			startActivityForResult(intent1, 110);
 
 			break;
 		case R.id.my_works_r:

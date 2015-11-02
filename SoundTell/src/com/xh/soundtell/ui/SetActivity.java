@@ -95,8 +95,10 @@ public class SetActivity extends Activity implements OnClickListener {
 		case R.id.set_exit:
 			// intent = new Intent(SetActivity.this, LoginArrayActivity.class);
 			SettingHelper.getInstance().setUserInfo(null);
-//			startActivity(new Intent(SetActivity.this, MainActivity.class));
-			setResult(RESULT_CANCELED);
+			// startActivity(new Intent(SetActivity.this, MainActivity.class));
+			Intent intent2 = new Intent();
+			intent2.putExtra("my", "200");
+			setResult(200, intent2);
 			finish();
 			break;
 

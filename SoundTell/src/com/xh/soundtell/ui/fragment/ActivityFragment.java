@@ -112,13 +112,13 @@ public class ActivityFragment extends Fragment {
 				"两小无猜", "正在进行");
 		FActivity fActivity3 = new FActivity("3", R.drawable.activity_3,
 				"通缉令，赏金丰厚", "正在进行");
-		FActivity fActivity4 = new FActivity("4", R.drawable.activity_4,
+		FActivity fActivity4 = new FActivity("4", R.drawable.activity_7,
 				"一首歌证明我是小清新", "已结束");
 		FActivity fActivity5 = new FActivity("5", R.drawable.activity_5,
 				"唱首情歌给闺蜜", "已结束");
 		FActivity fActivity6 = new FActivity("6", R.drawable.activity_6,
 				"青春一起歌唱", "已结束");
-		FActivity fActivity7 = new FActivity("7", R.drawable.activity_7,
+		FActivity fActivity7 = new FActivity("7", R.drawable.activity_4,
 				"这是唱给爸爸的歌", "已结束");
 		FActivity fActivity8 = new FActivity("8", R.drawable.activity_8,
 				"有一种声音叫做夏天", "已结束");

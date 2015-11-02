@@ -25,6 +25,7 @@ import com.xh.soundtell.ui.fragment.FriendsFragment;
 import com.xh.soundtell.ui.fragment.HotFragment;
 import com.xh.soundtell.ui.fragment.MyFragment;
 import com.xh.soundtell.util.DensityUtil;
+import com.xh.soundtell.util.ImageHelper;
 import com.xh.soundtell.util.UserData;
 
 public class MainActivity extends FragmentActivity implements OnClickListener {
@@ -225,6 +226,24 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	 */
 	private void exit() {
 		finish();
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//		System.out.println("MainrequestCode" + requestCode + "MainresultCode:"
+//				+ resultCode);
+//		System.out.println("999999");
+//		tv2.performClick();
+//		if (resultCode==110) {
+//			tv2.performClick();
+//		}
+	}
+	
+	@Override
+	protected void onNewIntent(Intent intent) {
+	// 拦截Intent，保存Intent，在onResume中进行处理
+	String stringExtra = intent.getStringExtra("my");
+	System.out.println("stringExtra"+stringExtra);
 	}
 
 }

@@ -18,7 +18,7 @@
             android:contentDescription="@string/app_name"
             android:layout_centerHorizontal="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/ll" />
 
         <RelativeLayout
             android:id="@+id/my_r"
@@ -36,7 +36,7 @@
                 android:src="@drawable/ic_launcher"
                 app:border_color="@color/white"
                 app:border_width="2dp" 
-                android:visibility="invisible"/>
+                android:visibility="visible"/>
 
             <ImageView
                 android:id="@+id/my_set"
@@ -66,9 +66,10 @@
                 android:gravity="center_horizontal"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="音诉"
+                android:text="音诉--简介"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="12sp" 
+                android:visibility="gone"/>
         </RelativeLayout>
     </RelativeLayout>
 
