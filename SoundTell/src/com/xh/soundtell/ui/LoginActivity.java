@@ -78,6 +78,11 @@ public class LoginActivity extends Activity implements OnClickListener {
 				return;
 			}
 
+			if (mCursor.getCount() == 0) {
+				ToastUtil.makeToast(this, "账号或密码错误");
+				return;
+			}
+
 			for (int i = 0; i < mCursor.getCount(); i++) {
 				mCursor.moveToPosition(i);
 				String name = mCursor.getString(1);

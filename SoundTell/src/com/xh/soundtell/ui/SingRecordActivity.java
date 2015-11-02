@@ -238,7 +238,8 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 			 showDisRecordPopwindow();
 			 String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/音诉音乐/";
 			 File file=new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/音诉音乐");
-			 if(!file.exists())file.mkdirs();
+			 if(!file.exists())
+				 {file.mkdirs();}
 			 String fileBasePath1 = Environment.getExternalStorageDirectory().getAbsolutePath()+"/音诉音乐Cache/";
 			 String newRecordNamePath=fileBasePath+recordName+".wav";
 			 String oldRecordNamePath=fileBasePath1+recordName+".wav";
@@ -271,7 +272,9 @@ public class SingRecordActivity extends Activity implements OnClickListener{
         switch(mFlag){        
         case FLAG_WAV:
             AudioRecordFunc mRecord_1 = AudioRecordFunc.getInstance();
+            
             recordName="录制-"+musicRecordModels.get(quPosition).getMusicTitle()+System.currentTimeMillis();
+         
             mResult = mRecord_1.startRecordAndFile(recordName); 
             break;
         }
@@ -522,7 +525,10 @@ private String[] strBgMusicsStrs;
 	int byteread = 0; 
 	File oldfile = new File(oldPath); 
 	File newfile = new File(newPath); 
-	if(!newfile.exists())newfile.createNewFile();
+	
+	if(!newfile.exists()){
+		newfile.createNewFile();
+	}
 	if (oldfile.exists()) { //文件存在时 
 	InputStream inStream = new FileInputStream(oldPath); //读入原文件 
 	FileOutputStream fs = new FileOutputStream(newPath); 
@@ -534,6 +540,7 @@ private String[] strBgMusicsStrs;
 	fs.write(buffer, 0, byteread); 
 	} 
 	inStream.close(); 
+	oldfile.delete();
 	} 
 	} 
 	catch (Exception e) { 
