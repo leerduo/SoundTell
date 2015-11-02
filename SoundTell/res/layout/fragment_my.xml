@@ -18,7 +18,7 @@
             android:contentDescription="@string/app_name"
             android:layout_centerHorizontal="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/ll" />
+            android:src="@drawable/ic_launcher" />
 
         <RelativeLayout
             android:id="@+id/my_r"
@@ -36,7 +36,7 @@
                 android:src="@drawable/ic_launcher"
                 app:border_color="@color/white"
                 app:border_width="2dp" 
-                android:visibility="visible"/>
+                android:visibility="invisible"/>
 
             <ImageView
                 android:id="@+id/my_set"
