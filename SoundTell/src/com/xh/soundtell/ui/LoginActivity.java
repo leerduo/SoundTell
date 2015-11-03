@@ -36,7 +36,7 @@ import android.widget.Toast;
 
 /**
  * 文件名称：LoginActivity.java
- */
+  */ 
 public class LoginActivity extends Activity implements OnClickListener {
 
 	EditText account, pwd;

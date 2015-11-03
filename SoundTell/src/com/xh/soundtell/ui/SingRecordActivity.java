@@ -260,6 +260,7 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	
 	private String recordName;
     private void record(int mFlag){
+    	System.out.println("mFlag:"+mFlag);
         if(mState != -1){
             Message msg = new Message();
             Bundle b = new Bundle();// 存放数据
@@ -271,6 +272,7 @@ public class SingRecordActivity extends Activity implements OnClickListener{
         int mResult = -1;
         switch(mFlag){        
         case FLAG_WAV:
+        	System.out.println("FLAG_WAV:"+mFlag);
             AudioRecordFunc mRecord_1 = AudioRecordFunc.getInstance();
             
             recordName="录制-"+musicRecordModels.get(quPosition).getMusicTitle()+System.currentTimeMillis();
