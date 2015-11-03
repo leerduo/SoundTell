@@ -110,6 +110,7 @@ public class HotFragment extends Fragment implements OnClickListener {
 				// 这是要频繁加载数据。
 				ImageView imageView = imageList.get(position);
 				container.addView(imageView);
+				if(position==0){
 				imageView.setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -117,7 +118,7 @@ public class HotFragment extends Fragment implements OnClickListener {
 						intent.putExtra("web", "0");
 						startActivity(intent);
 					}
-				});
+				});}
 				// 返回一个view
 				return imageList.get(position);
 			}

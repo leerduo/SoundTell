@@ -18,7 +18,7 @@
             android:contentDescription="@string/app_name"
             android:layout_centerHorizontal="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/demoo1" />
 
         <RelativeLayout
             android:id="@+id/my_r"
@@ -66,10 +66,10 @@
                 android:gravity="center_horizontal"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="音诉--简介"
+                android:text="音诉"
                 android:textColor="@color/white"
-                android:textSize="12sp" 
-                android:visibility="gone"/>
+                android:textSize="12sp"
+                android:visibility="gone" />
         </RelativeLayout>
     </RelativeLayout>
 

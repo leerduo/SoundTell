@@ -78,7 +78,6 @@ public class MyFragment extends Fragment implements OnClickListener,
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		activity = getActivity();
-		
 		parent = getView();
 		// ShowMp3List();
 		WavList();
@@ -93,7 +92,6 @@ public class MyFragment extends Fragment implements OnClickListener,
 		View view = inflater.inflate(R.layout.fragment_my, null);
 		return view;
 	}
-
 	// my_userlogo
 	// my_set
 	//
@@ -288,7 +286,7 @@ public class MyFragment extends Fragment implements OnClickListener,
 			break;
 		case R.id.my_set:
 			Intent intent1 = new Intent(activity, SetActivity.class);
-			startActivityForResult(intent1, 110);
+			startActivityForResult(intent1, 100);
 
 			break;
 		case R.id.my_works_r:

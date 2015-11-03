@@ -6,14 +6,6 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import com.xh.soundtell.R;
-import com.xh.soundtell.R.layout;
-import com.xh.soundtell.model.MusicRecordModel;
-import com.xh.soundtell.music.AudioRecordFunc;
-import com.xh.soundtell.music.ErrorCode;
-import com.xh.soundtell.music.MusicHelper;
-import com.xh.soundtell.util.DensityUtil;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -26,16 +18,21 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.xh.soundtell.R;
+import com.xh.soundtell.model.MusicRecordModel;
+import com.xh.soundtell.music.AudioRecordFunc;
+import com.xh.soundtell.music.ErrorCode;
+import com.xh.soundtell.music.MusicHelper;
+import com.xh.soundtell.util.DensityUtil;
 
 public class SingRecordActivity extends Activity implements OnClickListener{
 	ImageView  ivPlay;
@@ -112,7 +109,6 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	    ivChoose = (ImageView) findViewById(R.id.singrecord_choose);
 	    ivChoose.setOnClickListener(this);
 	    tvChoose = (TextView) findViewById(R.id.singrecord_choose_tv);
-
 	    
 	    strBgMusicsStrs = new String[] {"激昂-2-130-F(正常品质)","伤心-1-78-E(正常品质)","摇滚-2-84-G(正常品质)"};
 	    tvTimeShow=(TextView) findViewById(R.id.singrecord_time);
@@ -154,7 +150,8 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 			tvSinger.setText(musicRecordModels.get(ciPosition).getMusicSinger());
 			tvType.setText(musicRecordModels.get(ciPosition).getMusicType());
 			break;
-		case R.id.singrecord_prepare:
+			
+		case R.id.singrecord_prepare://中点录制音乐按钮
 			ivPlay.setVisibility(View.GONE);
 			tvChoose.setVisibility(View.GONE);
 
@@ -171,9 +168,15 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 //					 ivPrepare.setImageResource(R.drawable.record_done_ib);
 					 ivPrepare.setImageResource(R.drawable.record_pause_ib);
 					 MusicHelper.startMusic(this,musicRecordModels.get(quPosition).getMusicId(),false);
+					 
 			         record(FLAG_WAV);
+			         
 			         handler.sendEmptyMessageDelayed(0, 1000);
 					 }
+			
+			
+			
+			
 			break;
 		case R.id.singrecord_play:
 			if(isPlaying){
@@ -260,7 +263,6 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 	
 	private String recordName;
     private void record(int mFlag){
-    	System.out.println("mFlag:"+mFlag);
         if(mState != -1){
             Message msg = new Message();
             Bundle b = new Bundle();// 存放数据
@@ -272,7 +274,6 @@ public class SingRecordActivity extends Activity implements OnClickListener{
         int mResult = -1;
         switch(mFlag){        
         case FLAG_WAV:
-        	System.out.println("FLAG_WAV:"+mFlag);
             AudioRecordFunc mRecord_1 = AudioRecordFunc.getInstance();
             
             recordName="录制-"+musicRecordModels.get(quPosition).getMusicTitle()+System.currentTimeMillis();
@@ -323,7 +324,9 @@ public class SingRecordActivity extends Activity implements OnClickListener{
 						deleteAllFiles(new File( Environment.getExternalStorageDirectory().getAbsolutePath()+"/音诉音乐Cache/"+recordName+".wav"));
 					}
 				}, 1000);
-	          if(TextUtils.isEmpty(recordName)){recordName=null;}  
+	          if(TextUtils.isEmpty(recordName)){recordName=null;
+	          
+	          }  
 	          }
 		}
 		super.onDestroy();
